@@ -1,0 +1,33 @@
+<!doctype html>
+<meta charset="utf-8"><title>Prueba: editar equipo</title>
+<iframe id="f" src="../index.html" style="width:1300px;height:800px"></iframe>
+<pre id="resultado">corriendo…</pre>
+<script type="module">
+// Prueba de punta a punta de la ventana «Equipo…» dentro de la app real.
+const espera = (ms = 200) => new Promise(r => setTimeout(r, ms));
+const r = [], ok = (c, m) => r.push(`${c ? 'ok  ' : 'FALLA'} ${m}`);
+await espera(1500);
+const doc = document.getElementById('f').contentDocument;
+const boton = t => [...doc.querySelectorAll('button')].find(b => b.textContent.trim() === t);
+try {
+  boton('Tabla').click(); await espera();
+  ok(doc.body.textContent.includes('Ana'), 'antes: Ana aparece en la tabla');
+  boton('Equipo…').click(); await espera();
+  const dlg = doc.querySelector('dialog.po-dialogo');
+  ok(dlg && dlg.open, 'se abre la ventana de equipo');
+  const campos = [...dlg.querySelectorAll('input')];
+  ok(campos.map(c => c.value).join(',') === 'Ana,Luis,Marta,Pedro', 'muestra el equipo actual');
+  campos[0].value = 'Paola';                                       // renombrar Ana → Paola
+  [...dlg.querySelectorAll('.po-equipo-fila')][3].querySelector('button').click(); // quitar Pedro
+  [...dlg.querySelectorAll('button')].find(b => b.textContent.includes('Agregar')).click();
+  [...dlg.querySelectorAll('input')].at(-1).value = 'Jesús';
+  [...dlg.querySelectorAll('button')].find(b => b.textContent === 'Listo').click(); await espera();
+  const tabla = doc.querySelector('.po-vista').textContent;
+  ok(tabla.includes('Paola') && !tabla.includes('Ana'), 'las tareas de Ana pasan a Paola');
+  ok(!/Pedro/.test(tabla), 'Pedro ya no aparece (sus tareas quedan sin asignar)');
+  ok(doc.body.textContent.includes('sin guardar'), 'marca cambios sin guardar');
+  boton('Deshacer').click(); await espera();
+  ok(doc.querySelector('.po-vista').textContent.includes('Ana'), 'Deshacer devuelve a Ana');
+} catch (e) { r.push('ERROR ' + e.stack); }
+document.getElementById('resultado').textContent = r.join('\n') + '\nFIN';
+</script>

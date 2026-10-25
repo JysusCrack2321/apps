@@ -1,0 +1,6 @@
+{
+  "name": "project-organizer",
+  "private": true,
+  "type": "module",
+  "scripts": { "test": "node --test pruebas/*.test.js" }
+}

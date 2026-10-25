@@ -1,0 +1,14 @@
+[
+  {
+    "id": "ana-perez",
+    "nombre": "Ana Pérez",
+    "correo": "ana@ejemplo.com",
+    "rol": "admin"
+  },
+  {
+    "id": "luis-gomez",
+    "nombre": "Luis Gómez",
+    "correo": "luis@ejemplo.com",
+    "rol": "miembro"
+  }
+]

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Itinerario — Horario y Entregas</title>
+  <link rel="stylesheet" href="comun/estilos.css">
+</head>
+<body>
+  <!-- Encabezado superior -->
+  <header class="app-cabecera">
+    <div class="cabecera-izquierda">
+      <div class="app-marca">
+        <span class="app-logo">⏱️</span>
+        <h1 class="app-titulo">Itinerario</h1>
+      </div>
+
+      <!-- Pestañas de navegación -->
+      <nav class="navegacion-pestanas" aria-label="Vistas principales">
+        <button type="button" class="btn-pestana activo" id="pestana-hoy">Hoy</button>
+        <button type="button" class="btn-pestana" id="pestana-semana">Semana</button>
+        <button type="button" class="btn-pestana" id="pestana-pendientes">Pendientes</button>
+      </nav>
+    </div>
+
+    <div class="cabecera-derecha">
+      <!-- Usuario activo -->
+      <span class="indicador-usuario" id="indicador-usuario" hidden></span>
+
+      <!-- Indicador de estado de guardado -->
+      <span class="indicador-guardado" id="indicador-guardado" title="Estado de sincronización">Cargando...</span>
+
+      <!-- Deshacer / Rehacer -->
+      <div class="grupo-historial">
+        <button type="button" class="btn-icono" id="btn-deshacer" title="Deshacer (Ctrl+Z)" disabled>↶</button>
+        <button type="button" class="btn-icono" id="btn-rehacer" title="Rehacer (Ctrl+Y)" disabled>↷</button>
+      </div>
+
+      <!-- Selector de tema -->
+      <button type="button" class="btn-icono" id="btn-tema" title="Cambiar tema">🌙</button>
+
+      <!-- Panel de ajustes -->
+      <button type="button" class="btn-icono" id="btn-ajustes" title="Ajustes (Configuración)">⚙</button>
+    </div>
+  </header>
+
+  <!-- Banner de conflicto o alertas críticas -->
+  <div class="banner-alerta" id="banner-conflicto" style="display: none;"></div>
+
+  <!-- Disposición principal -->
+  <div class="app-cuerpo">
+    <!-- Contenedor dinámico de la vista activa -->
+    <main class="contenedor-vista" id="contenedor-vista" role="main"></main>
+
+    <!-- Panel lateral de edición / hoja inferior móvil -->
+    <aside class="contenedor-editor" id="contenedor-editor" aria-label="Editor de elementos"></aside>
+  </div>
+
+  <!-- Contenedor flotante de avisos (toasts) -->
+  <div class="contenedor-avisos" id="contenedor-avisos" aria-live="polite"></div>
+
+  <!-- Entrada modular JavaScript -->
+  <script type="module" src="comun/app.js"></script>
+</body>
+</html>

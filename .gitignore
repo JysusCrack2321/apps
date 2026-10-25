@@ -1,0 +1,23 @@
+# Python
+__pycache__/
+*.pyc
+
+# Dependencias y temporales
+node_modules/
+*.log
+herramientas/registro/
+
+# --- Datos privados ---
+# El código es público; los datos reales (proyectos, itinerarios de cada
+# persona y sus respaldos) se copian a mano al servidor y nunca se versionan.
+# Hay un archivo .ejemplo por cada uno para conocer el formato.
+usuarios.json
+project-organizer/datos.json
+project-organizer/guardados/
+project-organizer/ejemplos/
+itinerario-app/datos.json
+itinerario-app/usuarios/
+itinerario-app/respaldos/
+
+# Clon duplicado del EDT, pendiente de revisar
+neo-edt/

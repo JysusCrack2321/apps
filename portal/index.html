@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portal — Herramientas de Trabajo</title>
+  <link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+  <header class="app-cabecera">
+    <div class="cabecera-izquierda">
+      <div class="app-marca">
+        <span class="app-logo">🧭</span>
+        <h1 class="app-titulo">Portal de Aplicaciones</h1>
+      </div>
+    </div>
+
+    <div class="cabecera-derecha">
+      <!-- Estado del usuario activo -->
+      <div class="barra-usuario" id="barra-usuario">
+        <span class="etiqueta-usuario" id="etiqueta-usuario">Sin usuario seleccionado</span>
+        <button type="button" class="btn btn-sm btn-cambiar" id="btn-cambiar-usuario">Elegir usuario</button>
+      </div>
+
+      <!-- Botón de tema claro/oscuro -->
+      <button type="button" class="btn-icono" id="btn-tema" title="Cambiar tema">🌙</button>
+    </div>
+  </header>
+
+  <main class="portal-contenedor">
+    <!-- Selector de usuario (modo local, sin contraseña) -->
+    <section class="panel-usuarios" id="panel-usuarios" aria-label="Selector de usuario" hidden>
+      <div class="panel-usuarios-cabecera">
+        <div>
+          <h2 class="panel-titulo">Selecciona tu usuario</h2>
+          <p class="panel-subtitulo">Modo local: tu identidad se compartirá entre el EDT y el Itinerario.</p>
+        </div>
+        <button type="button" class="btn-icono" id="btn-cerrar-selector" title="Cerrar selector" hidden>✕</button>
+      </div>
+      <div class="lista-usuarios" id="lista-usuarios" role="listbox" aria-label="Usuarios disponibles"></div>
+    </section>
+
+    <!-- Tarjetas de aplicaciones -->
+    <section class="rejilla-tarjetas" aria-label="Aplicaciones disponibles">
+      <!-- Tarjeta Project Organizer (EDT) -->
+      <a class="tarjeta-app" id="tarjeta-edt" href="#" target="edt">
+        <div class="tarjeta-cabecera">
+          <span class="tarjeta-icono" aria-hidden="true">🗂️</span>
+          <span class="insignia-estado estado-verificando" id="estado-edt">Verificando…</span>
+        </div>
+        <h2 class="tarjeta-titulo">Project Organizer (EDT)</h2>
+        <p class="tarjeta-descripcion">
+          Estructura de desglose del trabajo, diagrama de Gantt, hitos y asignación de responsables del proyecto.
+        </p>
+        <div class="tarjeta-pie">
+          <span class="tarjeta-puerto" id="url-edt">:8088</span>
+          <span class="tarjeta-accion">Abrir herramienta →</span>
+        </div>
+      </a>
+
+      <!-- Tarjeta Itinerario -->
+      <a class="tarjeta-app" id="tarjeta-itinerario" href="#" target="itinerario">
+        <div class="tarjeta-cabecera">
+          <span class="tarjeta-icono" aria-hidden="true">⏱️</span>
+          <span class="insignia-estado estado-verificando" id="estado-itinerario">Verificando…</span>
+        </div>
+        <h2 class="tarjeta-titulo">Itinerario</h2>
+        <p class="tarjeta-descripcion">
+          Agenda diaria, vista semanal, entregas pendientes y planificador automático de bloques de estudio.
+        </p>
+        <div class="tarjeta-pie">
+          <span class="tarjeta-puerto" id="url-itinerario">:8090</span>
+          <span class="tarjeta-accion">Abrir herramienta →</span>
+        </div>
+      </a>
+    </section>
+  </main>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>

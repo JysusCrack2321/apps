@@ -1,0 +1,17 @@
+{
+  "version": 1,
+  "config": { "inicioDia": "06:00", "finDia": "23:00", "bloqueMaxMin": 120, "pausaMin": 5 },
+  "materias": [
+    { "id": "mat1", "nombre": "Cálculo", "color": "#2563eb" },
+    { "id": "mat2", "nombre": "Física", "color": "#d6453d" }
+  ],
+  "tareas": [
+    { "id": "t-ejemplo1", "titulo": "Taller 3", "materia": "mat1", "padre": null, "entrega": "2026-01-28T23:59", "duracionMin": 90, "avance": 0, "estado": "pendiente", "notas": "" }
+  ],
+  "bloques": [
+    { "id": "b-ejemplo1", "fecha": "2026-01-26", "inicio": "08:00", "fin": "09:30", "tarea": "t-ejemplo1", "titulo": "", "hecho": false, "propuesto": false }
+  ],
+  "fijos": [
+    { "id": "f-ejemplo1", "titulo": "Clase de Cálculo", "materia": "mat1", "dias": [1, 3], "inicio": "07:00", "fin": "09:00", "lugar": "Aula 101", "desde": "2026-01-19", "hasta": "2026-05-29" }
+  ]
+}

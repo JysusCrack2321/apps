@@ -1,0 +1,9 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>Abrir la app en una pestaña</title>
+<script>
+// pruebas/app.html?pestana=gantt → abre la app en esa pestaña (solo para pruebas)
+const p = new URLSearchParams(location.search).get('pestana') || 'edt';
+try { localStorage.setItem('project-organizer:pestana', p); } catch {}
+location.replace('../index.html');
+</script>

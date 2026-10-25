@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="es">
+<head><meta charset="utf-8"><title>Pruebas de interfaz</title></head>
+<body>
+<div id="vista"></div><div id="editor"></div>
+<pre id="resultado">corriendo…</pre>
+<script type="module">
+// Pruebas de interfaz: monta tabla + editor con el ejemplo y simula acciones del usuario.
+// Ejecutar sirviendo la carpeta: http://localhost:8000/pruebas/ui.html  (o en Chromium headless con --dump-dom)
+import * as M from '../comun/modelo.js';
+import { crearEditor } from '../comun/editor.js';
+import { crearVista } from '../vistas/tabla.js';
+
+const salida = [];
+const ok = (cond, msg) => salida.push(`${cond ? 'ok  ' : 'FALLA'} ${msg}`);
+const espera = (ms = 30) => new Promise(r => setTimeout(r, ms));
+
+let datos = await (await fetch('../ejemplos/incubadora-neo.json')).json();
+let seleccion = null;
+let modelo = M.construir(datos);
+const refrescar = () => { modelo = M.construir(datos); vista.mostrar(modelo, seleccion); editor.mostrar(modelo, seleccion); };
+const aplicar = f => { try { datos = f(datos); refrescar(); } catch (e) { salida.push('aviso: ' + e.message); } };
+const alSeleccionar = id => { seleccion = id; refrescar(); };
+
+const vista = crearVista(document.getElementById('vista'), { alSeleccionar });
+const editor = crearEditor(document.getElementById('editor'), { aplicar, alSeleccionar });
+refrescar();
+
+try {
+  // --- tabla
+  const filas = () => [...document.querySelectorAll('#vista tbody tr')];
+  ok(filas().length >= 35, `tabla muestra filas (${filas().length})`);
+  const fila111 = filas().find(tr => tr.textContent.includes('1.1.1'));
+  ok(!!fila111, 'existe fila 1.1.1');
+  fila111.click(); await espera();
+  ok(seleccion === modelo.lista.find(n => n.codigo === '1.1.1').id, 'clic en fila selecciona la actividad');
+
+  // --- editor: cambiar nombre
+  const panel = document.getElementById('editor');
+  const inputs = [...panel.querySelectorAll('input')];
+  const nombre = inputs.find(i => i.type === 'text' || !i.type);
+  ok(!!nombre, 'editor muestra campo nombre');
+  nombre.value = 'Alcance definido'; nombre.dispatchEvent(new Event('change', { bubbles: true })); await espera();
+  ok(datos.actividades.find(a => a.id === seleccion).nombre === 'Alcance definido', 'cambiar nombre actualiza datos');
+  ok(document.getElementById('vista').textContent.includes('Alcance definido'), 'la tabla refleja el nombre nuevo');
+
+  // --- editor: estado
+  const sel = [...panel.querySelectorAll('select')].find(s => [...s.options].some(o => o.value === 'bloqueada'));
+  ok(!!sel, 'editor muestra selector de estado');
+  sel.value = 'bloqueada'; sel.dispatchEvent(new Event('change', { bubbles: true })); await espera();
+  ok(datos.actividades.find(a => a.id === seleccion).estado === 'bloqueada', 'cambiar estado actualiza datos');
+
+  // --- editor: fechas (fin antes que inicio debe corregirse sola)
+  const fechas = [...panel.querySelectorAll('input[type=date]')];
+  ok(fechas.length === 2, 'editor muestra inicio y fin');
+  fechas[0].value = '2026-12-20'; fechas[0].dispatchEvent(new Event('change', { bubbles: true })); await espera();
+  const a = datos.actividades.find(x => x.id === seleccion);
+  ok(a.inicio === '2026-12-20' && a.fin >= a.inicio, `inicio posterior al fin se corrige (${a.inicio} → ${a.fin})`);
+
+  // --- editor: agregar hermano
+  const n0 = datos.actividades.length;
+  const botones = () => [...panel.querySelectorAll('button')];
+  botones().find(b => /hermano/i.test(b.textContent)).click(); await espera();
+  ok(datos.actividades.length === n0 + 1, 'agregar hermano crea una actividad');
+  const nueva = modelo.porId.get(seleccion);
+  ok(nueva && nueva.nombre === 'Nueva actividad' && nueva.codigo === '1.1.2', `nueva actividad seleccionada con código ${nueva?.codigo}`);
+
+  // --- editor: eliminar (aceptando el confirm)
+  window.confirm = () => true;
+  botones().find(b => /eliminar/i.test(b.textContent)).click(); await espera();
+  ok(datos.actividades.length === n0 && !datos.actividades.some(x => x.id === nueva.id), 'eliminar quita la actividad');
+
+  // --- padre: muestra fechas calculadas, no campos de fecha
+  alSeleccionar(modelo.lista.find(n => n.codigo === '1').id); await espera();
+  ok(panel.querySelectorAll('input[type=date]').length === 0, 'un padre no muestra campos de fecha');
+
+  // --- tabla: filtro
+  const buscador = document.querySelector('#vista input[type=search], #vista input[type=text]');
+  buscador.value = 'batería'; buscador.dispatchEvent(new Event('input', { bubbles: true })); await espera();
+  ok(filas().length > 0 && filas().length < 10, `filtro de texto reduce filas (${filas().length})`);
+
+  ok(M.validar(datos).ok, 'los datos siguen siendo válidos tras todas las ediciones');
+} catch (e) {
+  salida.push('ERROR ' + e.stack);
+}
+document.getElementById('resultado').textContent = salida.join('\n') + '\nFIN';
+</script>
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!doctype html>
+<meta charset="utf-8"><title>Prueba: códigos de la EDT se actualizan</title>
+<script>if (/HeadlessChrome/.test(navigator.userAgent)) window.requestAnimationFrame = cb => setTimeout(() => cb(performance.now()), 16);</script>
+<div id="c" style="width:1200px;height:700px;display:flex;flex-direction:column"></div>
+<pre id="resultado">corriendo…</pre>
+<script type="module">
+// Mueve una actividad y verifica que la EDT muestre su código nuevo (antes quedaba el viejo).
+import * as M from '../comun/modelo.js';
+const r = [], ok = (c, m) => r.push(`${c ? 'ok  ' : 'FALLA'} ${m}`);
+let datos = await (await fetch('../ejemplos/incubadora-neo.json')).json();
+const { crearVista } = await import('../vistas/edt.js');
+const vista = crearVista(document.getElementById('c'), { alSeleccionar() {} });
+const codigos = () => [...document.querySelectorAll('.po-edt-codigo')].map(t => t.textContent);
+let m = M.construir(datos);
+const g122 = m.lista.find(n => n.codigo === '1.2.2').id, g422 = m.lista.find(n => n.codigo === '4.2.2').id;
+vista.mostrar(m, g122);
+ok(codigos().includes('1.2.2'), 'antes: aparece 1.2.2');
+datos = M.moverActividad(datos, g122, g422, 0);          // 1.2.2 pasa a ser hijo de 4.2.2
+m = M.construir(datos);
+vista.mostrar(m, g122);
+await new Promise(res => setTimeout(res, 300));
+ok(codigos().includes('4.2.2.1'), 'después de mover: aparece 4.2.2.1');
+ok(!codigos().includes('1.2.2'), 'el código viejo 1.2.2 ya no aparece');
+datos = M.editarActividad(datos, g122, { nombre: 'Renombrada' });
+vista.mostrar(M.construir(datos), g122);
+ok([...document.querySelectorAll('.po-edt-nombre')].some(t => t.textContent.includes('Renombrada')), 'renombrar se refleja');
+document.getElementById('resultado').textContent = r.join('\n') + '\nFIN';
+</script>

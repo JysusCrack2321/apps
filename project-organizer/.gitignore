@@ -1,0 +1,8 @@
+# Versiones guardadas localmente en el servidor
+guardados/
+datos[0-9]*.json
+
+# Dependencias o archivos temporales
+node_modules/
+herramientas/registro/
+*.log

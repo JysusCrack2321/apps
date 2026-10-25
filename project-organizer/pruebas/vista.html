@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="es">
+<head><meta charset="utf-8"><title>Vista aislada</title>
+<link rel="stylesheet" href="../comun/estilos.css">
+<style>html,body{margin:0;height:100%} #c{height:100vh;display:flex;flex-direction:column} .po-edt-lienzo{flex:1;min-height:0}</style>
+<script>
+// En Chromium sin ventana requestAnimationFrame casi no corre: se reemplaza por un temporizador (solo pruebas).
+if (navigator.webdriver || /HeadlessChrome/.test(navigator.userAgent)) window.requestAnimationFrame = cb => setTimeout(() => cb(performance.now()), 16);
+</script></head>
+<body>
+<div id="c"></div>
+<pre id="resultado" style="display:none"></pre>
+<script type="module">
+// Monta una sola vista con el ejemplo: pruebas/vista.html?v=edt | gantt | tabla  (&sel=1.1.1 para seleccionar por código)
+import * as M from '../comun/modelo.js';
+const p = new URLSearchParams(location.search);
+const { crearVista } = await import(`../vistas/${p.get('v') || 'gantt'}.js`);
+const datos = await (await fetch('../ejemplos/incubadora-neo.json')).json();
+const modelo = M.construir(datos);
+const sel = p.get('sel') ? modelo.lista.find(n => n.codigo === p.get('sel'))?.id : null;
+const eventos = [];
+const vista = crearVista(document.getElementById('c'), { alSeleccionar: id => eventos.push(id) });
+vista.mostrar(modelo, sel);
+setTimeout(() => { vista.mostrar(modelo, sel); document.getElementById('resultado').textContent = 'mostrado'; }, 300);
+window.__eventos = eventos;
+</script>
+</body>
+</html>

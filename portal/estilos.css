@@ -1,0 +1,405 @@
+/* portal/estilos.css - Mismo estilo visual que el itinerario, con modo claro/oscuro y diseño móvil */
+
+:root {
+  /* Paleta base clara (idéntica a itinerario-app) */
+  --color-fondo: #f6f5f2;
+  --color-panel: #ffffff;
+  --color-panel-hover: #f9f8f6;
+  --color-texto: #1d1d1b;
+  --color-texto-suave: #6b6a66;
+  --color-lineas: #e3e1dc;
+  --color-borde-foco: #2f6fde;
+
+  /* Estados */
+  --color-en-linea: #10b981;
+  --color-en-linea-fondo: #ecfdf5;
+  --color-caido: #d6453d;
+  --color-caido-fondo: #fef2f2;
+  --color-verificando: #d99a1e;
+  --color-verificando-fondo: #fffbeb;
+
+  /* Énfasis y acciones */
+  --color-primario: #2f6fde;
+  --color-primario-hover: #1e58be;
+  --color-primario-texto: #ffffff;
+
+  /* Dimensiones y radios */
+  --radio-sm: 6px;
+  --radio-md: 8px;
+  --radio-lg: 12px;
+  --sombra-sm: 0 1px 3px rgba(0, 0, 0, 0.05);
+  --sombra-md: 0 4px 12px rgba(0, 0, 0, 0.08);
+  --transicion-rapida: 150ms ease-out;
+  --alto-cabecera: 56px;
+}
+
+[data-tema="oscuro"] {
+  --color-fondo: #161615;
+  --color-panel: #201f1d;
+  --color-panel-hover: #282724;
+  --color-texto: #ecebe8;
+  --color-texto-suave: #9d9b96;
+  --color-lineas: #34332f;
+  --color-borde-foco: #6b9cff;
+
+  --color-en-linea: #34d399;
+  --color-en-linea-fondo: #13271f;
+  --color-caido: #ef6a61;
+  --color-caido-fondo: #2e1817;
+  --color-verificando: #e8b44a;
+  --color-verificando-fondo: #2b2210;
+
+  --color-primario: #3b82f6;
+  --color-primario-hover: #60a5fa;
+  --color-primario-texto: #ffffff;
+
+  --sombra-sm: 0 1px 3px rgba(0, 0, 0, 0.3);
+  --sombra-md: 0 4px 16px rgba(0, 0, 0, 0.4);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+body {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-size: 15px;
+  line-height: 1.45;
+  color: var(--color-texto);
+  background-color: var(--color-fondo);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+  transition: background-color var(--transicion-rapida), color var(--transicion-rapida), border-color var(--transicion-rapida);
+}
+
+/* Cabecera */
+.app-cabecera {
+  min-height: var(--alto-cabecera);
+  background-color: var(--color-panel);
+  border-bottom: 1px solid var(--color-lineas);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 20px;
+  gap: 12px;
+  position: sticky;
+  top: 0;
+  z-index: 40;
+}
+
+.cabecera-izquierda,
+.cabecera-derecha {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.app-marca {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.app-logo {
+  font-size: 22px;
+}
+
+.app-titulo {
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: -0.3px;
+}
+
+.barra-usuario {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background-color: var(--color-fondo);
+  border: 1px solid var(--color-lineas);
+  padding: 4px 6px 4px 12px;
+  border-radius: 999px;
+}
+
+.etiqueta-usuario {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--color-texto);
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 14px;
+  border-radius: var(--radio-md);
+  font-size: 14px;
+  font-weight: 500;
+  user-select: none;
+}
+
+.btn-sm {
+  padding: 4px 10px;
+  font-size: 12px;
+  border-radius: 999px;
+}
+
+.btn-cambiar {
+  background-color: var(--color-panel);
+  border: 1px solid var(--color-lineas);
+  color: var(--color-primario);
+  font-weight: 600;
+}
+
+.btn-cambiar:hover {
+  background-color: var(--color-primario);
+  color: var(--color-primario-texto);
+  border-color: var(--color-primario);
+}
+
+.btn-icono {
+  padding: 8px;
+  min-width: 40px;
+  min-height: 40px;
+  border-radius: var(--radio-md);
+  color: var(--color-texto-suave);
+}
+
+.btn-icono:hover {
+  background-color: var(--color-fondo);
+  color: var(--color-texto);
+}
+
+/* Contenedor principal */
+.portal-contenedor {
+  width: 100%;
+  max-width: 920px;
+  margin: 0 auto;
+  padding: 32px 20px 48px;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+/* Panel selector de usuario */
+.panel-usuarios {
+  background-color: var(--color-panel);
+  border: 1px solid var(--color-lineas);
+  border-radius: var(--radio-lg);
+  padding: 20px;
+  box-shadow: var(--sombra-sm);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.panel-usuarios-cabecera {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.panel-titulo {
+  font-size: 17px;
+  font-weight: 700;
+}
+
+.panel-subtitulo {
+  font-size: 13px;
+  color: var(--color-texto-suave);
+  margin-top: 2px;
+}
+
+.lista-usuarios {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+  gap: 10px;
+}
+
+.opcion-usuario {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 10px 14px;
+  border-radius: var(--radio-md);
+  border: 1px solid var(--color-lineas);
+  background-color: var(--color-fondo);
+  text-align: left;
+}
+
+.opcion-usuario:hover {
+  border-color: var(--color-primario);
+  background-color: var(--color-panel-hover);
+}
+
+.opcion-usuario.activo {
+  border-color: var(--color-primario);
+  background-color: var(--color-panel);
+  box-shadow: 0 0 0 2px var(--color-primario);
+}
+
+.opcion-usuario-nombre {
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.opcion-usuario-rol {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  padding: 2px 7px;
+  border-radius: 999px;
+  background-color: var(--color-panel);
+  border: 1px solid var(--color-lineas);
+  color: var(--color-texto-suave);
+}
+
+/* Rejilla de tarjetas de aplicaciones */
+.rejilla-tarjetas {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.tarjeta-app {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: var(--color-panel);
+  border: 1px solid var(--color-lineas);
+  border-radius: var(--radio-lg);
+  padding: 26px 24px;
+  text-decoration: none;
+  color: inherit;
+  box-shadow: var(--sombra-sm);
+  transition: transform var(--transicion-rapida), box-shadow var(--transicion-rapida), border-color var(--transicion-rapida);
+  min-height: 230px;
+}
+
+.tarjeta-app:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--sombra-md);
+  border-color: var(--color-primario);
+}
+
+.tarjeta-app:focus-visible {
+  outline: 2px solid var(--color-borde-foco);
+  outline-offset: 2px;
+}
+
+.tarjeta-cabecera {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.tarjeta-icono {
+  font-size: 34px;
+  line-height: 1;
+}
+
+.insignia-estado {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 999px;
+}
+
+.insignia-estado::before {
+  content: "";
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: currentColor;
+}
+
+.insignia-estado.estado-en-linea {
+  color: var(--color-en-linea);
+  background-color: var(--color-en-linea-fondo);
+}
+
+.insignia-estado.estado-caido {
+  color: var(--color-caido);
+  background-color: var(--color-caido-fondo);
+}
+
+.insignia-estado.estado-verificando {
+  color: var(--color-verificando);
+  background-color: var(--color-verificando-fondo);
+}
+
+.tarjeta-titulo {
+  font-size: 21px;
+  font-weight: 700;
+  letter-spacing: -0.3px;
+  margin-bottom: 8px;
+}
+
+.tarjeta-descripcion {
+  font-size: 14px;
+  color: var(--color-texto-suave);
+  margin-bottom: 24px;
+  flex: 1;
+}
+
+.tarjeta-pie {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 14px;
+  border-top: 1px solid var(--color-lineas);
+  font-size: 13px;
+}
+
+.tarjeta-puerto {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  color: var(--color-texto-suave);
+  font-size: 12px;
+}
+
+.tarjeta-accion {
+  font-weight: 600;
+  color: var(--color-primario);
+}
+
+/* Adaptación móvil */
+@media (max-width: 680px) {
+  .app-cabecera {
+    flex-wrap: wrap;
+    padding: 10px 14px;
+  }
+
+  .portal-contenedor {
+    padding: 20px 14px 36px;
+  }
+
+  .rejilla-tarjetas {
+    grid-template-columns: 1fr;
+  }
+
+  .tarjeta-app {
+    padding: 20px 18px;
+    min-height: 190px;
+  }
+}

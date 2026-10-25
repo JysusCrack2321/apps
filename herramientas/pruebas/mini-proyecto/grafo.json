@@ -1,0 +1,246 @@
+{
+  "proyecto": "mini-proyecto",
+  "generado": "2026-10-18T20:08:20.929Z",
+  "resumen": {
+    "totalNodos": 9,
+    "totalAristas": 17,
+    "aristasResueltas": 11,
+    "aristasDudosas": 3,
+    "aristasExternas": 3,
+    "porcentajeDudosas": "21.4%"
+  },
+  "nodos": [
+    {
+      "id": "cliente.js:accionInterna",
+      "nombre": "accionInterna",
+      "nombreSimple": "accionInterna",
+      "archivo": "cliente.js",
+      "linea": 4,
+      "tipo": "funcion",
+      "cuerpoInicio": 162,
+      "cuerpoFin": 177,
+      "exportada": true
+    },
+    {
+      "id": "cliente.js:procesarDatos",
+      "nombre": "procesarDatos",
+      "nombreSimple": "procesarDatos",
+      "archivo": "cliente.js",
+      "linea": 8,
+      "tipo": "funcion",
+      "cuerpoInicio": 212,
+      "cuerpoFin": 948,
+      "exportada": true
+    },
+    {
+      "id": "matematicas.js:Calculadora.acumular",
+      "nombre": "Calculadora.acumular",
+      "nombreSimple": "acumular",
+      "archivo": "matematicas.js",
+      "linea": 10,
+      "tipo": "metodo",
+      "clase": "Calculadora",
+      "cuerpoInicio": 135,
+      "cuerpoFin": 203,
+      "exportada": false
+    },
+    {
+      "id": "matematicas.js:sumar",
+      "nombre": "sumar",
+      "nombreSimple": "sumar",
+      "archivo": "matematicas.js",
+      "linea": 1,
+      "tipo": "funcion",
+      "cuerpoInicio": 28,
+      "cuerpoFin": 46,
+      "exportada": true
+    },
+    {
+      "id": "modulo_contexto.js:ejecutarOperacion",
+      "nombre": "ejecutarOperacion",
+      "nombreSimple": "ejecutarOperacion",
+      "archivo": "modulo_contexto.js",
+      "linea": 1,
+      "tipo": "funcion",
+      "cuerpoInicio": 49,
+      "cuerpoFin": 79,
+      "exportada": true
+    },
+    {
+      "id": "servidor.py:ManejadorServidor.do_GET",
+      "nombre": "ManejadorServidor.do_GET",
+      "nombreSimple": "do_GET",
+      "archivo": "servidor.py",
+      "linea": 5,
+      "tipo": "metodo",
+      "clase": "ManejadorServidor"
+    },
+    {
+      "id": "servidor.py:ManejadorServidor.do_POST",
+      "nombre": "ManejadorServidor.do_POST",
+      "nombreSimple": "do_POST",
+      "archivo": "servidor.py",
+      "linea": 10,
+      "tipo": "metodo",
+      "clase": "ManejadorServidor"
+    },
+    {
+      "id": "servidor.py:ManejadorServidor.manejar_saludo_get",
+      "nombre": "ManejadorServidor.manejar_saludo_get",
+      "nombreSimple": "manejar_saludo_get",
+      "archivo": "servidor.py",
+      "linea": 15,
+      "tipo": "metodo",
+      "clase": "ManejadorServidor"
+    },
+    {
+      "id": "servidor.py:ManejadorServidor.manejar_saludo_post",
+      "nombre": "ManejadorServidor.manejar_saludo_post",
+      "nombreSimple": "manejar_saludo_post",
+      "archivo": "servidor.py",
+      "linea": 20,
+      "tipo": "metodo",
+      "clase": "ManejadorServidor"
+    }
+  ],
+  "aristas": [
+    {
+      "tipo": "importa",
+      "origen": "cliente.js",
+      "destino": "matematicas.js",
+      "especificaciones": [
+        {
+          "importado": "sumar",
+          "alias": "sumaConAlias",
+          "esNamespace": false
+        },
+        {
+          "importado": "Calculadora",
+          "alias": "Calculadora",
+          "esNamespace": false
+        }
+      ]
+    },
+    {
+      "tipo": "importa",
+      "origen": "cliente.js",
+      "destino": "modulo_contexto.js",
+      "especificaciones": [
+        {
+          "importado": "ejecutarOperacion",
+          "alias": "ejecutarOperacion",
+          "esNamespace": false
+        }
+      ]
+    },
+    {
+      "tipo": "llama",
+      "origen": "servidor.py:ManejadorServidor.do_GET",
+      "destino": "servidor.py:ManejadorServidor.manejar_saludo_get",
+      "dudosa": false,
+      "linea": 7
+    },
+    {
+      "tipo": "llama",
+      "origen": "servidor.py:ManejadorServidor.do_POST",
+      "destino": "servidor.py:ManejadorServidor.manejar_saludo_post",
+      "dudosa": false,
+      "linea": 12
+    },
+    {
+      "tipo": "api",
+      "origen": "cliente.js:procesarDatos",
+      "destino": "servidor.py:ManejadorServidor.manejar_saludo_get",
+      "ruta": "/api/saludo",
+      "metodo": "GET",
+      "linea": 24,
+      "dudosa": false
+    },
+    {
+      "tipo": "api",
+      "origen": "cliente.js:procesarDatos",
+      "destino": "servidor.py:ManejadorServidor.manejar_saludo_post",
+      "ruta": "/api/saludo",
+      "metodo": "POST",
+      "linea": 27,
+      "dudosa": false
+    },
+    {
+      "tipo": "llama",
+      "origen": "cliente.js:procesarDatos",
+      "destino": "matematicas.js:sumar",
+      "dudosa": false,
+      "linea": 10
+    },
+    {
+      "tipo": "llama",
+      "origen": "cliente.js:procesarDatos",
+      "destino": "matematicas.js:Calculadora",
+      "dudosa": true,
+      "linea": 13
+    },
+    {
+      "tipo": "llama",
+      "origen": "cliente.js:procesarDatos",
+      "destino": "calc.acumular",
+      "dudosa": true,
+      "linea": 14
+    },
+    {
+      "tipo": "externa",
+      "origen": "cliente.js:procesarDatos",
+      "destino": "document.createElement",
+      "dudosa": false,
+      "linea": 17
+    },
+    {
+      "tipo": "externa",
+      "origen": "cliente.js:procesarDatos",
+      "destino": "btn.addEventListener",
+      "dudosa": false,
+      "linea": 18
+    },
+    {
+      "tipo": "llama",
+      "origen": "cliente.js:procesarDatos",
+      "destino": "cliente.js:accionInterna",
+      "dudosa": false,
+      "linea": 18
+    },
+    {
+      "tipo": "llama",
+      "origen": "cliente.js:procesarDatos",
+      "destino": "modulo_contexto.js:ejecutarOperacion",
+      "dudosa": false,
+      "linea": 21
+    },
+    {
+      "tipo": "externa",
+      "origen": "cliente.js:procesarDatos",
+      "destino": "map",
+      "dudosa": false,
+      "linea": 30
+    },
+    {
+      "tipo": "llama",
+      "origen": "cliente.js:procesarDatos",
+      "destino": "llamadaMisteriosa",
+      "dudosa": true,
+      "linea": 33
+    },
+    {
+      "tipo": "llama",
+      "origen": "matematicas.js:Calculadora.acumular",
+      "destino": "matematicas.js:sumar",
+      "dudosa": false,
+      "linea": 11
+    },
+    {
+      "tipo": "llama",
+      "origen": "modulo_contexto.js:ejecutarOperacion",
+      "destino": "matematicas.js:sumar",
+      "dudosa": false,
+      "linea": 2
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "version": 1,
+  "proyecto": {
+    "nombre": "Proyecto de ejemplo",
+    "descripcion": "Estructura de desglose del trabajo de muestra"
+  },
+  "equipo": ["Ana Pérez", "Luis Gómez"],
+  "actividades": [
+    { "id": "dise", "padre": null, "orden": 1, "nombre": "Diseño", "responsable": "Ana Pérez" },
+    { "id": "d001", "padre": "dise", "orden": 1, "nombre": "Planos", "responsable": "Ana Pérez", "inicio": "2026-01-12", "fin": "2026-01-16", "estado": "hecha", "tipo": "entregable" },
+    { "id": "d002", "padre": "dise", "orden": 2, "nombre": "Revisión de medidas", "responsable": "Luis Gómez", "inicio": "2026-01-17", "fin": "2026-01-19", "estado": "pendiente" },
+    { "id": "fabr", "padre": null, "orden": 2, "nombre": "Fabricación", "responsable": "Luis Gómez" },
+    { "id": "f001", "padre": "fabr", "orden": 1, "nombre": "Corte de piezas", "responsable": "Luis Gómez", "inicio": "2026-01-20", "fin": "2026-01-24", "estado": "pendiente" }
+  ],
+  "hitos": [
+    { "id": "h001", "nombre": "Entrega de diseño", "inicio": "2026-01-19", "fin": "2026-01-19", "responsable": "Ana Pérez" }
+  ]
+}

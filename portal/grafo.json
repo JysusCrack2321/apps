@@ -1,0 +1,849 @@
+{
+  "proyecto": "portal",
+  "generado": "2026-10-24T23:20:33.880Z",
+  "resumen": {
+    "totalNodos": 26,
+    "totalAristas": 81,
+    "aristasResueltas": 38,
+    "aristasDudosas": 0,
+    "aristasExternas": 43,
+    "porcentajeDudosas": "0.0%"
+  },
+  "nodos": [
+    {
+      "id": "app.js:construirUrlApp",
+      "nombre": "construirUrlApp",
+      "nombreSimple": "construirUrlApp",
+      "archivo": "app.js",
+      "linea": 17,
+      "tipo": "funcion",
+      "cuerpoInicio": 445,
+      "cuerpoFin": 605,
+      "exportada": true
+    },
+    {
+      "id": "app.js:guardarCookieUsuario",
+      "nombre": "guardarCookieUsuario",
+      "nombreSimple": "guardarCookieUsuario",
+      "archivo": "app.js",
+      "linea": 24,
+      "tipo": "funcion",
+      "cuerpoInicio": 721,
+      "cuerpoFin": 842,
+      "exportada": true
+    },
+    {
+      "id": "app.js:consultarEstadoServidores",
+      "nombre": "consultarEstadoServidores",
+      "nombreSimple": "consultarEstadoServidores",
+      "archivo": "app.js",
+      "linea": 30,
+      "tipo": "funcion",
+      "cuerpoInicio": 950,
+      "cuerpoFin": 1155,
+      "exportada": true
+    },
+    {
+      "id": "app.js:cargarListaUsuarios",
+      "nombre": "cargarListaUsuarios",
+      "nombreSimple": "cargarListaUsuarios",
+      "archivo": "app.js",
+      "linea": 39,
+      "tipo": "funcion",
+      "cuerpoInicio": 1259,
+      "cuerpoFin": 1450,
+      "exportada": true
+    },
+    {
+      "id": "app.js:cargarUsuarioActivo",
+      "nombre": "cargarUsuarioActivo",
+      "nombreSimple": "cargarUsuarioActivo",
+      "archivo": "app.js",
+      "linea": 47,
+      "tipo": "funcion",
+      "cuerpoInicio": 1548,
+      "cuerpoFin": 1742,
+      "exportada": true
+    },
+    {
+      "id": "app.js:configurarTarjetas",
+      "nombre": "configurarTarjetas",
+      "nombreSimple": "configurarTarjetas",
+      "archivo": "app.js",
+      "linea": 55,
+      "tipo": "funcion",
+      "cuerpoInicio": 1857,
+      "cuerpoFin": 2214,
+      "exportada": false
+    },
+    {
+      "id": "app.js:actualizarInsigniaEstado",
+      "nombre": "actualizarInsigniaEstado",
+      "nombreSimple": "actualizarInsigniaEstado",
+      "archivo": "app.js",
+      "linea": 66,
+      "tipo": "funcion",
+      "cuerpoInicio": 2337,
+      "cuerpoFin": 2648,
+      "exportada": false
+    },
+    {
+      "id": "app.js:refrescarEstadoServidores",
+      "nombre": "refrescarEstadoServidores",
+      "nombreSimple": "refrescarEstadoServidores",
+      "archivo": "app.js",
+      "linea": 79,
+      "tipo": "funcion",
+      "cuerpoInicio": 2756,
+      "cuerpoFin": 3117,
+      "exportada": false
+    },
+    {
+      "id": "app.js:renderizarUsuario",
+      "nombre": "renderizarUsuario",
+      "nombreSimple": "renderizarUsuario",
+      "archivo": "app.js",
+      "linea": 91,
+      "tipo": "funcion",
+      "cuerpoInicio": 3210,
+      "cuerpoFin": 4509,
+      "exportada": false
+    },
+    {
+      "id": "app.js:seleccionarUsuario",
+      "nombre": "seleccionarUsuario",
+      "nombreSimple": "seleccionarUsuario",
+      "archivo": "app.js",
+      "linea": 129,
+      "tipo": "funcion",
+      "cuerpoInicio": 4623,
+      "cuerpoFin": 4885,
+      "exportada": false
+    },
+    {
+      "id": "app.js:conectarTema",
+      "nombre": "conectarTema",
+      "nombreSimple": "conectarTema",
+      "archivo": "app.js",
+      "linea": 138,
+      "tipo": "funcion",
+      "cuerpoInicio": 4990,
+      "cuerpoFin": 5678,
+      "exportada": false
+    },
+    {
+      "id": "app.js:iniciarPortal",
+      "nombre": "iniciarPortal",
+      "nombreSimple": "iniciarPortal",
+      "archivo": "app.js",
+      "linea": 160,
+      "tipo": "funcion",
+      "cuerpoInicio": 5741,
+      "cuerpoFin": 7212,
+      "exportada": false
+    },
+    {
+      "id": "app.js:aplicarTema",
+      "nombre": "aplicarTema",
+      "nombreSimple": "aplicarTema",
+      "archivo": "app.js",
+      "linea": 143,
+      "tipo": "funcion",
+      "cuerpoInicio": 5256,
+      "cuerpoFin": 5460,
+      "exportada": false
+    },
+    {
+      "id": "servidor.py:generar_id_usuario",
+      "nombre": "generar_id_usuario",
+      "nombreSimple": "generar_id_usuario",
+      "archivo": "servidor.py",
+      "linea": 26,
+      "tipo": "funcion",
+      "clase": null
+    },
+    {
+      "id": "servidor.py:validar_usuarios",
+      "nombre": "validar_usuarios",
+      "nombreSimple": "validar_usuarios",
+      "archivo": "servidor.py",
+      "linea": 40,
+      "tipo": "funcion",
+      "clase": null
+    },
+    {
+      "id": "servidor.py:cargar_usuarios_compartidos",
+      "nombre": "cargar_usuarios_compartidos",
+      "nombreSimple": "cargar_usuarios_compartidos",
+      "archivo": "servidor.py",
+      "linea": 88,
+      "tipo": "funcion",
+      "clase": null
+    },
+    {
+      "id": "servidor.py:quien_es",
+      "nombre": "quien_es",
+      "nombreSimple": "quien_es",
+      "archivo": "servidor.py",
+      "linea": 112,
+      "tipo": "funcion",
+      "clase": null
+    },
+    {
+      "id": "servidor.py:host_consulta_local",
+      "nombre": "host_consulta_local",
+      "nombreSimple": "host_consulta_local",
+      "archivo": "servidor.py",
+      "linea": 153,
+      "tipo": "funcion",
+      "clase": null
+    },
+    {
+      "id": "servidor.py:verificar_servicio_en_linea",
+      "nombre": "verificar_servicio_en_linea",
+      "nombreSimple": "verificar_servicio_en_linea",
+      "archivo": "servidor.py",
+      "linea": 160,
+      "tipo": "funcion",
+      "clase": null
+    },
+    {
+      "id": "servidor.py:ManejadorPortal.__init__",
+      "nombre": "ManejadorPortal.__init__",
+      "nombreSimple": "__init__",
+      "archivo": "servidor.py",
+      "linea": 183,
+      "tipo": "metodo",
+      "clase": "ManejadorPortal"
+    },
+    {
+      "id": "servidor.py:ManejadorPortal.log_message",
+      "nombre": "ManejadorPortal.log_message",
+      "nombreSimple": "log_message",
+      "archivo": "servidor.py",
+      "linea": 186,
+      "tipo": "metodo",
+      "clase": "ManejadorPortal"
+    },
+    {
+      "id": "servidor.py:ManejadorPortal.enviar_json",
+      "nombre": "ManejadorPortal.enviar_json",
+      "nombreSimple": "enviar_json",
+      "archivo": "servidor.py",
+      "linea": 189,
+      "tipo": "metodo",
+      "clase": "ManejadorPortal"
+    },
+    {
+      "id": "servidor.py:ManejadorPortal.do_GET",
+      "nombre": "ManejadorPortal.do_GET",
+      "nombreSimple": "do_GET",
+      "archivo": "servidor.py",
+      "linea": 198,
+      "tipo": "metodo",
+      "clase": "ManejadorPortal"
+    },
+    {
+      "id": "servidor.py:ManejadorPortal.manejar_get_estado",
+      "nombre": "ManejadorPortal.manejar_get_estado",
+      "nombreSimple": "manejar_get_estado",
+      "archivo": "servidor.py",
+      "linea": 215,
+      "tipo": "metodo",
+      "clase": "ManejadorPortal"
+    },
+    {
+      "id": "servidor.py:ManejadorPortal.manejar_get_usuarios",
+      "nombre": "ManejadorPortal.manejar_get_usuarios",
+      "nombreSimple": "manejar_get_usuarios",
+      "archivo": "servidor.py",
+      "linea": 229,
+      "tipo": "metodo",
+      "clase": "ManejadorPortal"
+    },
+    {
+      "id": "servidor.py:ManejadorPortal.manejar_get_yo",
+      "nombre": "ManejadorPortal.manejar_get_yo",
+      "nombreSimple": "manejar_get_yo",
+      "archivo": "servidor.py",
+      "linea": 242,
+      "tipo": "metodo",
+      "clase": "ManejadorPortal"
+    }
+  ],
+  "aristas": [
+    {
+      "tipo": "llama",
+      "origen": "servidor.py:cargar_usuarios_compartidos",
+      "destino": "servidor.py:validar_usuarios",
+      "dudosa": false,
+      "linea": 105
+    },
+    {
+      "tipo": "llama",
+      "origen": "servidor.py:quien_es",
+      "destino": "servidor.py:cargar_usuarios_compartidos",
+      "dudosa": false,
+      "linea": 121
+    },
+    {
+      "tipo": "llama",
+      "origen": "servidor.py:verificar_servicio_en_linea",
+      "destino": "servidor.py:host_consulta_local",
+      "dudosa": false,
+      "linea": 162
+    },
+    {
+      "tipo": "llama",
+      "origen": "servidor.py:ManejadorPortal.do_GET",
+      "destino": "servidor.py:ManejadorPortal.manejar_get_estado",
+      "dudosa": false,
+      "linea": 202
+    },
+    {
+      "tipo": "llama",
+      "origen": "servidor.py:ManejadorPortal.do_GET",
+      "destino": "servidor.py:ManejadorPortal.manejar_get_usuarios",
+      "dudosa": false,
+      "linea": 206
+    },
+    {
+      "tipo": "llama",
+      "origen": "servidor.py:ManejadorPortal.do_GET",
+      "destino": "servidor.py:ManejadorPortal.manejar_get_yo",
+      "dudosa": false,
+      "linea": 210
+    },
+    {
+      "tipo": "llama",
+      "origen": "servidor.py:ManejadorPortal.manejar_get_estado",
+      "destino": "servidor.py:verificar_servicio_en_linea",
+      "dudosa": false,
+      "linea": 216
+    },
+    {
+      "tipo": "llama",
+      "origen": "servidor.py:ManejadorPortal.manejar_get_estado",
+      "destino": "servidor.py:verificar_servicio_en_linea",
+      "dudosa": false,
+      "linea": 217
+    },
+    {
+      "tipo": "llama",
+      "origen": "servidor.py:ManejadorPortal.manejar_get_estado",
+      "destino": "servidor.py:ManejadorPortal.enviar_json",
+      "dudosa": false,
+      "linea": 218
+    },
+    {
+      "tipo": "llama",
+      "origen": "servidor.py:ManejadorPortal.manejar_get_usuarios",
+      "destino": "servidor.py:cargar_usuarios_compartidos",
+      "dudosa": false,
+      "linea": 230
+    },
+    {
+      "tipo": "llama",
+      "origen": "servidor.py:ManejadorPortal.manejar_get_usuarios",
+      "destino": "servidor.py:ManejadorPortal.enviar_json",
+      "dudosa": false,
+      "linea": 240
+    },
+    {
+      "tipo": "llama",
+      "origen": "servidor.py:ManejadorPortal.manejar_get_yo",
+      "destino": "servidor.py:quien_es",
+      "dudosa": false,
+      "linea": 243
+    },
+    {
+      "tipo": "llama",
+      "origen": "servidor.py:ManejadorPortal.manejar_get_yo",
+      "destino": "servidor.py:ManejadorPortal.enviar_json",
+      "dudosa": false,
+      "linea": 244
+    },
+    {
+      "tipo": "api",
+      "origen": "app.js:consultarEstadoServidores",
+      "destino": "servidor.py:ManejadorPortal.manejar_get_estado",
+      "ruta": "/api/estado",
+      "metodo": "GET",
+      "linea": 31,
+      "dudosa": false
+    },
+    {
+      "tipo": "api",
+      "origen": "app.js:cargarListaUsuarios",
+      "destino": "servidor.py:ManejadorPortal.manejar_get_usuarios",
+      "ruta": "/api/usuarios",
+      "metodo": "GET",
+      "linea": 40,
+      "dudosa": false
+    },
+    {
+      "tipo": "api",
+      "origen": "app.js:cargarUsuarioActivo",
+      "destino": "servidor.py:ManejadorPortal.manejar_get_yo",
+      "ruta": "/api/yo",
+      "metodo": "GET",
+      "linea": 48,
+      "dudosa": false
+    },
+    {
+      "tipo": "externa",
+      "origen": "app.js:guardarCookieUsuario",
+      "destino": "encodeURIComponent",
+      "dudosa": false,
+      "linea": 25
+    },
+    {
+      "tipo": "externa",
+      "origen": "app.js:consultarEstadoServidores",
+      "destino": "Error",
+      "dudosa": false,
+      "linea": 33
+    },
+    {
+      "tipo": "externa",
+      "origen": "app.js:consultarEstadoServidores",
+      "destino": "respuesta.json",
+      "dudosa": false,
+      "linea": 35
+    },
+    {
+      "tipo": "externa",
+      "origen": "app.js:cargarListaUsuarios",
+      "destino": "respuesta.json",
+      "dudosa": false,
+      "linea": 42
+    },
+    {
+      "tipo": "externa",
+      "origen": "app.js:cargarListaUsuarios",
+      "destino": "Array.isArray",
+      "dudosa": false,
+      "linea": 43
+    },
+    {
+      "tipo": "externa",
+      "origen": "app.js:cargarUsuarioActivo",
+      "destino": "respuesta.json",
+      "dudosa": false,
+      "linea": 50
+    },
+    {
+      "tipo": "llama",
+      "origen": "app.js:configurarTarjetas",
+      "destino": "app.js:construirUrlApp",
+      "dudosa": false,
+      "linea": 56
+    },
+    {
+      "tipo": "llama",
+      "origen": "app.js:configurarTarjetas",
+      "destino": "app.js:construirUrlApp",
+      "dudosa": false,
+      "linea": 57
+    },
+    {
+      "tipo": "externa",
+      "origen": "app.js:actualizarInsigniaEstado",
+      "destino": "classList.remove",
+      "dudosa": false,
+      "linea": 68
+    },
+    {
+      "tipo": "externa",
+      "origen": "app.js:actualizarInsigniaEstado",
+      "destino": "classList.add",
+      "dudosa": false,
+      "linea": 70
+    },
+    {
+      "tipo": "externa",
+      "origen": "app.js:actualizarInsigniaEstado",
+      "destino": "classList.add",
+      "dudosa": false,
+      "linea": 73
+    },
+    {
+      "tipo": "llama",
+      "origen": "app.js:refrescarEstadoServidores",
+      "destino": "app.js:consultarEstadoServidores",
+      "dudosa": false,
+      "linea": 81
+    },
+    {
+      "tipo": "llama",
+      "origen": "app.js:refrescarEstadoServidores",
+      "destino": "app.js:actualizarInsigniaEstado",
+      "dudosa": false,
+      "linea": 82
+    },
+    {
+      "tipo": "externa",
+      "origen": "app.js:refrescarEstadoServidores",
+      "destino": "Boolean",
+      "dudosa": false,
+      "linea": 82
+    },
+    {
+      "tipo": "llama",
+      "origen": "app.js:refrescarEstadoServidores",
+      "destino": "app.js:actualizarInsigniaEstado",
+      "dudosa": false,
+      "linea": 83
+    },
+    {
+      "tipo": "externa",
+      "origen": "app.js:refrescarEstadoServidores",
+      "destino": "Boolean",
+      "dudosa": false,
+      "linea": 83
+    },
+    {
+      "tipo": "llama",
+      "origen": "app.js:refrescarEstadoServidores",
+      "destino": "app.js:actualizarInsigniaEstado",
+      "dudosa": false,
+      "linea": 85
+    },
+    {
+      "tipo": "llama",
+      "origen": "app.js:refrescarEstadoServidores",
+      "destino": "app.js:actualizarInsigniaEstado",
+      "dudosa": false,
+      "linea": 86
+    },
+    {
+      "tipo": "externa",
+      "origen": "app.js:renderizarUsuario",
+      "destino": "listaUsuarios.replaceChildren",
+      "dudosa": false,
+      "linea": 106
+    },
+    {
+      "tipo": "externa",
+      "origen": "app.js:renderizarUsuario",
+      "destino": "document.createElement",
+      "dudosa": false,
+      "linea": 108
+    },
+    {
+      "tipo": "externa",
+      "origen": "app.js:renderizarUsuario",
+      "destino": "btn.setAttribute",
+      "dudosa": false,
+      "linea": 111
+    },
+    {
+      "tipo": "externa",
+      "origen": "app.js:renderizarUsuario",
+      "destino": "btn.setAttribute",
+      "dudosa": false,
+      "linea": 112
+    },
+    {
+      "tipo": "externa",
+      "origen": "app.js:renderizarUsuario",
+      "destino": "document.createElement",
+      "dudosa": false,
+      "linea": 114
+    },
+    {
+      "tipo": "externa",
+      "origen": "app.js:renderizarUsuario",
+      "destino": "document.createElement",
+      "dudosa": false,
+      "linea": 118
+    },
+    {
+      "tipo": "externa",
+      "origen": "app.js:renderizarUsuario",
+      "destino": "btn.append",
+      "dudosa": false,
+      "linea": 122
+    },
+    {
+      "tipo": "externa",
+      "origen": "app.js:renderizarUsuario",
+      "destino": "btn.addEventListener",
+      "dudosa": false,
+      "linea": 123
+    },
+    {
+      "tipo": "llama",
+      "origen": "app.js:renderizarUsuario",
+      "destino": "app.js:seleccionarUsuario",
+      "dudosa": false,
+      "linea": 123
+    },
+    {
+      "tipo": "externa",
+      "origen": "app.js:renderizarUsuario",
+      "destino": "listaUsuarios.append",
+      "dudosa": false,
+      "linea": 124
+    },
+    {
+      "tipo": "llama",
+      "origen": "app.js:seleccionarUsuario",
+      "destino": "app.js:guardarCookieUsuario",
+      "dudosa": false,
+      "linea": 130
+    },
+    {
+      "tipo": "externa",
+      "origen": "app.js:seleccionarUsuario",
+      "destino": "usuarios.find",
+      "dudosa": false,
+      "linea": 131
+    },
+    {
+      "tipo": "llama",
+      "origen": "app.js:seleccionarUsuario",
+      "destino": "app.js:cargarUsuarioActivo",
+      "dudosa": false,
+      "linea": 132
+    },
+    {
+      "tipo": "llama",
+      "origen": "app.js:seleccionarUsuario",
+      "destino": "app.js:renderizarUsuario",
+      "dudosa": false,
+      "linea": 134
+    },
+    {
+      "tipo": "externa",
+      "origen": "app.js:conectarTema",
+      "destino": "localStorage.getItem",
+      "dudosa": false,
+      "linea": 139
+    },
+    {
+      "tipo": "externa",
+      "origen": "app.js:conectarTema",
+      "destino": "window.matchMedia",
+      "dudosa": false,
+      "linea": 140
+    },
+    {
+      "tipo": "externa",
+      "origen": "app.js:aplicarTema",
+      "destino": "documentElement.setAttribute",
+      "dudosa": false,
+      "linea": 144
+    },
+    {
+      "tipo": "externa",
+      "origen": "app.js:aplicarTema",
+      "destino": "localStorage.setItem",
+      "dudosa": false,
+      "linea": 145
+    },
+    {
+      "tipo": "llama",
+      "origen": "app.js:conectarTema",
+      "destino": "app.js:aplicarTema",
+      "dudosa": false,
+      "linea": 151
+    },
+    {
+      "tipo": "externa",
+      "origen": "app.js:conectarTema",
+      "destino": "addEventListener",
+      "dudosa": false,
+      "linea": 153
+    },
+    {
+      "tipo": "externa",
+      "origen": "app.js:conectarTema",
+      "destino": "documentElement.getAttribute",
+      "dudosa": false,
+      "linea": 154
+    },
+    {
+      "tipo": "llama",
+      "origen": "app.js:conectarTema",
+      "destino": "app.js:aplicarTema",
+      "dudosa": false,
+      "linea": 155
+    },
+    {
+      "tipo": "externa",
+      "origen": "app.js:iniciarPortal",
+      "destino": "document.getElementById",
+      "dudosa": false,
+      "linea": 161
+    },
+    {
+      "tipo": "externa",
+      "origen": "app.js:iniciarPortal",
+      "destino": "document.getElementById",
+      "dudosa": false,
+      "linea": 162
+    },
+    {
+      "tipo": "externa",
+      "origen": "app.js:iniciarPortal",
+      "destino": "document.getElementById",
+      "dudosa": false,
+      "linea": 163
+    },
+    {
+      "tipo": "externa",
+      "origen": "app.js:iniciarPortal",
+      "destino": "document.getElementById",
+      "dudosa": false,
+      "linea": 164
+    },
+    {
+      "tipo": "externa",
+      "origen": "app.js:iniciarPortal",
+      "destino": "document.getElementById",
+      "dudosa": false,
+      "linea": 165
+    },
+    {
+      "tipo": "externa",
+      "origen": "app.js:iniciarPortal",
+      "destino": "document.getElementById",
+      "dudosa": false,
+      "linea": 166
+    },
+    {
+      "tipo": "externa",
+      "origen": "app.js:iniciarPortal",
+      "destino": "document.getElementById",
+      "dudosa": false,
+      "linea": 167
+    },
+    {
+      "tipo": "externa",
+      "origen": "app.js:iniciarPortal",
+      "destino": "document.getElementById",
+      "dudosa": false,
+      "linea": 168
+    },
+    {
+      "tipo": "externa",
+      "origen": "app.js:iniciarPortal",
+      "destino": "document.getElementById",
+      "dudosa": false,
+      "linea": 169
+    },
+    {
+      "tipo": "externa",
+      "origen": "app.js:iniciarPortal",
+      "destino": "document.getElementById",
+      "dudosa": false,
+      "linea": 170
+    },
+    {
+      "tipo": "externa",
+      "origen": "app.js:iniciarPortal",
+      "destino": "document.getElementById",
+      "dudosa": false,
+      "linea": 171
+    },
+    {
+      "tipo": "externa",
+      "origen": "app.js:iniciarPortal",
+      "destino": "document.getElementById",
+      "dudosa": false,
+      "linea": 172
+    },
+    {
+      "tipo": "llama",
+      "origen": "app.js:iniciarPortal",
+      "destino": "app.js:configurarTarjetas",
+      "dudosa": false,
+      "linea": 174
+    },
+    {
+      "tipo": "llama",
+      "origen": "app.js:iniciarPortal",
+      "destino": "app.js:conectarTema",
+      "dudosa": false,
+      "linea": 175
+    },
+    {
+      "tipo": "externa",
+      "origen": "app.js:iniciarPortal",
+      "destino": "addEventListener",
+      "dudosa": false,
+      "linea": 177
+    },
+    {
+      "tipo": "llama",
+      "origen": "app.js:iniciarPortal",
+      "destino": "app.js:renderizarUsuario",
+      "dudosa": false,
+      "linea": 179
+    },
+    {
+      "tipo": "externa",
+      "origen": "app.js:iniciarPortal",
+      "destino": "addEventListener",
+      "dudosa": false,
+      "linea": 182
+    },
+    {
+      "tipo": "llama",
+      "origen": "app.js:iniciarPortal",
+      "destino": "app.js:renderizarUsuario",
+      "dudosa": false,
+      "linea": 184
+    },
+    {
+      "tipo": "externa",
+      "origen": "app.js:iniciarPortal",
+      "destino": "Promise.all",
+      "dudosa": false,
+      "linea": 187
+    },
+    {
+      "tipo": "llama",
+      "origen": "app.js:iniciarPortal",
+      "destino": "app.js:cargarListaUsuarios",
+      "dudosa": false,
+      "linea": 188
+    },
+    {
+      "tipo": "llama",
+      "origen": "app.js:iniciarPortal",
+      "destino": "app.js:cargarUsuarioActivo",
+      "dudosa": false,
+      "linea": 189
+    },
+    {
+      "tipo": "llama",
+      "origen": "app.js:iniciarPortal",
+      "destino": "app.js:refrescarEstadoServidores",
+      "dudosa": false,
+      "linea": 190
+    },
+    {
+      "tipo": "llama",
+      "origen": "app.js:iniciarPortal",
+      "destino": "app.js:renderizarUsuario",
+      "dudosa": false,
+      "linea": 196
+    },
+    {
+      "tipo": "externa",
+      "origen": "app.js:iniciarPortal",
+      "destino": "setInterval",
+      "dudosa": false,
+      "linea": 198
+    },
+    {
+      "tipo": "llama",
+      "origen": "app.js:iniciarPortal",
+      "destino": "app.js:refrescarEstadoServidores",
+      "dudosa": false,
+      "linea": 199
+    }
+  ]
+}

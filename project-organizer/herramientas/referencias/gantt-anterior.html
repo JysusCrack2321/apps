@@ -1,0 +1,630 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Gantt cohete Xundwa</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..800&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  color-scheme:light;
+  --bg:#ECEFF2; --surface:#FFFFFF; --surface2:#F5F7F9; --ink:#15202B; --muted:#5A6774; --line:#D3D9DF;
+  --accent:#1F4FD1; --accent-ink:#FFFFFF; --chip:#E2E7EC;
+  --f-ui:"Archivo",system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    color-scheme:dark;
+    --bg:#0F161D; --surface:#17212B; --surface2:#1C2733; --ink:#E5EBF0; --muted:#95A3B0; --line:#2B3947;
+    --accent:#7C9CFF; --accent-ink:#0F161D; --chip:#23303D;
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --bg:#0F161D; --surface:#17212B; --surface2:#1C2733; --ink:#E5EBF0; --muted:#95A3B0; --line:#2B3947;
+  --accent:#7C9CFF; --accent-ink:#0F161D; --chip:#23303D;
+}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--f-ui);font-size:15px;line-height:1.5}
+button{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+
+header{max-width:1180px;margin:0 auto;padding:20px 16px 12px;display:flex;flex-wrap:wrap;gap:12px;align-items:flex-end;justify-content:space-between}
+h1{margin:0;font-weight:800;font-stretch:72%;font-size:clamp(1.6rem,4.4vw,2.4rem);line-height:1;letter-spacing:-.01em}
+header p{margin:4px 0 0;color:var(--muted);font-size:.92rem}
+.tools{display:flex;gap:8px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:6px;font-weight:600;font-size:.9rem;padding:8px 14px;border-radius:7px;border:1px solid var(--line);background:var(--surface);cursor:pointer;white-space:nowrap}
+.btn:hover{border-color:var(--muted)}
+.btn.primary{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+.btn.primary:hover{filter:brightness(1.08)}
+
+main{max-width:1180px;margin:0 auto;padding:6px 16px 64px;display:grid;gap:16px}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:18px;min-width:0}
+h2{margin:0 0 12px;font-size:1.15rem;font-weight:750;font-stretch:88%}
+.scroll{overflow-x:auto}
+canvas{display:block}
+.phead{display:flex;flex-wrap:wrap;gap:10px 16px;align-items:center;justify-content:space-between;margin-bottom:12px}
+.phead h2{margin:0}
+.rango{display:flex;flex-wrap:wrap;gap:8px;align-items:center;font-size:.86rem;color:var(--muted)}
+.rango select{font:inherit;color:var(--ink);padding:6px 8px;border:1px solid var(--line);border-radius:6px;background:var(--surface2)}
+.btn.sm{padding:6px 10px;font-size:.84rem}
+.btn.on{border-color:var(--accent);color:var(--accent)}
+.vacio{color:var(--muted);padding:24px 0;text-align:center}
+.legend{display:flex;flex-wrap:wrap;gap:6px 16px;margin-top:12px;font-size:.84rem;color:var(--muted)}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:6px;vertical-align:-1px}
+
+table{width:100%;border-collapse:collapse;font-size:.9rem}
+th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);white-space:nowrap}
+th{font-size:.78rem;text-transform:uppercase;letter-spacing:.04em;color:var(--muted);font-weight:700}
+td:first-child{white-space:normal}
+td.num{font-family:var(--f-mono);font-size:.84rem}
+td.grp{background:var(--surface2);font-weight:800;font-size:.78rem;text-transform:uppercase;letter-spacing:.05em;padding-top:12px}
+.tag{font-size:.75rem;font-weight:700;padding:2px 8px;border-radius:999px;background:var(--chip);color:var(--muted)}
+.dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:8px;vertical-align:1px}
+
+.drop{border:1.5px dashed var(--line);background:var(--surface2);border-radius:10px;padding:28px 18px;text-align:center;color:var(--muted)}
+.drop.over{border-color:var(--accent);color:var(--ink)}
+.drop b{color:var(--ink)}
+.err{color:#BA2F27;font-size:.9rem;margin-top:10px}
+[hidden]{display:none!important}
+</style>
+</head>
+<body>
+<header>
+  <div>
+    <h1>Gantt cohete Xundwa</h1>
+    <p id="sub">Cargando datos.csv…</p>
+  </div>
+  <div class="tools">
+    <button class="btn" id="b-load" type="button">Cargar otro CSV</button>
+    <button class="btn" id="b-csv" type="button" disabled>Exportar tabla</button>
+    <button class="btn primary" id="b-png" type="button" disabled>Exportar imagen</button>
+  </div>
+  <input type="file" id="file" accept=".csv,text/csv" hidden>
+</header>
+
+<main>
+  <section class="panel" id="p-drop" hidden>
+    <div class="drop" id="drop">
+      <b>Arrastra aquí tu CSV</b> o usa «Cargar otro CSV».<br>
+      Columnas: <code>actividad, responsable, inicio, fin</code> (fechas AAAA-MM-DD).
+    </div>
+    <p class="err" id="err" hidden></p>
+  </section>
+
+  <section class="panel" id="p-gantt" hidden>
+    <div class="phead">
+      <h2>Cronograma</h2>
+      <div class="rango">
+        <label>Desde <select id="desde"></select></label>
+        <label>Hasta <select id="hasta"></select></label>
+        <button class="btn sm" id="b-mes" type="button">Desde hace un mes</button>
+        <button class="btn sm" id="b-todo" type="button">Todo</button>
+      </div>
+    </div>
+    <p class="vacio" id="vacio" hidden>No hay actividades en ese rango de meses.</p>
+    <div class="scroll" id="wrap"><canvas id="cv" role="img" aria-label="Diagrama de Gantt"></canvas></div>
+    <div class="legend" id="legend"></div>
+  </section>
+
+  <section class="panel" id="p-table" hidden>
+    <div class="phead">
+      <h2>Actividades</h2>
+      <button class="btn sm" id="b-docs" type="button">Copiar para Docs</button>
+    </div>
+    <div class="scroll"><table id="tbl"></table></div>
+  </section>
+</main>
+
+<script>
+const DAY = 86400000;
+const MESES = ['ene','feb','mar','abr','may','jun','jul','ago','sept','oct','nov','dic'];
+const MESES_L = ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];
+const PALETA = ['#2F55CF','#1B7A4B','#C2572F','#7B5BD6','#2B8FA3','#9E6310','#A23B72','#5B6B7A'];
+const PALETA_D = ['#7A9BFF','#4CC38A','#F08A5D','#A98BF0','#4CB8CC','#E3A948','#E07AB0','#95A3B0'];
+const $ = id => document.getElementById(id);
+
+let todas = [], filas = [];
+const vista = {desde: '', hasta: ''};            // 'AAAA-MM' o '' = sin límite
+try { Object.assign(vista, JSON.parse(localStorage.getItem('gantt-rango') || '{}')); } catch (e) {}
+
+/* ---------- CSV ---------- */
+function parseCSV(txt){
+  txt = txt.replace(/^﻿/, '');
+  const primera = txt.split(/\r?\n/)[0] || '';
+  const sep = (primera.match(/;/g)||[]).length > (primera.match(/,/g)||[]).length ? ';' : ',';
+  const rows = []; let row = [], cell = '', q = false;
+  for (let i = 0; i < txt.length; i++){
+    const c = txt[i];
+    if (q){
+      if (c === '"' && txt[i+1] === '"'){ cell += '"'; i++; }
+      else if (c === '"') q = false;
+      else cell += c;
+    } else if (c === '"') q = true;
+    else if (c === sep){ row.push(cell); cell = ''; }
+    else if (c === '\n' || c === '\r'){
+      if (c === '\r' && txt[i+1] === '\n') i++;
+      row.push(cell); rows.push(row); row = []; cell = '';
+    } else cell += c;
+  }
+  if (cell || row.length){ row.push(cell); rows.push(row); }
+  return rows.filter(r => r.some(x => x.trim()));
+}
+
+function fecha(s){
+  s = (s||'').trim();
+  let m = s.match(/^(\d{4})-(\d{1,2})-(\d{1,2})$/);
+  if (m) return Date.UTC(+m[1], m[2]-1, +m[3]);
+  m = s.match(/^(\d{1,2})[\/.-](\d{1,2})[\/.-](\d{4})$/);
+  if (m) return Date.UTC(+m[3], m[2]-1, +m[1]);
+  return NaN;
+}
+const norm = s => s.trim().toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'');
+
+function cargar(txt){
+  const rows = parseCSV(txt);
+  if (rows.length < 2) throw new Error('El CSV está vacío.');
+  const h = rows[0].map(norm);
+  const col = (...n) => h.findIndex(x => n.some(k => x.startsWith(k)));
+  const ia = col('actividad','tarea'), ir = col('responsable'), ii = col('inicio','fecha de inicio','fecha inicio'),
+        iff = col('fin','fecha de fin','fecha fin'), ie = col('etapa','fase'), it = col('tipo');
+  if ([ia, ii, iff].some(i => i < 0)) throw new Error('Faltan columnas. Se necesitan: actividad, responsable, inicio, fin.');
+  const out = [], malas = [];
+  rows.slice(1).forEach((r, n) => {
+    const a = (r[ia]||'').trim(), ini = fecha(r[ii]);
+    let fin = fecha(r[iff]);
+    if (!a) return;
+    const tipo = it >= 0 ? norm(r[it]||'') : '';
+    if (isNaN(fin) && tipo === 'hito') fin = ini;
+    if (isNaN(ini) || isNaN(fin) || fin < ini){ malas.push(n + 2); return; }
+    out.push({
+      actividad: a, ini, fin,
+      responsable: ir >= 0 ? (r[ir]||'').trim() || 'Sin asignar' : 'Sin asignar',
+      etapa: ie >= 0 ? (r[ie]||'').trim() : '',
+      tipo: tipo === 'hito' ? 'hito' : tipo === 'evento' ? 'evento' : 'tarea'
+    });
+  });
+  if (!out.length) throw new Error('No hay filas con fechas válidas.');
+  todas = out;
+  llenarMeses();
+  render();
+  $('err').hidden = !malas.length;
+  if (malas.length){ $('p-drop').hidden = false; $('err').textContent = `Se ignoraron filas con fechas inválidas: ${malas.join(', ')}.`; }
+}
+
+/* filas agrupadas por etapa, en el orden en que aparecen en el CSV */
+function grupos(){
+  const orden = [], mapa = new Map();
+  for (const f of filas){
+    if (!mapa.has(f.etapa)){ mapa.set(f.etapa, []); orden.push(f.etapa); }
+    mapa.get(f.etapa).push(f);
+  }
+  const conEtapa = orden.some(e => e);
+  return orden.map(e => ({etapa: conEtapa ? (e || 'Sin etapa') : '', filas: mapa.get(e)}));
+}
+
+/* ---------- colores ---------- */
+const oscuro = () => {
+  const t = document.documentElement.dataset.theme;
+  return t ? t === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches;
+};
+const responsables = () => [...new Set(todas.filter(f => f.tipo === 'tarea').map(f => f.responsable))];
+function colorDe(resp, dark){
+  const i = responsables().indexOf(resp);
+  return (dark ? PALETA_D : PALETA)[Math.max(i, 0) % PALETA.length];
+}
+const TEMA = {
+  light:{bg:'#FFFFFF', alt:'#F5F7F9', ink:'#15202B', muted:'#5A6774', line:'#D3D9DF', soft:'#E8ECF0', accent:'#1F4FD1', hito:'#BA2F27', grupo:'#ECEFF2'},
+  dark: {bg:'#17212B', alt:'#1C2733', ink:'#E5EBF0', muted:'#95A3B0', line:'#2B3947', soft:'#223040', accent:'#7C9CFF', hito:'#F0736B', grupo:'#1F2B37'}
+};
+
+/* ---------- dibujo ---------- */
+const F = (w, px) => `${w} ${px}px Archivo, system-ui, sans-serif`;
+const fCorta = t => { const d = new Date(t); return `${d.getUTCDate()} ${MESES[d.getUTCMonth()]}`; };
+
+function rango(){
+  let [a, b] = limites();
+  a -= ((new Date(a).getUTCDay() + 6) % 7) * DAY;            // al lunes anterior
+  b += (6 - (new Date(b).getUTCDay() + 6) % 7) * DAY;        // al domingo siguiente
+  return {t0: a, dias: Math.round((b - a) / DAY) + 1};
+}
+
+function recortar(ctx, s, max){
+  if (ctx.measureText(s).width <= max) return s;
+  while (s.length > 1 && ctx.measureText(s + '…').width > max) s = s.slice(0, -1);
+  return s + '…';
+}
+
+function rombo(ctx, cx, cy, r){
+  ctx.beginPath(); ctx.moveTo(cx, cy - r); ctx.lineTo(cx + r, cy); ctx.lineTo(cx, cy + r); ctx.lineTo(cx - r, cy); ctx.closePath();
+}
+
+/* opts: {ancho, dark, escala, exportar} */
+function dibujar(canvas, opts){
+  const T = opts.dark ? TEMA.dark : TEMA.light;
+  const ctx = canvas.getContext('2d');
+  const {t0, dias} = rango();
+  const G = grupos();
+
+  ctx.font = F(650, 13);
+  const labelW = Math.min(Math.max(Math.max(...filas.map(f => ctx.measureText(f.actividad).width)) + 36, 220), 330);
+  const dayW = opts.exportar
+    ? Math.max(5, Math.min(18, 2200 / dias))
+    : Math.max(3, Math.min(30, (opts.ancho - labelW) / dias));
+  const rowH = 42, grpH = G[0].etapa ? 30 : 0, mesH = 26, semH = 24;
+  const titH = opts.exportar ? 66 : 0, legH = opts.exportar ? 50 : 0;
+  const top = titH + mesH + semH;
+  const cuerpo = G.length * grpH + filas.length * rowH;
+  const W = Math.ceil(labelW + dias * dayW), H = top + cuerpo + legH + 1;
+  const s = opts.escala;
+
+  canvas.width = W * s; canvas.height = H * s;
+  if (!opts.exportar){ canvas.style.width = W + 'px'; canvas.style.height = H + 'px'; }
+  ctx.setTransform(s, 0, 0, s, 0, 0);
+  ctx.fillStyle = T.bg; ctx.fillRect(0, 0, W, H);
+  ctx.textBaseline = 'middle';
+  const x = t => labelW + ((t - t0) / DAY) * dayW;
+  const n = new Date(), hoy = Date.UTC(n.getFullYear(), n.getMonth(), n.getDate());
+
+  if (opts.exportar){
+    ctx.fillStyle = T.ink; ctx.font = F(800, 26);
+    ctx.fillText('Gantt cohete Xundwa', 16, 28);
+    ctx.fillStyle = T.muted; ctx.font = F(500, 13);
+    ctx.fillText(`Cronograma de trabajo${textoRango()} · actualizado ${n.getDate()} de ${MESES[n.getMonth()]} de ${n.getFullYear()}`, 16, 51);
+  }
+
+  // posiciones verticales
+  const pos = []; let y = top;
+  for (const g of G){
+    if (grpH){ pos.push({grupo: g.etapa, y}); y += grpH; }
+    g.filas.forEach((f, i) => { pos.push({f, y, alt: i % 2}); y += rowH; });
+  }
+
+  // fondos: filas alternas y encabezados de etapa
+  for (const p of pos){
+    if (p.grupo !== undefined){ ctx.fillStyle = T.grupo; ctx.fillRect(0, p.y, W, grpH); }
+    else if (p.alt){ ctx.fillStyle = T.alt; ctx.fillRect(0, p.y, W, rowH); }
+  }
+
+  // fines de semana (solo si hay espacio)
+  if (dayW >= 8){
+    ctx.fillStyle = T.soft; ctx.globalAlpha = .5;
+    for (let d = 0; d < dias; d++){
+      if ((new Date(t0 + d * DAY).getUTCDay() + 6) % 7 >= 5) ctx.fillRect(labelW + d * dayW, top - semH, dayW, semH + cuerpo);
+    }
+    ctx.globalAlpha = 1;
+  }
+
+  // semanas
+  const semW = 7 * dayW;
+  ctx.font = F(500, 11);
+  for (let d = 0; d < dias; d += 7){
+    const x0 = labelW + d * dayW;
+    ctx.strokeStyle = T.line; ctx.globalAlpha = .6;
+    ctx.beginPath(); ctx.moveTo(x0 + .5, titH + mesH); ctx.lineTo(x0 + .5, top + cuerpo); ctx.stroke();
+    ctx.globalAlpha = 1;
+    const dt = new Date(t0 + d * DAY);
+    const txt = semW >= 44 ? fCorta(t0 + d * DAY) : semW >= 16 ? String(dt.getUTCDate()) : '';
+    if (txt){ ctx.fillStyle = T.muted; ctx.textAlign = 'center'; ctx.fillText(txt, x0 + semW / 2, titH + mesH + semH / 2); ctx.textAlign = 'left'; }
+  }
+
+  // meses
+  ctx.font = F(700, 12.5);
+  for (let d = 0; d < dias;){
+    const m = new Date(t0 + d * DAY).getUTCMonth(), yr = new Date(t0 + d * DAY).getUTCFullYear();
+    let e = d; while (e < dias && new Date(t0 + e * DAY).getUTCMonth() === m) e++;
+    const x0 = labelW + d * dayW, x1 = labelW + e * dayW;
+    ctx.strokeStyle = T.line;
+    ctx.beginPath(); ctx.moveTo(x0 + .5, titH); ctx.lineTo(x0 + .5, top + cuerpo); ctx.stroke();
+    ctx.save(); ctx.beginPath(); ctx.rect(x0, titH, x1 - x0, mesH); ctx.clip();
+    ctx.fillStyle = T.ink;
+    const nombre = x1 - x0 > 120 ? `${MESES_L[m]} ${yr}` : x1 - x0 > 70 ? MESES_L[m] : MESES[m];
+    ctx.fillText(nombre, x0 + 8, titH + mesH / 2);
+    ctx.restore();
+    d = e;
+  }
+
+  // líneas de cabecera
+  ctx.strokeStyle = T.line;
+  [titH, titH + mesH, top, top + cuerpo].forEach(yy => { ctx.beginPath(); ctx.moveTo(0, yy + .5); ctx.lineTo(W, yy + .5); ctx.stroke(); });
+  ctx.fillStyle = T.muted; ctx.font = F(700, 11);
+  ctx.fillText('ACTIVIDAD', 16, titH + (mesH + semH) / 2);
+
+  // hoy (debajo de las barras)
+  const hayHoy = hoy >= t0 && hoy < t0 + dias * DAY;
+  const hx = Math.round(x(hoy) + dayW / 2) + .5;
+  if (hayHoy){
+    ctx.strokeStyle = T.accent; ctx.lineWidth = 2; ctx.globalAlpha = .9;
+    ctx.beginPath(); ctx.moveTo(hx, top); ctx.lineTo(hx, top + cuerpo); ctx.stroke();
+    ctx.lineWidth = 1; ctx.globalAlpha = 1;
+  }
+
+  // filas
+  for (const p of pos){
+    if (p.grupo !== undefined){
+      ctx.fillStyle = T.ink; ctx.font = F(800, 12);
+      ctx.fillText(p.grupo.toUpperCase(), 16, p.y + grpH / 2 + .5);
+      continue;
+    }
+    const f = p.f, yy = p.y;
+    ctx.fillStyle = T.ink; ctx.font = F(650, 13);
+    ctx.fillText(recortar(ctx, f.actividad, labelW - 28), 16, yy + 15);
+    ctx.fillStyle = T.muted; ctx.font = F(500, 11.5);
+    const sub = f.tipo === 'tarea' ? f.responsable
+      : `${f.responsable} · ${f.ini === f.fin ? fCorta(f.ini) : `${fCorta(f.ini)} – ${fCorta(f.fin)}`}`;
+    ctx.fillText(recortar(ctx, sub, labelW - 28), 16, yy + 30);
+
+    ctx.save(); ctx.beginPath(); ctx.rect(labelW + 1, yy, W - labelW, rowH); ctx.clip();
+    const bx = x(f.ini), bw = x(f.fin + DAY) - bx, cy = yy + rowH / 2;
+    if (f.tipo === 'hito'){
+      const cx = bx + dayW / 2;
+      ctx.fillStyle = T.hito; rombo(ctx, cx, cy, 8); ctx.fill();
+      ctx.strokeStyle = T.bg; ctx.lineWidth = 1.5; ctx.stroke(); ctx.lineWidth = 1;
+      ctx.fillStyle = T.ink; ctx.font = F(650, 11);
+      ctx.fillText(fCorta(f.ini), cx + 13, cy + .5);
+    } else if (f.tipo === 'evento'){
+      const bh = rowH - 20;
+      ctx.fillStyle = T.hito; ctx.globalAlpha = .16;
+      ctx.beginPath(); ctx.roundRect(bx + .5, cy - bh / 2, Math.max(bw - 1, 4), bh, 5); ctx.fill();
+      ctx.globalAlpha = 1; ctx.strokeStyle = T.hito; ctx.lineWidth = 1.5; ctx.stroke(); ctx.lineWidth = 1;
+      ctx.fillStyle = T.ink; ctx.font = F(650, 11);
+      const txt = f.ini === f.fin ? fCorta(f.ini) : `${fCorta(f.ini)} – ${fCorta(f.fin)}`;
+      if (ctx.measureText(txt).width + 12 < bw) ctx.fillText(txt, bx + 7, cy + .5);
+      else if (bx + bw + 6 + ctx.measureText(txt).width < W) ctx.fillText(txt, bx + bw + 6, cy + .5);
+      else { ctx.textAlign = 'right'; ctx.fillText(txt, bx - 6, cy + .5); ctx.textAlign = 'left'; }
+    } else {
+      const bh = rowH - 20, w = Math.max(bw - 2, 3);
+      ctx.fillStyle = colorDe(f.responsable, opts.dark);
+      if (f.fin < hoy) ctx.globalAlpha = .55;                  // ya terminada: más tenue
+      ctx.beginPath(); ctx.roundRect(bx + 1, cy - bh / 2, w, bh, 5); ctx.fill();
+      ctx.globalAlpha = 1;
+      const nd = Math.round((f.fin - f.ini) / DAY) + 1;
+      const txt = nd + (nd === 1 ? ' día' : ' días');
+      ctx.font = F(650, 11);
+      if (ctx.measureText(txt).width + 12 < w){
+        ctx.fillStyle = opts.dark ? '#0F161D' : '#FFFFFF';
+        ctx.fillText(txt, Math.max(bx, labelW) + 8, cy + .5);
+      }
+    }
+    ctx.restore();
+  }
+
+  // separador de etiquetas
+  ctx.strokeStyle = T.line;
+  ctx.beginPath(); ctx.moveTo(labelW + .5, titH); ctx.lineTo(labelW + .5, top + cuerpo); ctx.stroke();
+
+  // etiqueta HOY
+  if (hayHoy){
+    ctx.font = F(800, 10);
+    const tw = ctx.measureText('HOY').width + 10;
+    ctx.fillStyle = T.accent;
+    ctx.beginPath(); ctx.roundRect(hx - tw / 2, top - semH + 4, tw, 15, 7); ctx.fill();
+    ctx.fillStyle = opts.dark ? '#0F161D' : '#FFFFFF'; ctx.textAlign = 'center';
+    ctx.fillText('HOY', hx, top - semH + 12); ctx.textAlign = 'left';
+  }
+
+  // leyenda (solo exportación)
+  if (opts.exportar){
+    let lx = 16; const ly = top + cuerpo + legH / 2;
+    ctx.font = F(500, 12.5);
+    const item = (dibuja, txt) => { dibuja(lx, ly); ctx.fillStyle = T.muted; ctx.fillText(txt, lx + 18, ly + .5); lx += 18 + ctx.measureText(txt).width + 22; };
+    for (const r of responsables())
+      item((a, b) => { ctx.fillStyle = colorDe(r, opts.dark); ctx.beginPath(); ctx.roundRect(a, b - 5, 11, 11, 2); ctx.fill(); }, r);
+    if (filas.some(f => f.tipo === 'hito'))
+      item((a, b) => { ctx.fillStyle = T.hito; rombo(ctx, a + 6, b + .5, 6); ctx.fill(); }, 'Hito del concurso');
+    if (filas.some(f => f.tipo === 'evento'))
+      item((a, b) => { ctx.strokeStyle = T.hito; ctx.lineWidth = 1.5; ctx.beginPath(); ctx.roundRect(a, b - 5, 14, 11, 3); ctx.stroke(); ctx.lineWidth = 1; }, 'Periodo del concurso');
+  }
+}
+
+/* ---------- rango de meses ---------- */
+const clave = t => iso(t).slice(0, 7);
+const inicioMes = k => Date.UTC(+k.slice(0, 4), +k.slice(5) - 1, 1);
+const finMes = k => Date.UTC(+k.slice(0, 4), +k.slice(5), 1) - DAY;
+function mesHaceUno(){ const n = new Date(); return clave(Date.UTC(n.getFullYear(), n.getMonth() - 1, 1)); }
+
+/* límites visibles; sinDatos=true no los recorta a los datos (para filtrar) */
+function limites(sinDatos){
+  const base = sinDatos ? todas : filas;
+  let a = vista.desde ? inicioMes(vista.desde) : Math.min(...base.map(f => f.ini));
+  let b = vista.hasta ? finMes(vista.hasta) : Math.max(...base.map(f => f.fin));
+  if (!sinDatos && !vista.desde) a = Math.min(...filas.map(f => f.ini));
+  if (!sinDatos && !vista.hasta) b = Math.max(...filas.map(f => f.fin));
+  return [a, b];
+}
+function textoRango(){
+  if (!vista.desde && !vista.hasta) return '';
+  const m = k => { const d = new Date(inicioMes(k)); return `${MESES[d.getUTCMonth()]} ${d.getUTCFullYear()}`; };
+  return ` · ${vista.desde ? m(vista.desde) : 'inicio'} – ${vista.hasta ? m(vista.hasta) : 'final'}`;
+}
+function llenarMeses(){
+  const a = clave(Math.min(...todas.map(f => f.ini))), b = clave(Math.max(...todas.map(f => f.fin)));
+  const meses = [];
+  for (let t = inicioMes(a); clave(t) <= b; t = Date.UTC(new Date(t).getUTCFullYear(), new Date(t).getUTCMonth() + 1, 1)) meses.push(clave(t));
+  const opciones = (vacio) => [new Option(vacio, ''), ...meses.map(k => {
+    const d = new Date(inicioMes(k)); return new Option(`${MESES_L[d.getUTCMonth()]} ${d.getUTCFullYear()}`, k);
+  })];
+  $('desde').replaceChildren(...opciones('El inicio'));
+  $('hasta').replaceChildren(...opciones('El final'));
+  if (!meses.includes(vista.desde)) vista.desde = '';
+  if (!meses.includes(vista.hasta)) vista.hasta = '';
+}
+$('desde').onchange = e => { vista.desde = e.target.value; if (vista.hasta && vista.hasta < vista.desde) vista.hasta = ''; render(); };
+$('hasta').onchange = e => { vista.hasta = e.target.value; if (vista.desde && vista.desde > vista.hasta && vista.hasta) vista.desde = ''; render(); };
+$('b-mes').onclick = () => { vista.desde = mesHaceUno(); vista.hasta = ''; if (todas.length) render(); };
+$('b-todo').onclick = () => { vista.desde = vista.hasta = ''; if (todas.length) render(); };
+
+/* ---------- tabla y leyenda ---------- */
+const fmt = t => { const d = new Date(t); return `${d.getUTCDate()} ${MESES[d.getUTCMonth()]} ${d.getUTCFullYear()}`; };
+const iso = t => new Date(t).toISOString().slice(0, 10);
+const TIPO = {tarea: 'Tarea', hito: 'Hito', evento: 'Periodo'};
+
+function render(){
+  const [a, b] = limites(true);
+  filas = todas.filter(f => f.fin >= a && f.ini <= b);
+  $('desde').value = vista.desde; $('hasta').value = vista.hasta;
+  $('b-todo').classList.toggle('on', !vista.desde && !vista.hasta);
+  $('b-mes').classList.toggle('on', vista.desde === mesHaceUno() && !vista.hasta);
+  try { localStorage.setItem('gantt-rango', JSON.stringify(vista)); } catch (e) {}
+  $('vacio').hidden = filas.length > 0;
+  $('wrap').hidden = $('legend').hidden = !filas.length;
+  $('b-csv').disabled = $('b-png').disabled = !filas.length;
+  $('p-drop').hidden = true;
+  $('p-gantt').hidden = $('p-table').hidden = false;
+  if (!filas.length){ $('tbl').replaceChildren(); $('p-table').hidden = true; return; }
+  const ini = Math.min(...filas.map(f => f.ini)), fin = Math.max(...filas.map(f => f.fin));
+  const nh = filas.filter(f => f.tipo === 'hito').length;
+  $('sub').textContent = `${filas.length - nh} actividades · ${nh} hitos · ${fmt(ini)} → ${fmt(fin)}${filas.length < todas.length ? ` (de ${todas.length} filas)` : ''}`;
+  pintar();
+
+  const dark = oscuro(), T = dark ? TEMA.dark : TEMA.light;
+  const ley = responsables().map(r => {
+    const s = document.createElement('span'), i = document.createElement('i');
+    i.style.background = colorDe(r, dark); s.append(i, r); return s;
+  });
+  if (nh){
+    const s = document.createElement('span'), i = document.createElement('i');
+    Object.assign(i.style, {background: T.hito, transform: 'rotate(45deg) scale(.85)'}); s.append(i, 'Hito del concurso'); ley.push(s);
+  }
+  if (filas.some(f => f.tipo === 'evento')){
+    const s = document.createElement('span'), i = document.createElement('i');
+    Object.assign(i.style, {border: `1.5px solid ${T.hito}`, width: '14px'}); s.append(i, 'Periodo del concurso'); ley.push(s);
+  }
+  $('legend').replaceChildren(...ley);
+
+  const t = $('tbl'); t.replaceChildren();
+  const hr = t.createTHead().insertRow();
+  ['Actividad','Responsable','Inicio','Fin','Días'].forEach(h => { const th = document.createElement('th'); th.textContent = h; hr.append(th); });
+  const tb = t.createTBody();
+  for (const g of grupos()){
+    if (g.etapa){
+      const c = tb.insertRow().insertCell();
+      c.colSpan = 5; c.className = 'grp'; c.textContent = g.etapa;
+    }
+    for (const f of g.filas){
+      const r = tb.insertRow();
+      r.insertCell().textContent = f.actividad;
+      const c = r.insertCell(), dot = document.createElement('span');
+      if (f.tipo === 'tarea'){ dot.className = 'dot'; dot.style.background = colorDe(f.responsable, dark); c.append(dot, f.responsable); }
+      else c.append(f.responsable + ' ', Object.assign(document.createElement('span'), {className: 'tag', textContent: TIPO[f.tipo]}));
+      Object.assign(r.insertCell(), {className:'num', textContent: fmt(f.ini)});
+      Object.assign(r.insertCell(), {className:'num', textContent: f.tipo === 'hito' ? '—' : fmt(f.fin)});
+      Object.assign(r.insertCell(), {className:'num', textContent: f.tipo === 'hito' ? '—' : Math.round((f.fin - f.ini) / DAY) + 1});
+    }
+  }
+}
+
+function pintar(){
+  if (!filas.length) return;
+  dibujar($('cv'), {ancho: $('wrap').clientWidth, dark: oscuro(), escala: devicePixelRatio || 1});
+}
+
+/* ---------- exportar ---------- */
+function bajar(blob, nombre){
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob); a.download = nombre;
+  document.body.append(a); a.click(); a.remove();
+  setTimeout(() => URL.revokeObjectURL(a.href), 1000);
+}
+$('b-png').onclick = () => {
+  const c = document.createElement('canvas');
+  dibujar(c, {exportar: true, dark: false, escala: 2});
+  c.toBlob(b => bajar(b, 'gantt-cohete-xundwa.png'), 'image/png');
+};
+$('b-csv').onclick = () => {
+  const q = s => /[",;\n]/.test(s) ? `"${s.replace(/"/g, '""')}"` : s;
+  const lineas = ['etapa,actividad,responsable,inicio,fin,tipo,dias',
+    ...grupos().flatMap(g => g.filas).map(f => [q(f.etapa), q(f.actividad), q(f.responsable), iso(f.ini), iso(f.fin), f.tipo,
+      f.tipo === 'hito' ? '' : Math.round((f.fin - f.ini) / DAY) + 1].join(','))];
+  bajar(new Blob(['﻿' + lineas.join('\r\n')], {type: 'text/csv;charset=utf-8'}), 'gantt-cohete-xundwa.csv');
+};
+
+/* ---------- copiar tabla para Google Docs ---------- */
+function tablaDocs(){
+  const esc = t => String(t).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+  const base = 'font-family:Arial,sans-serif;font-size:10pt;color:#15202B;';
+  const td = (extra = '') => `style="${base}border:1px solid #D3D9DF;padding:5pt 7pt;vertical-align:middle;${extra}"`;
+  const th = `style="${base}color:#FFFFFF;background-color:#1B2A4A;font-weight:bold;border:1px solid #1B2A4A;padding:6pt 7pt;text-align:left;"`;
+  let html = `<table style="border-collapse:collapse;width:100%;"><thead><tr>`
+    + ['Actividad','Responsable','Inicio','Fin','Días'].map(h => `<th ${th}>${h}</th>`).join('') + `</tr></thead><tbody>`;
+  const tsv = [['Etapa','Actividad','Responsable','Inicio','Fin','Días','Tipo'].join('\t')];
+  for (const g of grupos()){
+    if (g.etapa) html += `<tr><td colspan="5" ${td('background-color:#E2E7EC;font-weight:bold;font-size:9pt;letter-spacing:.5pt;')}>${esc(g.etapa.toUpperCase())}</td></tr>`;
+    g.filas.forEach((f, i) => {
+      const bg = i % 2 ? 'background-color:#F5F7F9;' : 'background-color:#FFFFFF;';
+      const icono = f.tipo === 'hito' ? '<span style="color:#BA2F27;">◆</span> '
+                  : f.tipo === 'evento' ? '<span style="color:#BA2F27;">▭</span> ' : '';
+      const resp = f.tipo === 'tarea'
+        ? `<span style="color:${colorDe(f.responsable, false)};">●</span> ${esc(f.responsable)}`
+        : esc(f.responsable);
+      const dias = f.tipo === 'hito' ? '—' : Math.round((f.fin - f.ini) / DAY) + 1;
+      html += `<tr><td ${td(bg)}>${icono}${esc(f.actividad)}</td><td ${td(bg)}>${resp}</td>`
+        + `<td ${td(bg + 'white-space:nowrap;')}>${fmt(f.ini)}</td>`
+        + `<td ${td(bg + 'white-space:nowrap;')}>${f.tipo === 'hito' ? '—' : fmt(f.fin)}</td>`
+        + `<td ${td(bg + 'text-align:center;')}>${dias}</td></tr>`;
+      tsv.push([f.etapa, f.actividad, f.responsable, fmt(f.ini), f.tipo === 'hito' ? '' : fmt(f.fin), f.tipo === 'hito' ? '' : dias, TIPO[f.tipo]].join('\t'));
+    });
+  }
+  html += '</tbody></table>';
+  const nota = filas.some(f => f.tipo !== 'tarea')
+    ? `<p style="${base}font-size:8.5pt;color:#5A6774;"><span style="color:#BA2F27;">◆</span> Hito del concurso &nbsp;·&nbsp; <span style="color:#BA2F27;">▭</span> Periodo del concurso</p>` : '';
+  return {html: html + nota, texto: tsv.join('\n')};
+}
+
+async function copiarDocs(){
+  const {html, texto} = tablaDocs();
+  try {
+    await navigator.clipboard.write([new ClipboardItem({
+      'text/html': new Blob([html], {type: 'text/html'}),
+      'text/plain': new Blob([texto], {type: 'text/plain'})
+    })]);
+  } catch (e) {
+    // respaldo para navegadores sin ClipboardItem
+    const div = Object.assign(document.createElement('div'), {innerHTML: html, contentEditable: 'true'});
+    Object.assign(div.style, {position: 'fixed', left: '-9999px', top: '0'});
+    document.body.append(div);
+    const r = document.createRange(); r.selectNodeContents(div);
+    const sel = getSelection(); sel.removeAllRanges(); sel.addRange(r);
+    const ok = document.execCommand('copy');
+    sel.removeAllRanges(); div.remove();
+    if (!ok) { aviso('No se pudo copiar'); return; }
+  }
+  aviso('Copiada ✓ — pégala en Docs');
+}
+function aviso(txt){
+  const b = $('b-docs'); b.textContent = txt;
+  clearTimeout(aviso.t); aviso.t = setTimeout(() => b.textContent = 'Copiar para Docs', 2500);
+}
+$('b-docs').onclick = copiarDocs;
+
+/* ---------- carga ---------- */
+function error(e){ $('p-drop').hidden = false; $('err').hidden = false; $('err').textContent = e.message || e; }
+function leerArchivo(file){
+  if (!file) return;
+  file.text().then(t => { try { cargar(t); } catch (e) { error(e); } });
+}
+$('b-load').onclick = () => $('file').click();
+$('file').onchange = e => { leerArchivo(e.target.files[0]); e.target.value = ''; };
+const drop = $('drop');
+['dragover','dragenter'].forEach(ev => document.addEventListener(ev, e => { e.preventDefault(); drop.classList.add('over'); }));
+['dragleave','drop'].forEach(ev => document.addEventListener(ev, e => { e.preventDefault(); drop.classList.remove('over'); }));
+document.addEventListener('drop', e => leerArchivo(e.dataTransfer.files[0]));
+
+addEventListener('resize', pintar);
+matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => filas.length && render());
+
+document.fonts.ready.then(() =>
+  fetch('datos.csv', {cache: 'no-store'})
+    .then(r => { if (!r.ok) throw 0; return r.text(); })
+    .then(t => { try { cargar(t); } catch (e) { error(e); } })
+    .catch(() => {
+      $('p-drop').hidden = false;
+      $('sub').textContent = 'No se pudo leer datos.csv automáticamente.';
+    })
+);
+</script>
+</body>
+</html>
