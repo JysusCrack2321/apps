@@ -65,15 +65,22 @@ class PruebasFaseA(unittest.TestCase):
         with self.assertRaises(ValueError):
             generar_id_usuario('   ---   ')
 
+    def test_usuarios_json_ejemplo_es_valido(self):
+        # El .ejemplo sí se versiona: es el que valida un clon recién bajado.
+        usuarios = cargar_usuarios_compartidos(RAIZ_APPS / 'usuarios.json.ejemplo', validar=True)
+        self.assertGreaterEqual(len(usuarios), 2)
+        self.assertTrue(any(u['rol'] == 'admin' for u in usuarios))
+
     def test_usuarios_json_real_es_valido(self):
+        # usuarios.json lleva los correos del equipo y no se versiona, así que
+        # se comprueba su estructura, no quién está dentro.
+        if not ARCHIVO_USUARIOS.is_file():
+            self.skipTest('usuarios.json no existe en este clon (no se versiona)')
         usuarios = cargar_usuarios_compartidos(ARCHIVO_USUARIOS, validar=True)
-        self.assertTrue(len(usuarios) >= 5)
+        self.assertTrue(usuarios, 'usuarios.json está vacío')
         ids = [u['id'] for u in usuarios]
-        self.assertIn('jysusman', ids)
-        self.assertIn('maria-jose', ids)
-        self.assertIn('jesus-aragon', ids)
-        self.assertIn('paola-bello', ids)
-        self.assertIn('santiago-benavides', ids)
+        self.assertEqual(len(ids), len(set(ids)), f'ids duplicados: {ids}')
+        self.assertTrue(any(u['rol'] == 'admin' for u in usuarios), 'no hay ningún admin')
 
     def test_validar_usuarios_casos_invalidos(self):
         # No es lista
@@ -163,6 +170,11 @@ class PruebasFaseA(unittest.TestCase):
                 )
 
     def test_endpoint_api_yo_en_los_tres_servidores(self):
+        if not ARCHIVO_USUARIOS.is_file():
+            self.skipTest('usuarios.json no existe en este clon (no se versiona)')
+        # El usuario de prueba sale del propio archivo, para que no haya que
+        # tocar esta prueba cada vez que cambie el equipo.
+        esperado = cargar_usuarios_compartidos(ARCHIVO_USUARIOS, validar=True)[0]
         for clase_manejador in (
             ManejadorPortal,
             servidor_itinerario.ManejadorItinerario,
@@ -187,13 +199,19 @@ class PruebasFaseA(unittest.TestCase):
                     self.assertIsNone(json.loads(resp.read().decode('utf-8')))
 
                 # Con cookie válida -> objeto {id, nombre, rol}
-                req_valida = urllib.request.Request(url, headers={'Cookie': 'usuario=jysusman'})
+                req_valida = urllib.request.Request(
+                    url, headers={'Cookie': f'usuario={esperado["id"]}'}
+                )
                 with urllib.request.urlopen(req_valida, timeout=2) as resp:
                     self.assertEqual(resp.status, 200)
                     datos = json.loads(resp.read().decode('utf-8'))
                     self.assertEqual(
                         datos,
-                        {'id': 'jysusman', 'nombre': 'jysusman', 'rol': 'admin'},
+                        {
+                            'id': esperado['id'],
+                            'nombre': esperado['nombre'],
+                            'rol': esperado['rol'],
+                        },
                     )
             finally:
                 httpd.shutdown()

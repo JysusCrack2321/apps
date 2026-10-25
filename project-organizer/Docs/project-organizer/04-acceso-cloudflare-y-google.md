@@ -44,6 +44,29 @@ Pantalla de Cloudflare Access (summer-sea-d4a8.cloudflareaccess.com)
 - **Proveedores de identidad:** *Integrations → Identity providers*
 - **Datos del equipo y plan:** *Settings*
 
+### Dar de alta a un integrante
+
+Cada persona se autoriza en **dos sitios**, y hacen cosas distintas:
+
+| Dónde | Para qué | Si falta |
+|---|---|---|
+| Política **Equipo GIDA** en Cloudflare | Dejarla entrar al sitio | No le llega el PIN; acceso denegado |
+| `usuarios.json` (local, no versionado) | Que la app sepa **quién** es | Entra, pero `/api/yo` devuelve `null` y no se le cargan sus datos |
+
+`quien_es()` cruza el encabezado `Cf-Access-Authenticated-User-Email` que envía
+Access contra el campo `correo` de `usuarios.json`, ignorando mayúsculas. Si el
+correo no coincide exactamente, la persona queda sin identificar.
+
+Los correos del equipo viven solo en `usuarios.json`, que está en `.gitignore`
+para no publicarlos. Para obtener la lista que se pega en la política:
+
+```bash
+python3 -c "import json; print('\n'.join(u['correo'] for u in json.load(open('usuarios.json')) if u['correo']))"
+```
+
+En la política, *Include → Emails*, una entrada por correo **completo**
+(`usuario@dominio`); ver los errores conocidos más abajo.
+
 ### Errores conocidos
 - **"Cloudflare sign-in is restricted to members of the account":** el usuario eligió el método **"Cloudflare"**, que solo sirve para miembros de la cuenta de Cloudflare. Por eso ese método está desmarcado en la app EDT. Debe usar **Google** o **One-time PIN**.
 - **La app se crea pero no protege nada:** al crearla hay que llegar hasta el botón final **Save/Create**. Si no, la aplicación no se guarda (solo queda la política). Para comprobarlo, `edt.gida.lat` en incógnito debe redirigir a `summer-sea-d4a8.cloudflareaccess.com`.

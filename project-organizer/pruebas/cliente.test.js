@@ -972,12 +972,31 @@ test('EDT botón (+/−), botón "Guardar ahora" y revalidación de ETag al reco
   App.desconectarEventosServidor();
 });
 
-test('Pestaña Cohete: muestra tareas y entregables juntos en una sola lista unificada y permite filtrar por cualquier fecha (ej. Lunes 19/10)', async () => {
+test('Pestaña Cohete: muestra tareas y entregables juntos en una sola lista unificada y permite filtrar por cualquier fecha (ej. Lunes 19/10)', async (t) => {
   const fs = await import('node:fs');
   const path = await import('node:path');
   const { fileURLToPath } = await import('node:url');
   const dir = path.dirname(fileURLToPath(import.meta.url));
-  const datosReales = JSON.parse(fs.readFileSync(path.join(dir, '../guardados/actual.json'), 'utf-8'));
+  // guardados/ no se versiona: en un clon recién bajado no hay datos que leer.
+  const rutaDatos = path.join(dir, '../guardados/actual.json');
+  if (!fs.existsSync(rutaDatos)) {
+    t.skip('guardados/actual.json no existe en este clon (no se versiona)');
+    return;
+  }
+  const datosReales = JSON.parse(fs.readFileSync(rutaDatos, 'utf-8'));
+
+  // Los conteos por sección salen de los datos, no de números fijos: el EDT
+  // cambia cada semana y antes la prueba fallaba sola al editarlo.
+  const hijosDe = (id) => datosReales.actividades.filter(a => a.padre === id);
+  const hojasDe = (id) => {
+    const hijos = hijosDe(id);
+    return hijos.length === 0 ? [id] : hijos.flatMap(h => hojasDe(h.id));
+  };
+  const totalSeccion = (idEdt) => hojasDe(idEdt).filter(x => x !== idEdt).length;
+  const IDS_PARTES = ['ojiva', 'fsup', 'uhv3', 'ssoi', 'finf', 'mee1', '8111', 'fh9r', 'tpnh'];
+  const hojasConFin = (fecha) => datosReales.actividades
+    .filter(a => hijosDe(a.id).length === 0 && a.fin === fecha);
+  const entregablesConFin = (fecha) => hojasConFin(fecha).filter(a => a.tipo === 'entregable');
 
   const val = M.validar(datosReales);
   assert.equal(val.ok, true, `actual.json debe ser válido: ${val.errores.join(' | ')}`);
@@ -1003,14 +1022,22 @@ test('Pestaña Cohete: muestra tareas y entregables juntos en una sola lista uni
   assert.ok(iconoMotor);
   iconoMotor.click();
   const itemsMotorTodos = App.dom.vistaContenedor.querySelectorAll('.po-cohete-item');
-  assert.equal(itemsMotorTodos.length, 10, 'Soporte del motor muestra sus 6 tareas + 4 entregables juntos (10 en total)');
+  assert.equal(
+    itemsMotorTodos.length,
+    totalSeccion('8111'),
+    'Soporte del motor muestra todas sus actividades (tareas y entregables juntos)',
+  );
 
   // Seleccionar el icono de Redes sociales ('redes') y verificar sus tareas
   const iconoRedes = partesSvg.find(g => g.getAttribute('data-part') === 'redes');
   assert.ok(iconoRedes);
   iconoRedes.click();
   const itemsRedes = App.dom.vistaContenedor.querySelectorAll('.po-cohete-item');
-  assert.equal(itemsRedes.length, 3, 'Redes sociales y videos tiene Guion, Infografía y Primer Video');
+  assert.equal(
+    itemsRedes.length,
+    totalSeccion('tpnh'),
+    'Redes sociales y videos muestra todas sus actividades',
+  );
 
   // Filtrar por fecha pulsando el botón rápido "📅 Lunes 19/10" (2026-10-19)
   const botonesFecha = App.dom.vistaContenedor.querySelectorAll('.po-cohete-modo-btn');
@@ -1022,22 +1049,41 @@ test('Pestaña Cohete: muestra tareas y entregables juntos en una sola lista uni
   // muestra TODAS las tareas y entregables que se entregan el 2026-10-19 (15 tareas + 12 entregables = 27)
   assert.equal(App.estado.filtros.fecha, '2026-10-19');
   const todosItemsLunes = App.dom.vistaContenedor.querySelectorAll('.po-cohete-item');
-  assert.equal(todosItemsLunes.length, 27, 'Ver todos para 2026-10-19 muestra las 27 actividades (15 tareas + 12 entregables) del lunes');
+  assert.equal(
+    todosItemsLunes.length,
+    hojasConFin('2026-10-19').length,
+    'Ver todos para 2026-10-19 muestra todas las actividades que se entregan ese día',
+  );
 
   // Y si además filtramos por Tipo = "entregable" en la barra superior, muestra exactamente los 12 entregables del lunes en sus 7 secciones
   App.dom.filtroTipo.value = 'entregable';
   App.dom.filtroTipo.dispatchEvent({ type: 'change' });
   const soloEntregablesLunes = App.dom.vistaContenedor.querySelectorAll('.po-cohete-item');
   const cabecerasGrupo = App.dom.vistaContenedor.querySelectorAll('.po-cohete-grupo-hdr');
-  assert.equal(soloEntregablesLunes.length, 12, 'Con filtro tipo=entregable y fecha=2026-10-19 muestra los 12 entregables del lunes');
-  assert.equal(cabecerasGrupo.length, 7, 'Agrupados en las 7 secciones del cohete con entregables ese día');
+  assert.equal(
+    soloEntregablesLunes.length,
+    entregablesConFin('2026-10-19').length,
+    'Con filtro tipo=entregable y fecha=2026-10-19 muestra solo los entregables de ese día',
+  );
+  const idsEntregablesLunes = new Set(entregablesConFin('2026-10-19').map(a => a.id));
+  const seccionesConEntregable = IDS_PARTES
+    .filter(p => hojasDe(p).some(id => idsEntregablesLunes.has(id)));
+  assert.equal(
+    cabecerasGrupo.length,
+    seccionesConEntregable.length,
+    'Agrupados en las secciones del cohete que tienen entregables ese día',
+  );
 
   // Y si tocamos Soporte del motor ('motor'), muestra solo los 4 de esa sección
   const partesSvgFiltradas = App.dom.vistaContenedor.querySelectorAll('.part');
   const iconoMotorFiltrado = partesSvgFiltradas.find(g => g.getAttribute('data-part') === 'motor');
   iconoMotorFiltrado.click();
   const itemsMotorLunes = App.dom.vistaContenedor.querySelectorAll('.po-cohete-item');
-  assert.equal(itemsMotorLunes.length, 4, 'Soporte del motor en 2026-10-19 muestra los 4 entregables de ese día');
+  assert.equal(
+    itemsMotorLunes.length,
+    hojasDe('8111').filter(id => idsEntregablesLunes.has(id)).length,
+    'Soporte del motor en 2026-10-19 muestra solo sus entregables de ese día',
+  );
 
   // Volver a "Todas las fechas" limpia el filtro de fecha
   const botonesFechaDespues = App.dom.vistaContenedor.querySelectorAll('.po-cohete-modo-btn');
