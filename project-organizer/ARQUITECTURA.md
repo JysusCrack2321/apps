@@ -177,7 +177,7 @@ El servidor ejecuta `ServidorProjectOrganizer` (`ThreadingHTTPServer` con `daemo
    * Comando: `cloudflared tunnel --no-autoupdate run edt`.
    * Mantiene una conexión saliente permanente y cifrada (QUIC / HTTP/2) hacia los edge servers de Cloudflare. No requiere abrir puertos en el router residencial ni usar DDNS.
 3. **Publicación y Seguridad:**
-   * Dominio: `https://edt.gida.lat` (DNS gestionado en Cloudflare, CNAME apuntando al túnel `5290c16f-0a9b-4224-a654-bd087d91c8bf`).
+   * Dominio: `https://edt.gida.lat` (DNS gestionado en Cloudflare, CNAME apuntando al túnel `<TU-TUNNEL-ID>`).
    * Capa de autenticación: **Cloudflare Zero Trust Access** (`summer-sea-d4a8.cloudflareaccess.com`). Todo acceso a `edt.gida.lat` exige autenticación previa con Google OAuth o PIN de un solo uso por correo antes de enrutar el tráfico al túnel.
 
 ---
