@@ -963,7 +963,7 @@ function conectarEventosServidor() {
   if (typeof EventSource === 'undefined') return null;
 
   let desconectadoPreviamente = false;
-  const es = new EventSource('/api/eventos');
+  const es = new EventSource('api/eventos');
   estado.eventSource = es;
 
   es.addEventListener('cambio', (ev) => {

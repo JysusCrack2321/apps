@@ -180,7 +180,7 @@ export async function cargarGuardadoServidor(nombre) {
  */
 export async function guardarEnServidor(datos, etagForzado = null) {
   try {
-    const respuesta = await fetch('/api/guardar', {
+    const respuesta = await fetch('api/guardar', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -326,7 +326,7 @@ export function borrarBorrador() {
  */
 export async function cargarUsuarioActual() {
   try {
-    const respuesta = await fetch('/api/yo', { cache: 'no-store' });
+    const respuesta = await fetch('api/yo', { cache: 'no-store' });
     if (!respuesta.ok) return null;
     const usuario = await respuesta.json();
     return usuario && usuario.nombre ? usuario : null;
@@ -341,7 +341,7 @@ export async function cargarUsuarioActual() {
  */
 export async function cargarUsuariosCompartidos() {
   try {
-    const respuesta = await fetch('/api/usuarios', { cache: 'no-store' });
+    const respuesta = await fetch('api/usuarios', { cache: 'no-store' });
     if (!respuesta.ok) return [];
     const lista = await respuesta.json();
     return Array.isArray(lista) ? lista : [];

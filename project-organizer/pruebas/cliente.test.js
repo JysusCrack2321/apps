@@ -615,7 +615,7 @@ function crearServidorSimulado(datosIniciales) {
         json: async () => structuredClone(datosActuales),
       };
     }
-    if (metodo === 'POST' && String(url).includes('/api/guardar')) {
+    if (metodo === 'POST' && String(url).includes('api/guardar')) {
       const ifMatch = opciones.headers?.['If-Match'] || opciones.headers?.['if-match'] || '';
       const cuerpo = JSON.parse(opciones.body);
       historialPosts.push({ ifMatch, cuerpo });

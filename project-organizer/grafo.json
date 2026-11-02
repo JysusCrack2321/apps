@@ -1,6 +1,6 @@
 {
   "proyecto": "project-organizer",
-  "generado": "2026-10-24T23:20:33.853Z",
+  "generado": "2026-11-02T20:23:48.920Z",
   "resumen": {
     "totalNodos": 266,
     "totalAristas": 2720,
@@ -304,7 +304,7 @@
       "linea": 961,
       "tipo": "funcion",
       "cuerpoInicio": 31853,
-      "cuerpoFin": 32720,
+      "cuerpoFin": 32719,
       "exportada": false
     },
     {
@@ -314,8 +314,8 @@
       "archivo": "comun/app.js",
       "linea": 995,
       "tipo": "funcion",
-      "cuerpoInicio": 32872,
-      "cuerpoFin": 33184,
+      "cuerpoInicio": 32871,
+      "cuerpoFin": 33183,
       "exportada": false
     },
     {
@@ -325,8 +325,8 @@
       "archivo": "comun/app.js",
       "linea": 1013,
       "tipo": "funcion",
-      "cuerpoInicio": 33521,
-      "cuerpoFin": 34985,
+      "cuerpoInicio": 33520,
+      "cuerpoFin": 34984,
       "exportada": false
     },
     {
@@ -336,8 +336,8 @@
       "archivo": "comun/app.js",
       "linea": 1068,
       "tipo": "funcion",
-      "cuerpoInicio": 35105,
-      "cuerpoFin": 36036,
+      "cuerpoInicio": 35104,
+      "cuerpoFin": 36035,
       "exportada": false
     },
     {
@@ -347,8 +347,8 @@
       "archivo": "comun/app.js",
       "linea": 1099,
       "tipo": "funcion",
-      "cuerpoInicio": 36092,
-      "cuerpoFin": 36692,
+      "cuerpoInicio": 36091,
+      "cuerpoFin": 36691,
       "exportada": false
     },
     {
@@ -358,8 +358,8 @@
       "archivo": "comun/app.js",
       "linea": 1120,
       "tipo": "funcion",
-      "cuerpoInicio": 36755,
-      "cuerpoFin": 37354,
+      "cuerpoInicio": 36754,
+      "cuerpoFin": 37353,
       "exportada": false
     },
     {
@@ -369,8 +369,8 @@
       "archivo": "comun/app.js",
       "linea": 1141,
       "tipo": "funcion",
-      "cuerpoInicio": 37442,
-      "cuerpoFin": 37490,
+      "cuerpoInicio": 37441,
+      "cuerpoFin": 37489,
       "exportada": false
     },
     {
@@ -380,8 +380,8 @@
       "archivo": "comun/app.js",
       "linea": 1146,
       "tipo": "funcion",
-      "cuerpoInicio": 37620,
-      "cuerpoFin": 38122,
+      "cuerpoInicio": 37619,
+      "cuerpoFin": 38121,
       "exportada": false
     },
     {
@@ -391,8 +391,8 @@
       "archivo": "comun/app.js",
       "linea": 1163,
       "tipo": "funcion",
-      "cuerpoInicio": 38224,
-      "cuerpoFin": 38548,
+      "cuerpoInicio": 38223,
+      "cuerpoFin": 38547,
       "exportada": false
     },
     {
@@ -402,8 +402,8 @@
       "archivo": "comun/app.js",
       "linea": 1183,
       "tipo": "funcion",
-      "cuerpoInicio": 38735,
-      "cuerpoFin": 41789,
+      "cuerpoInicio": 38734,
+      "cuerpoFin": 41788,
       "exportada": false
     },
     {
@@ -413,8 +413,8 @@
       "archivo": "comun/app.js",
       "linea": 1278,
       "tipo": "funcion",
-      "cuerpoInicio": 41918,
-      "cuerpoFin": 42033,
+      "cuerpoInicio": 41917,
+      "cuerpoFin": 42032,
       "exportada": false
     },
     {
@@ -424,8 +424,8 @@
       "archivo": "comun/app.js",
       "linea": 1286,
       "tipo": "funcion",
-      "cuerpoInicio": 42110,
-      "cuerpoFin": 42653,
+      "cuerpoInicio": 42109,
+      "cuerpoFin": 42652,
       "exportada": false
     },
     {
@@ -435,8 +435,8 @@
       "archivo": "comun/app.js",
       "linea": 1307,
       "tipo": "funcion",
-      "cuerpoInicio": 42727,
-      "cuerpoFin": 42925,
+      "cuerpoInicio": 42726,
+      "cuerpoFin": 42924,
       "exportada": false
     },
     {
@@ -446,8 +446,8 @@
       "archivo": "comun/app.js",
       "linea": 1318,
       "tipo": "funcion",
-      "cuerpoInicio": 43008,
-      "cuerpoFin": 43377,
+      "cuerpoInicio": 43007,
+      "cuerpoFin": 43376,
       "exportada": false
     },
     {
@@ -601,7 +601,7 @@
       "linea": 181,
       "tipo": "funcion",
       "cuerpoInicio": 6085,
-      "cuerpoFin": 7367,
+      "cuerpoFin": 7366,
       "exportada": true
     },
     {
@@ -611,8 +611,8 @@
       "archivo": "comun/archivo.js",
       "linea": 229,
       "tipo": "funcion",
-      "cuerpoInicio": 7581,
-      "cuerpoFin": 7788,
+      "cuerpoInicio": 7580,
+      "cuerpoFin": 7787,
       "exportada": true
     },
     {
@@ -622,8 +622,8 @@
       "archivo": "comun/archivo.js",
       "linea": 243,
       "tipo": "funcion",
-      "cuerpoInicio": 8021,
-      "cuerpoFin": 8511,
+      "cuerpoInicio": 8020,
+      "cuerpoFin": 8510,
       "exportada": true
     },
     {
@@ -633,8 +633,8 @@
       "archivo": "comun/archivo.js",
       "linea": 263,
       "tipo": "funcion",
-      "cuerpoInicio": 8652,
-      "cuerpoFin": 9209,
+      "cuerpoInicio": 8651,
+      "cuerpoFin": 9208,
       "exportada": false
     },
     {
@@ -644,8 +644,8 @@
       "archivo": "comun/archivo.js",
       "linea": 279,
       "tipo": "funcion",
-      "cuerpoInicio": 9326,
-      "cuerpoFin": 9667,
+      "cuerpoInicio": 9325,
+      "cuerpoFin": 9666,
       "exportada": false
     },
     {
@@ -655,8 +655,8 @@
       "archivo": "comun/archivo.js",
       "linea": 294,
       "tipo": "funcion",
-      "cuerpoInicio": 9850,
-      "cuerpoFin": 10053,
+      "cuerpoInicio": 9849,
+      "cuerpoFin": 10052,
       "exportada": true
     },
     {
@@ -666,8 +666,8 @@
       "archivo": "comun/archivo.js",
       "linea": 304,
       "tipo": "funcion",
-      "cuerpoInicio": 10156,
-      "cuerpoFin": 10338,
+      "cuerpoInicio": 10155,
+      "cuerpoFin": 10337,
       "exportada": true
     },
     {
@@ -677,8 +677,8 @@
       "archivo": "comun/archivo.js",
       "linea": 315,
       "tipo": "funcion",
-      "cuerpoInicio": 10456,
-      "cuerpoFin": 10542,
+      "cuerpoInicio": 10455,
+      "cuerpoFin": 10541,
       "exportada": true
     },
     {
@@ -688,8 +688,8 @@
       "archivo": "comun/archivo.js",
       "linea": 327,
       "tipo": "funcion",
-      "cuerpoInicio": 10714,
-      "cuerpoFin": 10961,
+      "cuerpoInicio": 10713,
+      "cuerpoFin": 10959,
       "exportada": true
     },
     {
@@ -699,8 +699,8 @@
       "archivo": "comun/archivo.js",
       "linea": 342,
       "tipo": "funcion",
-      "cuerpoInicio": 11145,
-      "cuerpoFin": 11383,
+      "cuerpoInicio": 11143,
+      "cuerpoFin": 11380,
       "exportada": true
     },
     {

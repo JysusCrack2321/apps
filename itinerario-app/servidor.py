@@ -209,6 +209,29 @@ class ManejadorItinerario(http.server.BaseHTTPRequestHandler):
         # Servir archivos estáticos
         self.manejar_estatico(ruta)
 
+    def do_HEAD(self):
+        """HEAD para revalidar el ETag; el cliente lo usa al reconectar."""
+        ruta = urllib.parse.urlparse(self.path).path
+        if ruta != "/api/datos":
+            self.send_response(405)
+            self.send_header("Content-Length", "0")
+            self.end_headers()
+            return
+
+        archivo_objetivo = resolver_archivo_datos(self)
+        if not archivo_objetivo.exists():
+            self.send_response(404)
+            self.send_header("Content-Length", "0")
+            self.end_headers()
+            return
+
+        self.send_response(200)
+        self.send_header("Content-Type", "application/json; charset=utf-8")
+        self.send_header("Content-Length", str(archivo_objetivo.stat().st_size))
+        self.send_header("ETag", obtener_etag(archivo_objetivo))
+        self.send_header("Cache-Control", "no-cache, no-store, must-revalidate")
+        self.end_headers()
+
     def manejar_get_yo(self):
         usuario = quien_es(self)
         self.responder_json(200, usuario)

@@ -45,9 +45,11 @@ flowchart LR
 - Si los tres puertos están disponibles, lanza `project-organizer/servidor.py` (`8088`) e `itinerario-app/servidor.py` (`8090`) como subprocesos hijos y levanta `ManejadorPortal` en el puerto `8080`.
 - Al recibir `SIGINT` (`Ctrl+C`) o `SIGTERM`, cierra el servidor del portal y termina ambos subprocesos esperando su salida para no dejar procesos huérfanos.
 
-### 2. Resolución dinámica de URLs y reutilización de pestañas
-- El portal construye los enlaces de sus dos tarjetas en el cliente a partir de `window.location.protocol` y `window.location.hostname`, cambiando únicamente el puerto (`8088` o `8090`). Así funciona sin cambios al abrirse por `localhost`, `127.0.0.1`, una IP de la red local o una IP/nombre de Tailscale.
+### 2. Resolución de rutas y reutilización de pestañas
+- El portal publica cada aplicación bajo su propio prefijo en el mismo hostname: `/edt/` hacia el puerto `8088` y `/itinerario/` hacia el `8090`. El servidor del portal reenvía la petición quitando el prefijo, de modo que las apps siguen escuchando en `127.0.0.1` y no hay que abrir nada más.
+- Las apps piden su API con rutas **relativas** (`api/datos`, no `/api/datos`), así funcionan igual servidas bajo el prefijo o abiertas por separado en su propio puerto.
 - Cada tarjeta usa un atributo `target` con nombre fijo (`target="edt"` y `target="itinerario"`), de modo que el portal permanece abierto en su pestaña y los clics posteriores reutilizan la pestaña de la aplicación correspondiente.
+- El flujo SSE (`/api/eventos`) se reenvía por trozos con `flush`, sin acumular la respuesta, para que los cambios lleguen en vivo también a través del túnel.
 
 ### 3. Verificación de estado sin CORS (`GET /api/estado`)
 - Para mostrar si cada servidor está **En línea** o **Caído** sin depender de cabeceras CORS entre puertos distintos, el cliente del portal consulta su propio endpoint `GET /api/estado` en el puerto `8080`.
