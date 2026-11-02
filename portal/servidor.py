@@ -4,6 +4,7 @@
 from http import HTTPStatus
 from http.cookies import SimpleCookie
 from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
+import http.client
 import json
 import pathlib
 import re
@@ -21,6 +22,20 @@ ROLES_VALIDOS = ('admin', 'miembro')
 PUERTO_PORTAL = 8080
 PUERTO_EDT = 8088
 PUERTO_ITINERARIO = 8090
+
+# Prefijos públicos de las aplicaciones dentro del mismo hostname.
+# El puerto de cada una sale de los atributos de la clase (puerto_edt /
+# puerto_itinerario), que es lo que permite apuntarlas a otro puerto en pruebas.
+APPS = ('edt', 'itinerario')
+
+# Encabezados que no se reenvían al origen (son del salto, no del mensaje).
+CABECERAS_NO_REENVIABLES = {
+    'host', 'connection', 'keep-alive', 'proxy-connection', 'te', 'trailer',
+    'transfer-encoding', 'upgrade', 'accept-encoding', 'content-length',
+}
+
+# Encabezados del origen que no se copian tal cual (el largo lo decide el proxy).
+CABECERAS_NO_COPIADAS = {'transfer-encoding', 'connection', 'keep-alive', 'content-length'}
 
 
 def generar_id_usuario(nombre):
@@ -133,6 +148,7 @@ def quien_es(peticion, ruta_usuarios=None):
         for u in usuarios:
             if isinstance(u, dict) and str(u.get('correo', '')).strip().lower() == correo_limpio and correo_limpio:
                 return {'id': u['id'], 'nombre': u['nombre'], 'rol': u['rol']}
+        return None  # Access manda: correo no registrado = sin identidad
 
     cookie_raw = headers.get('Cookie', '')
     if cookie_raw:
@@ -176,6 +192,7 @@ def verificar_servicio_en_linea(bind_host, puerto, timeout=0.6):
 class ManejadorPortal(SimpleHTTPRequestHandler):
     """Manejador HTTP para el portal en el puerto 8080."""
 
+    protocol_version = 'HTTP/1.1'
     bind_host = '127.0.0.1'
     puerto_edt = PUERTO_EDT
     puerto_itinerario = PUERTO_ITINERARIO
@@ -210,7 +227,120 @@ class ManejadorPortal(SimpleHTTPRequestHandler):
             self.manejar_get_yo()
             return
 
+        if self.reenviar_a_app():
+            return
+
         super().do_GET()
+
+    def do_HEAD(self):
+        if not self.reenviar_a_app():
+            super().do_HEAD()
+
+    def do_POST(self):
+        if not self.reenviar_a_app():
+            self.enviar_json(HTTPStatus.METHOD_NOT_ALLOWED, {'error': 'Método no permitido.'})
+
+    # --- Puerta única: /edt/ y /itinerario/ apuntan a cada aplicación -------
+
+    def app_de_ruta(self, ruta):
+        """Devuelve el prefijo de app ('edt' o 'itinerario') o None."""
+        for prefijo in APPS:
+            if ruta == '/' + prefijo or ruta.startswith('/' + prefijo + '/'):
+                return prefijo
+        return None
+
+    def reenviar_a_app(self):
+        """Reenvía la petición a la app del prefijo, quitando el prefijo.
+
+        Devuelve False si la ruta no pertenece a ninguna app.
+        """
+        prefijo = self.app_de_ruta(self.path.split('?', 1)[0])
+        if prefijo is None:
+            return False
+
+        ruta_limpia = self.path.split('?', 1)[0]
+
+        # /edt -> /edt/ para que las rutas relativas del HTML resuelvan dentro.
+        if ruta_limpia == '/' + prefijo:
+            consulta = self.path[len(ruta_limpia):]
+            self.send_response(HTTPStatus.MOVED_PERMANENTLY)
+            self.send_header('Location', '/' + prefijo + '/' + consulta)
+            self.send_header('Content-Length', '0')
+            self.end_headers()
+            return True
+
+        destino = ruta_limpia[len(prefijo) + 1:] or '/'
+        if '?' in self.path:
+            destino += '?' + self.path.split('?', 1)[1]
+
+        cuerpo = None
+        if self.command in ('POST', 'PUT', 'PATCH', 'DELETE'):
+            try:
+                largo = int(self.headers.get('Content-Length') or 0)
+            except ValueError:
+                largo = 0
+            cuerpo = self.rfile.read(largo) if largo > 0 else b''
+
+        cabeceras = {
+            clave: valor
+            for clave, valor in self.headers.items()
+            if clave.lower() not in CABECERAS_NO_REENVIABLES
+        }
+        if cuerpo is not None:
+            cabeceras['Content-Length'] = str(len(cuerpo))
+
+        host = host_consulta_local(self.bind_host)
+        puerto = self.puerto_edt if prefijo == 'edt' else self.puerto_itinerario
+        conexion = http.client.HTTPConnection(host, puerto, timeout=3600)
+        try:
+            conexion.request(self.command, destino, body=cuerpo, headers=cabeceras)
+            respuesta = conexion.getresponse()
+        except Exception:
+            self.enviar_json(
+                HTTPStatus.BAD_GATEWAY,
+                {'error': f'La aplicación "{prefijo}" no responde en el puerto {puerto}.'},
+            )
+            return True
+
+        largo_respuesta = respuesta.getheader('Content-Length')
+        self.send_response(respuesta.status, respuesta.reason)
+        for clave, valor in respuesta.getheaders():
+            if clave.lower() not in CABECERAS_NO_COPIADAS:
+                self.send_header(clave, valor)
+
+        # HEAD no lleva cuerpo: se copian solo las cabeceras.
+        if self.command == 'HEAD':
+            if largo_respuesta is not None:
+                self.send_header('Content-Length', largo_respuesta)
+            self.end_headers()
+            conexion.close()
+            return True
+
+        if largo_respuesta is not None:
+            self.send_header('Content-Length', largo_respuesta)
+        else:
+            # Sin largo conocido (SSE): se transmite por trozos, sin acumular.
+            self.send_header('Transfer-Encoding', 'chunked')
+        self.end_headers()
+
+        try:
+            while True:
+                trozo = respuesta.read1(4096)   # read1: devuelve lo que ya llegó
+                if not trozo:
+                    break
+                if largo_respuesta is None:
+                    self.wfile.write(b'%x\r\n' % len(trozo) + trozo + b'\r\n')
+                else:
+                    self.wfile.write(trozo)
+                self.wfile.flush()
+            if largo_respuesta is None:
+                self.wfile.write(b'0\r\n\r\n')
+                self.wfile.flush()
+        except (BrokenPipeError, ConnectionResetError, OSError):
+            pass
+        finally:
+            conexion.close()
+        return True
 
     def manejar_get_estado(self):
         edt_ok = verificar_servicio_en_linea(self.bind_host, self.puerto_edt)
@@ -237,6 +367,12 @@ class ManejadorPortal(SimpleHTTPRequestHandler):
             for u in usuarios
             if isinstance(u, dict) and u.get('id') and u.get('nombre')
         ]
+        # Con Access la identidad la fija el correo: no se ofrece cambiar de usuario.
+        if self.headers.get('Cf-Access-Authenticated-User-Email'):
+            activo = quien_es(self)
+            lista_publica = [
+                u for u in lista_publica if activo and u['id'] == activo['id']
+            ]
         self.enviar_json(HTTPStatus.OK, lista_publica)
 
     def manejar_get_yo(self):

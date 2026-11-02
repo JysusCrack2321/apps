@@ -95,6 +95,7 @@ def quien_es(peticion, ruta_usuarios=None):
         for u in usuarios:
             if isinstance(u, dict) and str(u.get('correo', '')).strip().lower() == correo_limpio and correo_limpio:
                 return {'id': u['id'], 'nombre': u['nombre'], 'rol': u['rol']}
+        return None  # Access manda: correo no registrado = sin identidad
 
     cookie_raw = headers.get('Cookie', '')
     if cookie_raw:
@@ -342,6 +343,14 @@ class ManejadorProjectOrganizer(SimpleHTTPRequestHandler):
 
     def manejar_get_usuarios(self):
         usuarios = cargar_usuarios_compartidos()
+        # Detrás de Access no se exponen los correos: solo id, nombre y rol,
+        # que es lo que necesita el selector de responsable del EDT.
+        if self.headers.get('Cf-Access-Authenticated-User-Email'):
+            usuarios = [
+                {'id': u['id'], 'nombre': u['nombre'], 'rol': u['rol']}
+                for u in usuarios
+                if isinstance(u, dict) and u.get('id') and u.get('nombre')
+            ]
         self.enviar_json(HTTPStatus.OK, usuarios)
 
     def manejar_eventos_sse(self):

@@ -31,8 +31,10 @@ python3 iniciar.py --bind 0.0.0.0
 
 Al iniciar se imprimen las tres direcciones:
 - **Portal:** `http://127.0.0.1:8080/`
-- **Project Organizer (EDT):** `http://127.0.0.1:8088/`
-- **Itinerario:** `http://127.0.0.1:8090/`
+- **Project Organizer (EDT):** `http://127.0.0.1:8080/edt/` (o directo en `http://127.0.0.1:8088/`)
+- **Itinerario:** `http://127.0.0.1:8080/itinerario/` (o directo en `http://127.0.0.1:8090/`)
+
+El portal es la **puerta única**: sirve cada app bajo su prefijo (`/edt/`, `/itinerario/`) y reenvía la petición al puerto correspondiente quitando el prefijo. Así un solo hostname (por ejemplo `web.gida.lat`) y un solo túnel de Cloudflare bastan para publicar todo, sin un enlace por aplicación.
 
 Presiona `Ctrl+C` para cerrar limpiamente los tres servidores.
 

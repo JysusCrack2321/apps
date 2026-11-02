@@ -1,8 +1,9 @@
 // portal/app.js
 // Lógica del portal: URLs dinámicas por host, estado de servidores y selector de usuario compartido.
 
-const PUERTO_EDT = 8088;
-const PUERTO_ITINERARIO = 8090;
+// Las apps se publican bajo el mismo hostname, cada una en su prefijo.
+const RUTA_EDT = '/edt/';
+const RUTA_ITINERARIO = '/itinerario/';
 const CLAVE_TEMA = 'itinerario_tema';
 
 const estadoPortal = {
@@ -13,11 +14,9 @@ const estadoPortal = {
 
 const dom = {};
 
-/**Construye la URL hacia un puerto manteniendo protocolo y host actuales. */
-export function construirUrlApp(puerto) {
-  const protocolo = window.location.protocol || 'http:';
-  const host = window.location.hostname || '127.0.0.1';
-  return `${protocolo}//${host}:${puerto}/`;
+/** Devuelve la ruta pública de una app dentro del hostname único. */
+export function construirRutaApp(prefijo) {
+  return `/${prefijo}/`;
 }
 
 /** Guarda la cookie compartida usuario=<id> (Path=/, SameSite=Lax). */
@@ -51,15 +50,15 @@ export async function cargarUsuarioActivo() {
   return usuario && usuario.id ? usuario : null;
 }
 
-/** Configura los enlaces de las dos tarjetas usando el mismo host del portal. */
+/** Configura los enlaces de las dos tarjetas con su ruta dentro del hostname. */
 function configurarTarjetas() {
-  const urlEdt = construirUrlApp(PUERTO_EDT);
-  const urlItinerario = construirUrlApp(PUERTO_ITINERARIO);
+  const rutaEdt = construirRutaApp('edt');
+  const rutaItinerario = construirRutaApp('itinerario');
 
-  if (dom.tarjetaEdt) dom.tarjetaEdt.href = urlEdt;
-  if (dom.tarjetaItinerario) dom.tarjetaItinerario.href = urlItinerario;
-  if (dom.urlEdt) dom.urlEdt.textContent = urlEdt;
-  if (dom.urlItinerario) dom.urlItinerario.textContent = urlItinerario;
+  if (dom.tarjetaEdt) dom.tarjetaEdt.href = rutaEdt;
+  if (dom.tarjetaItinerario) dom.tarjetaItinerario.href = rutaItinerario;
+  if (dom.urlEdt) dom.urlEdt.textContent = rutaEdt;
+  if (dom.urlItinerario) dom.urlItinerario.textContent = rutaItinerario;
 }
 
 /** Actualiza visualmente la insignia de estado de una tarjeta. */

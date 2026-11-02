@@ -6,7 +6,7 @@
  * @returns {Promise<{ datos: object, etag: string }>}
  */
 export async function cargarDatos() {
-  const respuesta = await fetch('/api/datos', {
+  const respuesta = await fetch('api/datos', {
     headers: { 'Cache-Control': 'no-cache' }
   });
 
@@ -28,7 +28,7 @@ export async function cargarDatos() {
  */
 export async function guardarDatos(datos, etagActual) {
   try {
-    const respuesta = await fetch('/api/datos', {
+    const respuesta = await fetch('api/datos', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -76,7 +76,7 @@ export async function guardarDatos(datos, etagActual) {
  */
 export async function cargarUsuarioActual() {
   try {
-    const respuesta = await fetch('/api/yo', {
+    const respuesta = await fetch('api/yo', {
       headers: { 'Cache-Control': 'no-cache' }
     });
     if (!respuesta.ok) return null;
@@ -93,7 +93,7 @@ export async function cargarUsuarioActual() {
  */
 export async function cargarListaUsuarios() {
   try {
-    const respuesta = await fetch('/api/usuarios', {
+    const respuesta = await fetch('api/usuarios', {
       headers: { 'Cache-Control': 'no-cache' }
     });
     if (!respuesta.ok) return [];

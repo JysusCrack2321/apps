@@ -353,7 +353,7 @@ class AplicacionItinerario {
       this.eventSource = null;
     }
     try {
-      this.eventSource = new EventSource('/api/eventos');
+      this.eventSource = new EventSource('api/eventos');
       let primeraConexion = true;
       let huboDesconexion = false;
 
@@ -484,7 +484,7 @@ class AplicacionItinerario {
       try {
         let etagActual = nuevoEtag;
         if (!etagActual) {
-          const res = await fetch('/api/datos', { method: 'HEAD', headers: { 'Cache-Control': 'no-cache' } });
+          const res = await fetch('api/datos', { method: 'HEAD', headers: { 'Cache-Control': 'no-cache' } });
           etagActual = res.headers.get('ETag');
         }
         if (etagActual) this.etag = etagActual;
