@@ -1,10 +1,10 @@
 {
   "proyecto": "portal",
-  "generado": "2026-11-02T21:54:50.571Z",
+  "generado": "2026-11-02T22:20:33.376Z",
   "resumen": {
-    "totalNodos": 30,
-    "totalAristas": 89,
-    "aristasResueltas": 46,
+    "totalNodos": 32,
+    "totalAristas": 92,
+    "aristasResueltas": 49,
     "aristasDudosas": 0,
     "aristasExternas": 43,
     "porcentajeDudosas": "0.0%"
@@ -158,7 +158,7 @@
       "nombre": "generar_id_usuario",
       "nombreSimple": "generar_id_usuario",
       "archivo": "servidor.py",
-      "linea": 41,
+      "linea": 43,
       "tipo": "funcion",
       "clase": null
     },
@@ -167,7 +167,7 @@
       "nombre": "validar_usuarios",
       "nombreSimple": "validar_usuarios",
       "archivo": "servidor.py",
-      "linea": 55,
+      "linea": 57,
       "tipo": "funcion",
       "clase": null
     },
@@ -176,7 +176,25 @@
       "nombre": "cargar_usuarios_compartidos",
       "nombreSimple": "cargar_usuarios_compartidos",
       "archivo": "servidor.py",
-      "linea": 103,
+      "linea": 105,
+      "tipo": "funcion",
+      "clase": null
+    },
+    {
+      "id": "servidor.py:id_desde_correo",
+      "nombre": "id_desde_correo",
+      "nombreSimple": "id_desde_correo",
+      "archivo": "servidor.py",
+      "linea": 132,
+      "tipo": "funcion",
+      "clase": null
+    },
+    {
+      "id": "servidor.py:registrar_usuario_automatico",
+      "nombre": "registrar_usuario_automatico",
+      "nombreSimple": "registrar_usuario_automatico",
+      "archivo": "servidor.py",
+      "linea": 138,
       "tipo": "funcion",
       "clase": null
     },
@@ -185,7 +203,7 @@
       "nombre": "quien_es",
       "nombreSimple": "quien_es",
       "archivo": "servidor.py",
-      "linea": 127,
+      "linea": 176,
       "tipo": "funcion",
       "clase": null
     },
@@ -194,7 +212,7 @@
       "nombre": "host_consulta_local",
       "nombreSimple": "host_consulta_local",
       "archivo": "servidor.py",
-      "linea": 169,
+      "linea": 218,
       "tipo": "funcion",
       "clase": null
     },
@@ -203,7 +221,7 @@
       "nombre": "verificar_servicio_en_linea",
       "nombreSimple": "verificar_servicio_en_linea",
       "archivo": "servidor.py",
-      "linea": 176,
+      "linea": 225,
       "tipo": "funcion",
       "clase": null
     },
@@ -212,7 +230,7 @@
       "nombre": "ManejadorPortal.__init__",
       "nombreSimple": "__init__",
       "archivo": "servidor.py",
-      "linea": 200,
+      "linea": 249,
       "tipo": "metodo",
       "clase": "ManejadorPortal"
     },
@@ -221,7 +239,7 @@
       "nombre": "ManejadorPortal.log_message",
       "nombreSimple": "log_message",
       "archivo": "servidor.py",
-      "linea": 203,
+      "linea": 252,
       "tipo": "metodo",
       "clase": "ManejadorPortal"
     },
@@ -230,7 +248,7 @@
       "nombre": "ManejadorPortal.enviar_json",
       "nombreSimple": "enviar_json",
       "archivo": "servidor.py",
-      "linea": 206,
+      "linea": 255,
       "tipo": "metodo",
       "clase": "ManejadorPortal"
     },
@@ -239,7 +257,7 @@
       "nombre": "ManejadorPortal.do_GET",
       "nombreSimple": "do_GET",
       "archivo": "servidor.py",
-      "linea": 215,
+      "linea": 264,
       "tipo": "metodo",
       "clase": "ManejadorPortal"
     },
@@ -248,7 +266,7 @@
       "nombre": "ManejadorPortal.do_HEAD",
       "nombreSimple": "do_HEAD",
       "archivo": "servidor.py",
-      "linea": 235,
+      "linea": 284,
       "tipo": "metodo",
       "clase": "ManejadorPortal"
     },
@@ -257,7 +275,7 @@
       "nombre": "ManejadorPortal.do_POST",
       "nombreSimple": "do_POST",
       "archivo": "servidor.py",
-      "linea": 239,
+      "linea": 288,
       "tipo": "metodo",
       "clase": "ManejadorPortal"
     },
@@ -266,7 +284,7 @@
       "nombre": "ManejadorPortal.app_de_ruta",
       "nombreSimple": "app_de_ruta",
       "archivo": "servidor.py",
-      "linea": 245,
+      "linea": 294,
       "tipo": "metodo",
       "clase": "ManejadorPortal"
     },
@@ -275,7 +293,7 @@
       "nombre": "ManejadorPortal.reenviar_a_app",
       "nombreSimple": "reenviar_a_app",
       "archivo": "servidor.py",
-      "linea": 252,
+      "linea": 301,
       "tipo": "metodo",
       "clase": "ManejadorPortal"
     },
@@ -284,7 +302,7 @@
       "nombre": "ManejadorPortal.manejar_get_estado",
       "nombreSimple": "manejar_get_estado",
       "archivo": "servidor.py",
-      "linea": 345,
+      "linea": 394,
       "tipo": "metodo",
       "clase": "ManejadorPortal"
     },
@@ -293,7 +311,7 @@
       "nombre": "ManejadorPortal.manejar_get_usuarios",
       "nombreSimple": "manejar_get_usuarios",
       "archivo": "servidor.py",
-      "linea": 359,
+      "linea": 408,
       "tipo": "metodo",
       "clase": "ManejadorPortal"
     },
@@ -302,7 +320,7 @@
       "nombre": "ManejadorPortal.manejar_get_yo",
       "nombreSimple": "manejar_get_yo",
       "archivo": "servidor.py",
-      "linea": 378,
+      "linea": 427,
       "tipo": "metodo",
       "clase": "ManejadorPortal"
     }
@@ -313,147 +331,168 @@
       "origen": "servidor.py:cargar_usuarios_compartidos",
       "destino": "servidor.py:validar_usuarios",
       "dudosa": false,
-      "linea": 120
+      "linea": 122
+    },
+    {
+      "tipo": "llama",
+      "origen": "servidor.py:registrar_usuario_automatico",
+      "destino": "servidor.py:cargar_usuarios_compartidos",
+      "dudosa": false,
+      "linea": 148
+    },
+    {
+      "tipo": "llama",
+      "origen": "servidor.py:registrar_usuario_automatico",
+      "destino": "servidor.py:id_desde_correo",
+      "dudosa": false,
+      "linea": 153
     },
     {
       "tipo": "llama",
       "origen": "servidor.py:quien_es",
       "destino": "servidor.py:cargar_usuarios_compartidos",
       "dudosa": false,
-      "linea": 136
+      "linea": 185
+    },
+    {
+      "tipo": "llama",
+      "origen": "servidor.py:quien_es",
+      "destino": "servidor.py:registrar_usuario_automatico",
+      "dudosa": false,
+      "linea": 200
     },
     {
       "tipo": "llama",
       "origen": "servidor.py:verificar_servicio_en_linea",
       "destino": "servidor.py:host_consulta_local",
       "dudosa": false,
-      "linea": 178
+      "linea": 227
     },
     {
       "tipo": "llama",
       "origen": "servidor.py:ManejadorPortal.do_GET",
       "destino": "servidor.py:ManejadorPortal.manejar_get_estado",
       "dudosa": false,
-      "linea": 219
+      "linea": 268
     },
     {
       "tipo": "llama",
       "origen": "servidor.py:ManejadorPortal.do_GET",
       "destino": "servidor.py:ManejadorPortal.manejar_get_usuarios",
       "dudosa": false,
-      "linea": 223
+      "linea": 272
     },
     {
       "tipo": "llama",
       "origen": "servidor.py:ManejadorPortal.do_GET",
       "destino": "servidor.py:ManejadorPortal.manejar_get_yo",
       "dudosa": false,
-      "linea": 227
+      "linea": 276
     },
     {
       "tipo": "llama",
       "origen": "servidor.py:ManejadorPortal.do_GET",
       "destino": "servidor.py:ManejadorPortal.reenviar_a_app",
       "dudosa": false,
-      "linea": 230
+      "linea": 279
     },
     {
       "tipo": "llama",
       "origen": "servidor.py:ManejadorPortal.do_HEAD",
       "destino": "servidor.py:ManejadorPortal.reenviar_a_app",
       "dudosa": false,
-      "linea": 236
+      "linea": 285
     },
     {
       "tipo": "llama",
       "origen": "servidor.py:ManejadorPortal.do_POST",
       "destino": "servidor.py:ManejadorPortal.reenviar_a_app",
       "dudosa": false,
-      "linea": 240
+      "linea": 289
     },
     {
       "tipo": "llama",
       "origen": "servidor.py:ManejadorPortal.do_POST",
       "destino": "servidor.py:ManejadorPortal.enviar_json",
       "dudosa": false,
-      "linea": 241
+      "linea": 290
     },
     {
       "tipo": "llama",
       "origen": "servidor.py:ManejadorPortal.reenviar_a_app",
       "destino": "servidor.py:ManejadorPortal.app_de_ruta",
       "dudosa": false,
-      "linea": 257
+      "linea": 306
     },
     {
       "tipo": "llama",
       "origen": "servidor.py:ManejadorPortal.reenviar_a_app",
       "destino": "servidor.py:host_consulta_local",
       "dudosa": false,
-      "linea": 292
+      "linea": 341
     },
     {
       "tipo": "llama",
       "origen": "servidor.py:ManejadorPortal.reenviar_a_app",
       "destino": "servidor.py:ManejadorPortal.enviar_json",
       "dudosa": false,
-      "linea": 299
+      "linea": 348
     },
     {
       "tipo": "llama",
       "origen": "servidor.py:ManejadorPortal.manejar_get_estado",
       "destino": "servidor.py:verificar_servicio_en_linea",
       "dudosa": false,
-      "linea": 346
+      "linea": 395
     },
     {
       "tipo": "llama",
       "origen": "servidor.py:ManejadorPortal.manejar_get_estado",
       "destino": "servidor.py:verificar_servicio_en_linea",
       "dudosa": false,
-      "linea": 347
+      "linea": 396
     },
     {
       "tipo": "llama",
       "origen": "servidor.py:ManejadorPortal.manejar_get_estado",
       "destino": "servidor.py:ManejadorPortal.enviar_json",
       "dudosa": false,
-      "linea": 348
+      "linea": 397
     },
     {
       "tipo": "llama",
       "origen": "servidor.py:ManejadorPortal.manejar_get_usuarios",
       "destino": "servidor.py:cargar_usuarios_compartidos",
       "dudosa": false,
-      "linea": 360
+      "linea": 409
     },
     {
       "tipo": "llama",
       "origen": "servidor.py:ManejadorPortal.manejar_get_usuarios",
       "destino": "servidor.py:quien_es",
       "dudosa": false,
-      "linea": 372
+      "linea": 421
     },
     {
       "tipo": "llama",
       "origen": "servidor.py:ManejadorPortal.manejar_get_usuarios",
       "destino": "servidor.py:ManejadorPortal.enviar_json",
       "dudosa": false,
-      "linea": 376
+      "linea": 425
     },
     {
       "tipo": "llama",
       "origen": "servidor.py:ManejadorPortal.manejar_get_yo",
       "destino": "servidor.py:quien_es",
       "dudosa": false,
-      "linea": 379
+      "linea": 428
     },
     {
       "tipo": "llama",
       "origen": "servidor.py:ManejadorPortal.manejar_get_yo",
       "destino": "servidor.py:ManejadorPortal.enviar_json",
       "dudosa": false,
-      "linea": 380
+      "linea": 429
     },
     {
       "tipo": "api",

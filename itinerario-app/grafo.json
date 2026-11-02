@@ -1,13 +1,13 @@
 {
   "proyecto": "itinerario-app",
-  "generado": "2026-11-02T21:54:50.418Z",
+  "generado": "2026-11-02T22:20:33.225Z",
   "resumen": {
-    "totalNodos": 119,
-    "totalAristas": 1246,
-    "aristasResueltas": 442,
+    "totalNodos": 121,
+    "totalAristas": 1249,
+    "aristasResueltas": 445,
     "aristasDudosas": 32,
     "aristasExternas": 772,
-    "porcentajeDudosas": "6.8%"
+    "porcentajeDudosas": "6.7%"
   },
   "nodos": [
     {
@@ -888,7 +888,7 @@
       "nombre": "cargar_usuarios_compartidos",
       "nombreSimple": "cargar_usuarios_compartidos",
       "archivo": "servidor.py",
-      "linea": 57,
+      "linea": 58,
       "tipo": "funcion",
       "clase": null
     },
@@ -897,7 +897,25 @@
       "nombre": "detras_de_access",
       "nombreSimple": "detras_de_access",
       "archivo": "servidor.py",
-      "linea": 69,
+      "linea": 70,
+      "tipo": "funcion",
+      "clase": null
+    },
+    {
+      "id": "servidor.py:id_desde_correo",
+      "nombre": "id_desde_correo",
+      "nombreSimple": "id_desde_correo",
+      "archivo": "servidor.py",
+      "linea": 79,
+      "tipo": "funcion",
+      "clase": null
+    },
+    {
+      "id": "servidor.py:registrar_usuario_automatico",
+      "nombre": "registrar_usuario_automatico",
+      "nombreSimple": "registrar_usuario_automatico",
+      "archivo": "servidor.py",
+      "linea": 85,
       "tipo": "funcion",
       "clase": null
     },
@@ -906,7 +924,7 @@
       "nombre": "quien_es",
       "nombreSimple": "quien_es",
       "archivo": "servidor.py",
-      "linea": 75,
+      "linea": 125,
       "tipo": "funcion",
       "clase": null
     },
@@ -915,7 +933,7 @@
       "nombre": "asegurar_archivo_usuario",
       "nombreSimple": "asegurar_archivo_usuario",
       "archivo": "servidor.py",
-      "linea": 119,
+      "linea": 169,
       "tipo": "funcion",
       "clase": null
     },
@@ -924,7 +942,7 @@
       "nombre": "resolver_archivo_datos",
       "nombreSimple": "resolver_archivo_datos",
       "archivo": "servidor.py",
-      "linea": 140,
+      "linea": 190,
       "tipo": "funcion",
       "clase": null
     },
@@ -933,7 +951,7 @@
       "nombre": "obtener_etag",
       "nombreSimple": "obtener_etag",
       "archivo": "servidor.py",
-      "linea": 155,
+      "linea": 205,
       "tipo": "funcion",
       "clase": null
     },
@@ -942,7 +960,7 @@
       "nombre": "respaldar_datos",
       "nombreSimple": "respaldar_datos",
       "archivo": "servidor.py",
-      "linea": 163,
+      "linea": 213,
       "tipo": "funcion",
       "clase": null
     },
@@ -951,7 +969,7 @@
       "nombre": "nuevo_id_tarea",
       "nombreSimple": "nuevo_id_tarea",
       "archivo": "servidor.py",
-      "linea": 193,
+      "linea": 243,
       "tipo": "funcion",
       "clase": null
     },
@@ -960,7 +978,7 @@
       "nombre": "guardar_datos_atomico",
       "nombreSimple": "guardar_datos_atomico",
       "archivo": "servidor.py",
-      "linea": 198,
+      "linea": 248,
       "tipo": "funcion",
       "clase": null
     },
@@ -969,7 +987,7 @@
       "nombre": "ids_descendientes",
       "nombreSimple": "ids_descendientes",
       "archivo": "servidor.py",
-      "linea": 215,
+      "linea": 265,
       "tipo": "funcion",
       "clase": null
     },
@@ -978,7 +996,7 @@
       "nombre": "ManejadorItinerario.responder_json",
       "nombreSimple": "responder_json",
       "archivo": "servidor.py",
-      "linea": 231,
+      "linea": 281,
       "tipo": "metodo",
       "clase": "ManejadorItinerario"
     },
@@ -987,7 +1005,7 @@
       "nombre": "ManejadorItinerario.responder_error",
       "nombreSimple": "responder_error",
       "archivo": "servidor.py",
-      "linea": 243,
+      "linea": 293,
       "tipo": "metodo",
       "clase": "ManejadorItinerario"
     },
@@ -996,7 +1014,7 @@
       "nombre": "ManejadorItinerario.do_GET",
       "nombreSimple": "do_GET",
       "archivo": "servidor.py",
-      "linea": 246,
+      "linea": 296,
       "tipo": "metodo",
       "clase": "ManejadorItinerario"
     },
@@ -1005,7 +1023,7 @@
       "nombre": "ManejadorItinerario.archivo_activo",
       "nombreSimple": "archivo_activo",
       "archivo": "servidor.py",
-      "linea": 273,
+      "linea": 323,
       "tipo": "metodo",
       "clase": "ManejadorItinerario"
     },
@@ -1014,7 +1032,7 @@
       "nombre": "ManejadorItinerario.do_HEAD",
       "nombreSimple": "do_HEAD",
       "archivo": "servidor.py",
-      "linea": 280,
+      "linea": 330,
       "tipo": "metodo",
       "clase": "ManejadorItinerario"
     },
@@ -1023,7 +1041,7 @@
       "nombre": "ManejadorItinerario.manejar_get_yo",
       "nombreSimple": "manejar_get_yo",
       "archivo": "servidor.py",
-      "linea": 306,
+      "linea": 356,
       "tipo": "metodo",
       "clase": "ManejadorItinerario"
     },
@@ -1032,7 +1050,7 @@
       "nombre": "ManejadorItinerario.manejar_get_usuarios",
       "nombreSimple": "manejar_get_usuarios",
       "archivo": "servidor.py",
-      "linea": 310,
+      "linea": 360,
       "tipo": "metodo",
       "clase": "ManejadorItinerario"
     },
@@ -1041,7 +1059,7 @@
       "nombre": "ManejadorItinerario.manejar_get_datos",
       "nombreSimple": "manejar_get_datos",
       "archivo": "servidor.py",
-      "linea": 325,
+      "linea": 375,
       "tipo": "metodo",
       "clase": "ManejadorItinerario"
     },
@@ -1050,7 +1068,7 @@
       "nombre": "ManejadorItinerario.do_POST",
       "nombreSimple": "do_POST",
       "archivo": "servidor.py",
-      "linea": 347,
+      "linea": 397,
       "tipo": "metodo",
       "clase": "ManejadorItinerario"
     },
@@ -1059,7 +1077,7 @@
       "nombre": "ManejadorItinerario.do_DELETE",
       "nombreSimple": "do_DELETE",
       "archivo": "servidor.py",
-      "linea": 361,
+      "linea": 411,
       "tipo": "metodo",
       "clase": "ManejadorItinerario"
     },
@@ -1068,7 +1086,7 @@
       "nombre": "ManejadorItinerario.manejar_get_tareas",
       "nombreSimple": "manejar_get_tareas",
       "archivo": "servidor.py",
-      "linea": 369,
+      "linea": 419,
       "tipo": "metodo",
       "clase": "ManejadorItinerario"
     },
@@ -1077,7 +1095,7 @@
       "nombre": "ManejadorItinerario.manejar_post_tarea",
       "nombreSimple": "manejar_post_tarea",
       "archivo": "servidor.py",
-      "linea": 381,
+      "linea": 431,
       "tipo": "metodo",
       "clase": "ManejadorItinerario"
     },
@@ -1086,7 +1104,7 @@
       "nombre": "ManejadorItinerario.manejar_delete_tarea",
       "nombreSimple": "manejar_delete_tarea",
       "archivo": "servidor.py",
-      "linea": 439,
+      "linea": 489,
       "tipo": "metodo",
       "clase": "ManejadorItinerario"
     },
@@ -1095,7 +1113,7 @@
       "nombre": "ManejadorItinerario.manejar_post_datos",
       "nombreSimple": "manejar_post_datos",
       "archivo": "servidor.py",
-      "linea": 470,
+      "linea": 520,
       "tipo": "metodo",
       "clase": "ManejadorItinerario"
     },
@@ -1104,7 +1122,7 @@
       "nombre": "ManejadorItinerario.manejar_eventos_sse",
       "nombreSimple": "manejar_eventos_sse",
       "archivo": "servidor.py",
-      "linea": 531,
+      "linea": 581,
       "tipo": "metodo",
       "clase": "ManejadorItinerario"
     },
@@ -1113,7 +1131,7 @@
       "nombre": "ManejadorItinerario.manejar_estatico",
       "nombreSimple": "manejar_estatico",
       "archivo": "servidor.py",
-      "linea": 563,
+      "linea": 613,
       "tipo": "metodo",
       "clase": "ManejadorItinerario"
     },
@@ -1122,7 +1140,7 @@
       "nombre": "ManejadorItinerario.log_message",
       "nombreSimple": "log_message",
       "archivo": "servidor.py",
-      "linea": 602,
+      "linea": 652,
       "tipo": "metodo",
       "clase": "ManejadorItinerario"
     },
@@ -1131,7 +1149,7 @@
       "nombre": "parsear_argumentos",
       "nombreSimple": "parsear_argumentos",
       "archivo": "servidor.py",
-      "linea": 608,
+      "linea": 658,
       "tipo": "funcion",
       "clase": null
     },
@@ -1140,7 +1158,7 @@
       "nombre": "principal",
       "nombreSimple": "principal",
       "archivo": "servidor.py",
-      "linea": 615,
+      "linea": 665,
       "tipo": "funcion",
       "clase": null
     },
@@ -1721,500 +1739,521 @@
     },
     {
       "tipo": "llama",
+      "origen": "servidor.py:registrar_usuario_automatico",
+      "destino": "servidor.py:cargar_usuarios_compartidos",
+      "dudosa": false,
+      "linea": 95
+    },
+    {
+      "tipo": "llama",
+      "origen": "servidor.py:registrar_usuario_automatico",
+      "destino": "servidor.py:id_desde_correo",
+      "dudosa": false,
+      "linea": 100
+    },
+    {
+      "tipo": "llama",
       "origen": "servidor.py:quien_es",
       "destino": "servidor.py:cargar_usuarios_compartidos",
       "dudosa": false,
-      "linea": 84
+      "linea": 134
+    },
+    {
+      "tipo": "llama",
+      "origen": "servidor.py:quien_es",
+      "destino": "servidor.py:registrar_usuario_automatico",
+      "dudosa": false,
+      "linea": 146
     },
     {
       "tipo": "llama",
       "origen": "servidor.py:resolver_archivo_datos",
       "destino": "servidor.py:quien_es",
       "dudosa": false,
-      "linea": 147
+      "linea": 197
     },
     {
       "tipo": "llama",
       "origen": "servidor.py:resolver_archivo_datos",
       "destino": "servidor.py:asegurar_archivo_usuario",
       "dudosa": false,
-      "linea": 149
+      "linea": 199
     },
     {
       "tipo": "llama",
       "origen": "servidor.py:resolver_archivo_datos",
       "destino": "servidor.py:detras_de_access",
       "dudosa": false,
-      "linea": 150
+      "linea": 200
     },
     {
       "tipo": "llama",
       "origen": "servidor.py:guardar_datos_atomico",
       "destino": "servidor.py:respaldar_datos",
       "dudosa": false,
-      "linea": 200
+      "linea": 250
     },
     {
       "tipo": "llama",
       "origen": "servidor.py:ManejadorItinerario.responder_error",
       "destino": "servidor.py:ManejadorItinerario.responder_json",
       "dudosa": false,
-      "linea": 244
+      "linea": 294
     },
     {
       "tipo": "llama",
       "origen": "servidor.py:ManejadorItinerario.do_GET",
       "destino": "servidor.py:ManejadorItinerario.manejar_get_yo",
       "dudosa": false,
-      "linea": 251
+      "linea": 301
     },
     {
       "tipo": "llama",
       "origen": "servidor.py:ManejadorItinerario.do_GET",
       "destino": "servidor.py:ManejadorItinerario.manejar_get_usuarios",
       "dudosa": false,
-      "linea": 255
+      "linea": 305
     },
     {
       "tipo": "llama",
       "origen": "servidor.py:ManejadorItinerario.do_GET",
       "destino": "servidor.py:ManejadorItinerario.manejar_get_datos",
       "dudosa": false,
-      "linea": 259
+      "linea": 309
     },
     {
       "tipo": "llama",
       "origen": "servidor.py:ManejadorItinerario.do_GET",
       "destino": "servidor.py:ManejadorItinerario.manejar_eventos_sse",
       "dudosa": false,
-      "linea": 263
+      "linea": 313
     },
     {
       "tipo": "llama",
       "origen": "servidor.py:ManejadorItinerario.do_GET",
       "destino": "servidor.py:ManejadorItinerario.manejar_get_tareas",
       "dudosa": false,
-      "linea": 267
+      "linea": 317
     },
     {
       "tipo": "llama",
       "origen": "servidor.py:ManejadorItinerario.do_GET",
       "destino": "servidor.py:ManejadorItinerario.manejar_estatico",
       "dudosa": false,
-      "linea": 271
+      "linea": 321
     },
     {
       "tipo": "llama",
       "origen": "servidor.py:ManejadorItinerario.archivo_activo",
       "destino": "servidor.py:resolver_archivo_datos",
       "dudosa": false,
-      "linea": 275
+      "linea": 325
     },
     {
       "tipo": "llama",
       "origen": "servidor.py:ManejadorItinerario.archivo_activo",
       "destino": "servidor.py:ManejadorItinerario.responder_error",
       "dudosa": false,
-      "linea": 277
+      "linea": 327
     },
     {
       "tipo": "llama",
       "origen": "servidor.py:ManejadorItinerario.do_HEAD",
       "destino": "servidor.py:ManejadorItinerario.archivo_activo",
       "dudosa": false,
-      "linea": 289
+      "linea": 339
     },
     {
       "tipo": "llama",
       "origen": "servidor.py:ManejadorItinerario.do_HEAD",
       "destino": "servidor.py:obtener_etag",
       "dudosa": false,
-      "linea": 302
+      "linea": 352
     },
     {
       "tipo": "llama",
       "origen": "servidor.py:ManejadorItinerario.manejar_get_yo",
       "destino": "servidor.py:quien_es",
       "dudosa": false,
-      "linea": 307
+      "linea": 357
     },
     {
       "tipo": "llama",
       "origen": "servidor.py:ManejadorItinerario.manejar_get_yo",
       "destino": "servidor.py:ManejadorItinerario.responder_json",
       "dudosa": false,
-      "linea": 308
+      "linea": 358
     },
     {
       "tipo": "llama",
       "origen": "servidor.py:ManejadorItinerario.manejar_get_usuarios",
       "destino": "servidor.py:detras_de_access",
       "dudosa": false,
-      "linea": 312
+      "linea": 362
     },
     {
       "tipo": "llama",
       "origen": "servidor.py:ManejadorItinerario.manejar_get_usuarios",
       "destino": "servidor.py:quien_es",
       "dudosa": false,
-      "linea": 313
+      "linea": 363
     },
     {
       "tipo": "llama",
       "origen": "servidor.py:ManejadorItinerario.manejar_get_usuarios",
       "destino": "servidor.py:ManejadorItinerario.responder_json",
       "dudosa": false,
-      "linea": 314
+      "linea": 364
     },
     {
       "tipo": "llama",
       "origen": "servidor.py:ManejadorItinerario.manejar_get_usuarios",
       "destino": "servidor.py:cargar_usuarios_compartidos",
       "dudosa": false,
-      "linea": 317
+      "linea": 367
     },
     {
       "tipo": "llama",
       "origen": "servidor.py:ManejadorItinerario.manejar_get_usuarios",
       "destino": "servidor.py:ManejadorItinerario.responder_json",
       "dudosa": false,
-      "linea": 323
+      "linea": 373
     },
     {
       "tipo": "llama",
       "origen": "servidor.py:ManejadorItinerario.manejar_get_datos",
       "destino": "servidor.py:ManejadorItinerario.archivo_activo",
       "dudosa": false,
-      "linea": 326
+      "linea": 376
     },
     {
       "tipo": "llama",
       "origen": "servidor.py:ManejadorItinerario.manejar_get_datos",
       "destino": "servidor.py:ManejadorItinerario.responder_error",
       "dudosa": false,
-      "linea": 330
+      "linea": 380
     },
     {
       "tipo": "llama",
       "origen": "servidor.py:ManejadorItinerario.manejar_get_datos",
       "destino": "servidor.py:obtener_etag",
       "dudosa": false,
-      "linea": 336
+      "linea": 386
     },
     {
       "tipo": "llama",
       "origen": "servidor.py:ManejadorItinerario.manejar_get_datos",
       "destino": "servidor.py:ManejadorItinerario.responder_error",
       "dudosa": false,
-      "linea": 345
+      "linea": 395
     },
     {
       "tipo": "llama",
       "origen": "servidor.py:ManejadorItinerario.do_POST",
       "destino": "servidor.py:ManejadorItinerario.manejar_post_datos",
       "dudosa": false,
-      "linea": 352
+      "linea": 402
     },
     {
       "tipo": "llama",
       "origen": "servidor.py:ManejadorItinerario.do_POST",
       "destino": "servidor.py:ManejadorItinerario.manejar_post_tarea",
       "dudosa": false,
-      "linea": 356
+      "linea": 406
     },
     {
       "tipo": "llama",
       "origen": "servidor.py:ManejadorItinerario.do_POST",
       "destino": "servidor.py:ManejadorItinerario.responder_error",
       "dudosa": false,
-      "linea": 359
+      "linea": 409
     },
     {
       "tipo": "llama",
       "origen": "servidor.py:ManejadorItinerario.do_DELETE",
       "destino": "servidor.py:ManejadorItinerario.manejar_delete_tarea",
       "dudosa": false,
-      "linea": 365
+      "linea": 415
     },
     {
       "tipo": "llama",
       "origen": "servidor.py:ManejadorItinerario.do_DELETE",
       "destino": "servidor.py:ManejadorItinerario.responder_error",
       "dudosa": false,
-      "linea": 367
+      "linea": 417
     },
     {
       "tipo": "llama",
       "origen": "servidor.py:ManejadorItinerario.manejar_get_tareas",
       "destino": "servidor.py:ManejadorItinerario.archivo_activo",
       "dudosa": false,
-      "linea": 371
+      "linea": 421
     },
     {
       "tipo": "llama",
       "origen": "servidor.py:ManejadorItinerario.manejar_get_tareas",
       "destino": "servidor.py:ManejadorItinerario.responder_json",
       "dudosa": false,
-      "linea": 375
+      "linea": 425
     },
     {
       "tipo": "llama",
       "origen": "servidor.py:ManejadorItinerario.manejar_get_tareas",
       "destino": "servidor.py:obtener_etag",
       "dudosa": false,
-      "linea": 377
+      "linea": 427
     },
     {
       "tipo": "llama",
       "origen": "servidor.py:ManejadorItinerario.manejar_get_tareas",
       "destino": "servidor.py:obtener_etag",
       "dudosa": false,
-      "linea": 378
+      "linea": 428
     },
     {
       "tipo": "llama",
       "origen": "servidor.py:ManejadorItinerario.manejar_post_tarea",
       "destino": "servidor.py:ManejadorItinerario.archivo_activo",
       "dudosa": false,
-      "linea": 387
+      "linea": 437
     },
     {
       "tipo": "llama",
       "origen": "servidor.py:ManejadorItinerario.manejar_post_tarea",
       "destino": "servidor.py:ManejadorItinerario.responder_error",
       "dudosa": false,
-      "linea": 394
+      "linea": 444
     },
     {
       "tipo": "llama",
       "origen": "servidor.py:ManejadorItinerario.manejar_post_tarea",
       "destino": "servidor.py:ManejadorItinerario.responder_error",
       "dudosa": false,
-      "linea": 399
+      "linea": 449
     },
     {
       "tipo": "llama",
       "origen": "servidor.py:ManejadorItinerario.manejar_post_tarea",
       "destino": "servidor.py:ManejadorItinerario.responder_error",
       "dudosa": false,
-      "linea": 404
+      "linea": 454
     },
     {
       "tipo": "llama",
       "origen": "servidor.py:ManejadorItinerario.manejar_post_tarea",
       "destino": "servidor.py:ManejadorItinerario.responder_error",
       "dudosa": false,
-      "linea": 416
+      "linea": 466
     },
     {
       "tipo": "llama",
       "origen": "servidor.py:ManejadorItinerario.manejar_post_tarea",
       "destino": "servidor.py:nuevo_id_tarea",
       "dudosa": false,
-      "linea": 419
+      "linea": 469
     },
     {
       "tipo": "llama",
       "origen": "servidor.py:ManejadorItinerario.manejar_post_tarea",
       "destino": "servidor.py:guardar_datos_atomico",
       "dudosa": false,
-      "linea": 431
+      "linea": 481
     },
     {
       "tipo": "llama",
       "origen": "servidor.py:ManejadorItinerario.manejar_post_tarea",
       "destino": "servidor.py:ManejadorItinerario.responder_error",
       "dudosa": false,
-      "linea": 433
+      "linea": 483
     },
     {
       "tipo": "llama",
       "origen": "servidor.py:ManejadorItinerario.manejar_post_tarea",
       "destino": "servidor.py:obtener_etag",
       "dudosa": false,
-      "linea": 436
+      "linea": 486
     },
     {
       "tipo": "llama",
       "origen": "servidor.py:ManejadorItinerario.manejar_post_tarea",
       "destino": "servidor.py:ManejadorItinerario.responder_json",
       "dudosa": false,
-      "linea": 437
+      "linea": 487
     },
     {
       "tipo": "llama",
       "origen": "servidor.py:ManejadorItinerario.manejar_delete_tarea",
       "destino": "servidor.py:ManejadorItinerario.archivo_activo",
       "dudosa": false,
-      "linea": 441
+      "linea": 491
     },
     {
       "tipo": "llama",
       "origen": "servidor.py:ManejadorItinerario.manejar_delete_tarea",
       "destino": "servidor.py:ManejadorItinerario.responder_error",
       "dudosa": false,
-      "linea": 446
+      "linea": 496
     },
     {
       "tipo": "llama",
       "origen": "servidor.py:ManejadorItinerario.manejar_delete_tarea",
       "destino": "servidor.py:ManejadorItinerario.responder_error",
       "dudosa": false,
-      "linea": 451
+      "linea": 501
     },
     {
       "tipo": "llama",
       "origen": "servidor.py:ManejadorItinerario.manejar_delete_tarea",
       "destino": "servidor.py:ids_descendientes",
       "dudosa": false,
-      "linea": 453
+      "linea": 503
     },
     {
       "tipo": "llama",
       "origen": "servidor.py:ManejadorItinerario.manejar_delete_tarea",
       "destino": "servidor.py:guardar_datos_atomico",
       "dudosa": false,
-      "linea": 460
+      "linea": 510
     },
     {
       "tipo": "llama",
       "origen": "servidor.py:ManejadorItinerario.manejar_delete_tarea",
       "destino": "servidor.py:ManejadorItinerario.responder_error",
       "dudosa": false,
-      "linea": 462
+      "linea": 512
     },
     {
       "tipo": "llama",
       "origen": "servidor.py:ManejadorItinerario.manejar_delete_tarea",
       "destino": "servidor.py:obtener_etag",
       "dudosa": false,
-      "linea": 465
+      "linea": 515
     },
     {
       "tipo": "llama",
       "origen": "servidor.py:ManejadorItinerario.manejar_delete_tarea",
       "destino": "servidor.py:ManejadorItinerario.responder_json",
       "dudosa": false,
-      "linea": 466
+      "linea": 516
     },
     {
       "tipo": "llama",
       "origen": "servidor.py:ManejadorItinerario.manejar_post_datos",
       "destino": "servidor.py:ManejadorItinerario.archivo_activo",
       "dudosa": false,
-      "linea": 471
+      "linea": 521
     },
     {
       "tipo": "llama",
       "origen": "servidor.py:ManejadorItinerario.manejar_post_datos",
       "destino": "servidor.py:obtener_etag",
       "dudosa": false,
-      "linea": 477
+      "linea": 527
     },
     {
       "tipo": "llama",
       "origen": "servidor.py:ManejadorItinerario.manejar_post_datos",
       "destino": "servidor.py:ManejadorItinerario.responder_error",
       "dudosa": false,
-      "linea": 482
+      "linea": 532
     },
     {
       "tipo": "llama",
       "origen": "servidor.py:ManejadorItinerario.manejar_post_datos",
       "destino": "servidor.py:ManejadorItinerario.responder_json",
       "dudosa": false,
-      "linea": 490
+      "linea": 540
     },
     {
       "tipo": "llama",
       "origen": "servidor.py:ManejadorItinerario.manejar_post_datos",
       "destino": "servidor.py:ManejadorItinerario.responder_error",
       "dudosa": false,
-      "linea": 506
+      "linea": 556
     },
     {
       "tipo": "llama",
       "origen": "servidor.py:ManejadorItinerario.manejar_post_datos",
       "destino": "servidor.py:respaldar_datos",
       "dudosa": false,
-      "linea": 511
+      "linea": 561
     },
     {
       "tipo": "llama",
       "origen": "servidor.py:ManejadorItinerario.manejar_post_datos",
       "destino": "servidor.py:ManejadorItinerario.responder_error",
       "dudosa": false,
-      "linea": 525
+      "linea": 575
     },
     {
       "tipo": "llama",
       "origen": "servidor.py:ManejadorItinerario.manejar_post_datos",
       "destino": "servidor.py:obtener_etag",
       "dudosa": false,
-      "linea": 528
+      "linea": 578
     },
     {
       "tipo": "llama",
       "origen": "servidor.py:ManejadorItinerario.manejar_post_datos",
       "destino": "servidor.py:ManejadorItinerario.responder_json",
       "dudosa": false,
-      "linea": 529
+      "linea": 579
     },
     {
       "tipo": "llama",
       "origen": "servidor.py:ManejadorItinerario.manejar_eventos_sse",
       "destino": "servidor.py:ManejadorItinerario.archivo_activo",
       "dudosa": false,
-      "linea": 533
+      "linea": 583
     },
     {
       "tipo": "llama",
       "origen": "servidor.py:ManejadorItinerario.manejar_eventos_sse",
       "destino": "servidor.py:obtener_etag",
       "dudosa": false,
-      "linea": 543
+      "linea": 593
     },
     {
       "tipo": "llama",
       "origen": "servidor.py:ManejadorItinerario.manejar_eventos_sse",
       "destino": "servidor.py:obtener_etag",
-      "dudosa": false,
-      "linea": 550
-    },
-    {
-      "tipo": "llama",
-      "origen": "servidor.py:ManejadorItinerario.manejar_estatico",
-      "destino": "servidor.py:ManejadorItinerario.responder_error",
-      "dudosa": false,
-      "linea": 571
-    },
-    {
-      "tipo": "llama",
-      "origen": "servidor.py:ManejadorItinerario.manejar_estatico",
-      "destino": "servidor.py:ManejadorItinerario.responder_error",
-      "dudosa": false,
-      "linea": 580
-    },
-    {
-      "tipo": "llama",
-      "origen": "servidor.py:ManejadorItinerario.manejar_estatico",
-      "destino": "servidor.py:ManejadorItinerario.responder_error",
-      "dudosa": false,
-      "linea": 584
-    },
-    {
-      "tipo": "llama",
-      "origen": "servidor.py:ManejadorItinerario.manejar_estatico",
-      "destino": "servidor.py:ManejadorItinerario.responder_error",
       "dudosa": false,
       "linea": 600
+    },
+    {
+      "tipo": "llama",
+      "origen": "servidor.py:ManejadorItinerario.manejar_estatico",
+      "destino": "servidor.py:ManejadorItinerario.responder_error",
+      "dudosa": false,
+      "linea": 621
+    },
+    {
+      "tipo": "llama",
+      "origen": "servidor.py:ManejadorItinerario.manejar_estatico",
+      "destino": "servidor.py:ManejadorItinerario.responder_error",
+      "dudosa": false,
+      "linea": 630
+    },
+    {
+      "tipo": "llama",
+      "origen": "servidor.py:ManejadorItinerario.manejar_estatico",
+      "destino": "servidor.py:ManejadorItinerario.responder_error",
+      "dudosa": false,
+      "linea": 634
+    },
+    {
+      "tipo": "llama",
+      "origen": "servidor.py:ManejadorItinerario.manejar_estatico",
+      "destino": "servidor.py:ManejadorItinerario.responder_error",
+      "dudosa": false,
+      "linea": 650
     },
     {
       "tipo": "llama",
       "origen": "servidor.py:principal",
       "destino": "servidor.py:parsear_argumentos",
       "dudosa": false,
-      "linea": 616
+      "linea": 666
     },
     {
       "tipo": "api",

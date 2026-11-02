@@ -51,7 +51,7 @@ Cada persona se autoriza en **dos sitios**, y hacen cosas distintas:
 | Dónde | Para qué | Si falta |
 |---|---|---|
 | Política **Equipo GIDA** en Cloudflare | Dejarla entrar al sitio | No le llega el PIN; acceso denegado |
-| `usuarios.json` (local, no versionado) | Que la app sepa **quién** es | Entra, pero `/api/yo` devuelve `null` y no se le cargan sus datos |
+| `usuarios.json` (local, no versionado) | Que la app sepa **quién** es | La app le crea la ficha sola: id a partir del correo (ej. `gmunozca`) y rol `miembro`, para renombrarla luego |
 
 `quien_es()` cruza el encabezado `Cf-Access-Authenticated-User-Email` que envía
 Access contra el campo `correo` de `usuarios.json`, ignorando mayúsculas. Si el

@@ -9,6 +9,8 @@ import json
 import pathlib
 import re
 import socket
+import sys
+import threading
 import unicodedata
 import urllib.request
 
@@ -124,6 +126,53 @@ def cargar_usuarios_compartidos(ruta_usuarios=None, validar=False):
     return datos
 
 
+CANDADO_USUARIOS = threading.Lock()
+
+
+def id_desde_correo(correo):
+    """Id provisional a partir de la parte local del correo (a-z0-9-)."""
+    base = correo.split('@')[0].strip().lower()
+    return re.sub(r'[^a-z0-9]+', '-', base).strip('-') or 'usuario'
+
+
+def registrar_usuario_automatico(correo):
+    """Alta automática de un correo ya verificado por Cloudflare Access.
+
+    El nombre queda como la parte local del correo y el rol como miembro; luego
+    un admin lo renombra. Devuelve {id, nombre, rol} o None si no se pudo.
+    """
+    correo = (correo or '').strip().lower()
+    if not correo:
+        return None
+    with CANDADO_USUARIOS:
+        usuarios = cargar_usuarios_compartidos()
+        for u in usuarios:
+            if isinstance(u, dict) and str(u.get('correo', '')).strip().lower() == correo:
+                return {'id': u['id'], 'nombre': u['nombre'], 'rol': u['rol']}
+
+        base = id_desde_correo(correo)
+        existentes = {u.get('id') for u in usuarios if isinstance(u, dict)}
+        nuevo_id, sufijo = base, 2
+        while nuevo_id in existentes:
+            nuevo_id = f'{base}-{sufijo}'
+            sufijo += 1
+
+        usuarios.append({'id': nuevo_id, 'nombre': base, 'correo': correo, 'rol': 'miembro'})
+        try:
+            ARCHIVO_USUARIOS.parent.mkdir(parents=True, exist_ok=True)
+            temporal = ARCHIVO_USUARIOS.with_suffix('.tmp')
+            temporal.write_text(
+                json.dumps(usuarios, ensure_ascii=False, indent=2) + '\n',
+                encoding='utf-8',
+            )
+            temporal.replace(ARCHIVO_USUARIOS)
+        except OSError as exc:
+            sys.stderr.write(f'No se pudo registrar {correo}: {exc}\n')
+            return None
+        sys.stderr.write(f'Alta automática: {nuevo_id} <{correo}>\n')
+        return {'id': nuevo_id, 'nombre': base, 'rol': 'miembro'}
+
+
 def quien_es(peticion, ruta_usuarios=None):
     """Identifica al usuario activo de la petición HTTP.
 
@@ -148,7 +197,7 @@ def quien_es(peticion, ruta_usuarios=None):
         for u in usuarios:
             if isinstance(u, dict) and str(u.get('correo', '')).strip().lower() == correo_limpio and correo_limpio:
                 return {'id': u['id'], 'nombre': u['nombre'], 'rol': u['rol']}
-        return None  # Access manda: correo no registrado = sin identidad
+        return registrar_usuario_automatico(correo_cf)  # alta automática del correo verificado
 
     cookie_raw = headers.get('Cookie', '')
     if cookie_raw:
