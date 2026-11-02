@@ -4,10 +4,10 @@ Generado automáticamente por `herramientas/grafo.mjs`.
 
 ## Resumen
 
-- **Nodos:** 110 (funciones y métodos)
-- **Aristas totales:** 1213
-  - **Resueltas:** 409
-  - **Dudosas:** 32 (7.3%)
+- **Nodos:** 112 (funciones y métodos)
+- **Aristas totales:** 1219
+  - **Resueltas:** 415
+  - **Dudosas:** 32 (7.2%)
   - **Externas (nativas/DOM/D3):** 772
 
 ## Diagrama de Módulos
@@ -151,26 +151,28 @@ graph TD
 
 | Función / Método | Archivo:Línea | Llamada por | Llama a |
 |---|---|---|---|
-| `cargar_usuarios_compartidos` | `servidor.py:54` | `quien_es` (servidor.py) (L74)<br>`ManejadorItinerario.manejar_get_usuarios` (servidor.py) (L240) | — |
-| `quien_es` | `servidor.py:66` | `resolver_archivo_datos` (servidor.py) (L133)<br>`ManejadorItinerario.manejar_get_yo` (servidor.py) (L236) | `cargar_usuarios_compartidos` (servidor.py) (L74) |
-| `asegurar_archivo_usuario` | `servidor.py:108` | `resolver_archivo_datos` (servidor.py) (L135) | — |
-| `resolver_archivo_datos` | `servidor.py:129` | `ManejadorItinerario.do_HEAD` (servidor.py) (L221)<br>`ManejadorItinerario.manejar_get_datos` (servidor.py) (L249)<br>`ManejadorItinerario.manejar_post_datos` (servidor.py) (L279)<br>`ManejadorItinerario.manejar_eventos_sse` (servidor.py) (L339) | `quien_es` (servidor.py) (L133)<br>`asegurar_archivo_usuario` (servidor.py) (L135) |
-| `obtener_etag` | `servidor.py:139` | `ManejadorItinerario.do_HEAD` (servidor.py) (L231)<br>`ManejadorItinerario.manejar_get_datos` (servidor.py) (L257)<br>`ManejadorItinerario.manejar_post_datos` (servidor.py) (L283)<br>`ManejadorItinerario.manejar_post_datos` (servidor.py) (L334)<br>`ManejadorItinerario.manejar_eventos_sse` (servidor.py) (L347)<br>`ManejadorItinerario.manejar_eventos_sse` (servidor.py) (L354) | — |
-| `respaldar_datos` | `servidor.py:147` | `ManejadorItinerario.manejar_post_datos` (servidor.py) (L317) | — |
-| `ManejadorItinerario.responder_json` | `servidor.py:174` | `ManejadorItinerario.responder_error` (servidor.py) (L187)<br>`ManejadorItinerario.manejar_get_yo` (servidor.py) (L237)<br>`ManejadorItinerario.manejar_get_usuarios` (servidor.py) (L246)<br>`ManejadorItinerario.manejar_post_datos` (servidor.py) (L296)<br>`ManejadorItinerario.manejar_post_datos` (servidor.py) (L335) | — |
-| `ManejadorItinerario.responder_error` | `servidor.py:186` | `ManejadorItinerario.manejar_get_datos` (servidor.py) (L251)<br>`ManejadorItinerario.manejar_get_datos` (servidor.py) (L266)<br>`ManejadorItinerario.do_POST` (servidor.py) (L276)<br>`ManejadorItinerario.manejar_post_datos` (servidor.py) (L288)<br>`ManejadorItinerario.manejar_post_datos` (servidor.py) (L312)<br>`ManejadorItinerario.manejar_post_datos` (servidor.py) (L331)<br>`ManejadorItinerario.manejar_estatico` (servidor.py) (L375)<br>`ManejadorItinerario.manejar_estatico` (servidor.py) (L384)<br>`ManejadorItinerario.manejar_estatico` (servidor.py) (L388)<br>`ManejadorItinerario.manejar_estatico` (servidor.py) (L404) | `ManejadorItinerario.responder_json` (servidor.py) (L187) |
-| `ManejadorItinerario.do_GET` | `servidor.py:189` | — | `ManejadorItinerario.manejar_get_yo` (servidor.py) (L194)<br>`ManejadorItinerario.manejar_get_usuarios` (servidor.py) (L198)<br>`ManejadorItinerario.manejar_get_datos` (servidor.py) (L202)<br>`ManejadorItinerario.manejar_eventos_sse` (servidor.py) (L206)<br>`ManejadorItinerario.manejar_estatico` (servidor.py) (L210) |
-| `ManejadorItinerario.do_HEAD` | `servidor.py:212` | — | `resolver_archivo_datos` (servidor.py) (L221)<br>`obtener_etag` (servidor.py) (L231) |
-| `ManejadorItinerario.manejar_get_yo` | `servidor.py:235` | `ManejadorItinerario.do_GET` (servidor.py) (L194)<br>`cargarUsuarioActual` (comun/archivo.js) (L79) | `quien_es` (servidor.py) (L236)<br>`ManejadorItinerario.responder_json` (servidor.py) (L237) |
-| `ManejadorItinerario.manejar_get_usuarios` | `servidor.py:239` | `ManejadorItinerario.do_GET` (servidor.py) (L198)<br>`cargarListaUsuarios` (comun/archivo.js) (L96) | `cargar_usuarios_compartidos` (servidor.py) (L240)<br>`ManejadorItinerario.responder_json` (servidor.py) (L246) |
-| `ManejadorItinerario.manejar_get_datos` | `servidor.py:248` | `ManejadorItinerario.do_GET` (servidor.py) (L202)<br>`cargarDatos` (comun/archivo.js) (L9) | `resolver_archivo_datos` (servidor.py) (L249)<br>`ManejadorItinerario.responder_error` (servidor.py) (L251)<br>`obtener_etag` (servidor.py) (L257)<br>`ManejadorItinerario.responder_error` (servidor.py) (L266) |
-| `ManejadorItinerario.do_POST` | `servidor.py:268` | — | `ManejadorItinerario.manejar_post_datos` (servidor.py) (L273)<br>`ManejadorItinerario.responder_error` (servidor.py) (L276) |
-| `ManejadorItinerario.manejar_post_datos` | `servidor.py:278` | `ManejadorItinerario.do_POST` (servidor.py) (L273)<br>`guardarDatos` (comun/archivo.js) (L31) | `resolver_archivo_datos` (servidor.py) (L279)<br>`obtener_etag` (servidor.py) (L283)<br>`ManejadorItinerario.responder_error` (servidor.py) (L288)<br>`ManejadorItinerario.responder_json` (servidor.py) (L296)<br>`ManejadorItinerario.responder_error` (servidor.py) (L312)<br>`respaldar_datos` (servidor.py) (L317)<br>`ManejadorItinerario.responder_error` (servidor.py) (L331)<br>`obtener_etag` (servidor.py) (L334)<br>`ManejadorItinerario.responder_json` (servidor.py) (L335) |
-| `ManejadorItinerario.manejar_eventos_sse` | `servidor.py:337` | `ManejadorItinerario.do_GET` (servidor.py) (L206) | `resolver_archivo_datos` (servidor.py) (L339)<br>`obtener_etag` (servidor.py) (L347)<br>`obtener_etag` (servidor.py) (L354) |
-| `ManejadorItinerario.manejar_estatico` | `servidor.py:367` | `ManejadorItinerario.do_GET` (servidor.py) (L210) | `ManejadorItinerario.responder_error` (servidor.py) (L375)<br>`ManejadorItinerario.responder_error` (servidor.py) (L384)<br>`ManejadorItinerario.responder_error` (servidor.py) (L388)<br>`ManejadorItinerario.responder_error` (servidor.py) (L404) |
-| `ManejadorItinerario.log_message` | `servidor.py:406` | — | — |
-| `parsear_argumentos` | `servidor.py:412` | `principal` (servidor.py) (L420) | — |
-| `principal` | `servidor.py:419` | — | `parsear_argumentos` (servidor.py) (L420) |
+| `cargar_usuarios_compartidos` | `servidor.py:54` | `quien_es` (servidor.py) (L81)<br>`ManejadorItinerario.manejar_get_usuarios` (servidor.py) (L269) | — |
+| `detras_de_access` | `servidor.py:66` | `resolver_archivo_datos` (servidor.py) (L147)<br>`ManejadorItinerario.manejar_get_usuarios` (servidor.py) (L264) | — |
+| `quien_es` | `servidor.py:72` | `resolver_archivo_datos` (servidor.py) (L144)<br>`ManejadorItinerario.manejar_get_yo` (servidor.py) (L259)<br>`ManejadorItinerario.manejar_get_usuarios` (servidor.py) (L265) | `cargar_usuarios_compartidos` (servidor.py) (L81) |
+| `asegurar_archivo_usuario` | `servidor.py:116` | `resolver_archivo_datos` (servidor.py) (L146) | — |
+| `resolver_archivo_datos` | `servidor.py:137` | `ManejadorItinerario.archivo_activo` (servidor.py) (L227) | `quien_es` (servidor.py) (L144)<br>`asegurar_archivo_usuario` (servidor.py) (L146)<br>`detras_de_access` (servidor.py) (L147) |
+| `obtener_etag` | `servidor.py:152` | `ManejadorItinerario.do_HEAD` (servidor.py) (L254)<br>`ManejadorItinerario.manejar_get_datos` (servidor.py) (L288)<br>`ManejadorItinerario.manejar_post_datos` (servidor.py) (L316)<br>`ManejadorItinerario.manejar_post_datos` (servidor.py) (L367)<br>`ManejadorItinerario.manejar_eventos_sse` (servidor.py) (L382)<br>`ManejadorItinerario.manejar_eventos_sse` (servidor.py) (L389) | — |
+| `respaldar_datos` | `servidor.py:160` | `ManejadorItinerario.manejar_post_datos` (servidor.py) (L350) | — |
+| `ManejadorItinerario.responder_json` | `servidor.py:187` | `ManejadorItinerario.responder_error` (servidor.py) (L200)<br>`ManejadorItinerario.manejar_get_yo` (servidor.py) (L260)<br>`ManejadorItinerario.manejar_get_usuarios` (servidor.py) (L266)<br>`ManejadorItinerario.manejar_get_usuarios` (servidor.py) (L275)<br>`ManejadorItinerario.manejar_post_datos` (servidor.py) (L329)<br>`ManejadorItinerario.manejar_post_datos` (servidor.py) (L368) | — |
+| `ManejadorItinerario.responder_error` | `servidor.py:199` | `ManejadorItinerario.archivo_activo` (servidor.py) (L229)<br>`ManejadorItinerario.manejar_get_datos` (servidor.py) (L282)<br>`ManejadorItinerario.manejar_get_datos` (servidor.py) (L297)<br>`ManejadorItinerario.do_POST` (servidor.py) (L307)<br>`ManejadorItinerario.manejar_post_datos` (servidor.py) (L321)<br>`ManejadorItinerario.manejar_post_datos` (servidor.py) (L345)<br>`ManejadorItinerario.manejar_post_datos` (servidor.py) (L364)<br>`ManejadorItinerario.manejar_estatico` (servidor.py) (L410)<br>`ManejadorItinerario.manejar_estatico` (servidor.py) (L419)<br>`ManejadorItinerario.manejar_estatico` (servidor.py) (L423)<br>`ManejadorItinerario.manejar_estatico` (servidor.py) (L439) | `ManejadorItinerario.responder_json` (servidor.py) (L200) |
+| `ManejadorItinerario.do_GET` | `servidor.py:202` | — | `ManejadorItinerario.manejar_get_yo` (servidor.py) (L207)<br>`ManejadorItinerario.manejar_get_usuarios` (servidor.py) (L211)<br>`ManejadorItinerario.manejar_get_datos` (servidor.py) (L215)<br>`ManejadorItinerario.manejar_eventos_sse` (servidor.py) (L219)<br>`ManejadorItinerario.manejar_estatico` (servidor.py) (L223) |
+| `ManejadorItinerario.archivo_activo` | `servidor.py:225` | `ManejadorItinerario.do_HEAD` (servidor.py) (L241)<br>`ManejadorItinerario.manejar_get_datos` (servidor.py) (L278)<br>`ManejadorItinerario.manejar_post_datos` (servidor.py) (L310)<br>`ManejadorItinerario.manejar_eventos_sse` (servidor.py) (L372) | `resolver_archivo_datos` (servidor.py) (L227)<br>`ManejadorItinerario.responder_error` (servidor.py) (L229) |
+| `ManejadorItinerario.do_HEAD` | `servidor.py:232` | — | `ManejadorItinerario.archivo_activo` (servidor.py) (L241)<br>`obtener_etag` (servidor.py) (L254) |
+| `ManejadorItinerario.manejar_get_yo` | `servidor.py:258` | `ManejadorItinerario.do_GET` (servidor.py) (L207)<br>`cargarUsuarioActual` (comun/archivo.js) (L79) | `quien_es` (servidor.py) (L259)<br>`ManejadorItinerario.responder_json` (servidor.py) (L260) |
+| `ManejadorItinerario.manejar_get_usuarios` | `servidor.py:262` | `ManejadorItinerario.do_GET` (servidor.py) (L211)<br>`cargarListaUsuarios` (comun/archivo.js) (L96) | `detras_de_access` (servidor.py) (L264)<br>`quien_es` (servidor.py) (L265)<br>`ManejadorItinerario.responder_json` (servidor.py) (L266)<br>`cargar_usuarios_compartidos` (servidor.py) (L269)<br>`ManejadorItinerario.responder_json` (servidor.py) (L275) |
+| `ManejadorItinerario.manejar_get_datos` | `servidor.py:277` | `ManejadorItinerario.do_GET` (servidor.py) (L215)<br>`cargarDatos` (comun/archivo.js) (L9) | `ManejadorItinerario.archivo_activo` (servidor.py) (L278)<br>`ManejadorItinerario.responder_error` (servidor.py) (L282)<br>`obtener_etag` (servidor.py) (L288)<br>`ManejadorItinerario.responder_error` (servidor.py) (L297) |
+| `ManejadorItinerario.do_POST` | `servidor.py:299` | — | `ManejadorItinerario.manejar_post_datos` (servidor.py) (L304)<br>`ManejadorItinerario.responder_error` (servidor.py) (L307) |
+| `ManejadorItinerario.manejar_post_datos` | `servidor.py:309` | `ManejadorItinerario.do_POST` (servidor.py) (L304)<br>`guardarDatos` (comun/archivo.js) (L31) | `ManejadorItinerario.archivo_activo` (servidor.py) (L310)<br>`obtener_etag` (servidor.py) (L316)<br>`ManejadorItinerario.responder_error` (servidor.py) (L321)<br>`ManejadorItinerario.responder_json` (servidor.py) (L329)<br>`ManejadorItinerario.responder_error` (servidor.py) (L345)<br>`respaldar_datos` (servidor.py) (L350)<br>`ManejadorItinerario.responder_error` (servidor.py) (L364)<br>`obtener_etag` (servidor.py) (L367)<br>`ManejadorItinerario.responder_json` (servidor.py) (L368) |
+| `ManejadorItinerario.manejar_eventos_sse` | `servidor.py:370` | `ManejadorItinerario.do_GET` (servidor.py) (L219) | `ManejadorItinerario.archivo_activo` (servidor.py) (L372)<br>`obtener_etag` (servidor.py) (L382)<br>`obtener_etag` (servidor.py) (L389) |
+| `ManejadorItinerario.manejar_estatico` | `servidor.py:402` | `ManejadorItinerario.do_GET` (servidor.py) (L223) | `ManejadorItinerario.responder_error` (servidor.py) (L410)<br>`ManejadorItinerario.responder_error` (servidor.py) (L419)<br>`ManejadorItinerario.responder_error` (servidor.py) (L423)<br>`ManejadorItinerario.responder_error` (servidor.py) (L439) |
+| `ManejadorItinerario.log_message` | `servidor.py:441` | — | — |
+| `parsear_argumentos` | `servidor.py:447` | `principal` (servidor.py) (L455) | — |
+| `principal` | `servidor.py:454` | — | `parsear_argumentos` (servidor.py) (L455) |
 
 ### `vistas/hoy.js`
 

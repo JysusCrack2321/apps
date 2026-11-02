@@ -5,8 +5,8 @@ Generado automáticamente por `herramientas/grafo.mjs`.
 ## Resumen
 
 - **Nodos:** 30 (funciones y métodos)
-- **Aristas totales:** 88
-  - **Resueltas:** 45
+- **Aristas totales:** 89
+  - **Resueltas:** 46
   - **Dudosas:** 0 (0.0%)
   - **Externas (nativas/DOM/D3):** 43
 
@@ -45,19 +45,19 @@ graph TD
 |---|---|---|---|
 | `generar_id_usuario` | `servidor.py:41` | — | — |
 | `validar_usuarios` | `servidor.py:55` | `cargar_usuarios_compartidos` (servidor.py) (L120) | — |
-| `cargar_usuarios_compartidos` | `servidor.py:103` | `quien_es` (servidor.py) (L136)<br>`ManejadorPortal.manejar_get_usuarios` (servidor.py) (L359) | `validar_usuarios` (servidor.py) (L120) |
-| `quien_es` | `servidor.py:127` | `ManejadorPortal.manejar_get_yo` (servidor.py) (L372) | `cargar_usuarios_compartidos` (servidor.py) (L136) |
-| `host_consulta_local` | `servidor.py:168` | `verificar_servicio_en_linea` (servidor.py) (L177)<br>`ManejadorPortal.reenviar_a_app` (servidor.py) (L291) | — |
-| `verificar_servicio_en_linea` | `servidor.py:175` | `ManejadorPortal.manejar_get_estado` (servidor.py) (L345)<br>`ManejadorPortal.manejar_get_estado` (servidor.py) (L346) | `host_consulta_local` (servidor.py) (L177) |
-| `ManejadorPortal.__init__` | `servidor.py:199` | — | — |
-| `ManejadorPortal.log_message` | `servidor.py:202` | — | — |
-| `ManejadorPortal.enviar_json` | `servidor.py:205` | `ManejadorPortal.do_POST` (servidor.py) (L240)<br>`ManejadorPortal.reenviar_a_app` (servidor.py) (L298)<br>`ManejadorPortal.manejar_get_estado` (servidor.py) (L347)<br>`ManejadorPortal.manejar_get_usuarios` (servidor.py) (L369)<br>`ManejadorPortal.manejar_get_yo` (servidor.py) (L373) | — |
-| `ManejadorPortal.do_GET` | `servidor.py:214` | — | `ManejadorPortal.manejar_get_estado` (servidor.py) (L218)<br>`ManejadorPortal.manejar_get_usuarios` (servidor.py) (L222)<br>`ManejadorPortal.manejar_get_yo` (servidor.py) (L226)<br>`ManejadorPortal.reenviar_a_app` (servidor.py) (L229) |
-| `ManejadorPortal.do_HEAD` | `servidor.py:234` | — | `ManejadorPortal.reenviar_a_app` (servidor.py) (L235) |
-| `ManejadorPortal.do_POST` | `servidor.py:238` | — | `ManejadorPortal.reenviar_a_app` (servidor.py) (L239)<br>`ManejadorPortal.enviar_json` (servidor.py) (L240) |
-| `ManejadorPortal.app_de_ruta` | `servidor.py:244` | `ManejadorPortal.reenviar_a_app` (servidor.py) (L256) | — |
-| `ManejadorPortal.reenviar_a_app` | `servidor.py:251` | `ManejadorPortal.do_GET` (servidor.py) (L229)<br>`ManejadorPortal.do_HEAD` (servidor.py) (L235)<br>`ManejadorPortal.do_POST` (servidor.py) (L239) | `ManejadorPortal.app_de_ruta` (servidor.py) (L256)<br>`host_consulta_local` (servidor.py) (L291)<br>`ManejadorPortal.enviar_json` (servidor.py) (L298) |
-| `ManejadorPortal.manejar_get_estado` | `servidor.py:344` | `ManejadorPortal.do_GET` (servidor.py) (L218)<br>`consultarEstadoServidores` (app.js) (L30) | `verificar_servicio_en_linea` (servidor.py) (L345)<br>`verificar_servicio_en_linea` (servidor.py) (L346)<br>`ManejadorPortal.enviar_json` (servidor.py) (L347) |
-| `ManejadorPortal.manejar_get_usuarios` | `servidor.py:358` | `ManejadorPortal.do_GET` (servidor.py) (L222)<br>`cargarListaUsuarios` (app.js) (L39) | `cargar_usuarios_compartidos` (servidor.py) (L359)<br>`ManejadorPortal.enviar_json` (servidor.py) (L369) |
-| `ManejadorPortal.manejar_get_yo` | `servidor.py:371` | `ManejadorPortal.do_GET` (servidor.py) (L226)<br>`cargarUsuarioActivo` (app.js) (L47) | `quien_es` (servidor.py) (L372)<br>`ManejadorPortal.enviar_json` (servidor.py) (L373) |
+| `cargar_usuarios_compartidos` | `servidor.py:103` | `quien_es` (servidor.py) (L136)<br>`ManejadorPortal.manejar_get_usuarios` (servidor.py) (L360) | `validar_usuarios` (servidor.py) (L120) |
+| `quien_es` | `servidor.py:127` | `ManejadorPortal.manejar_get_usuarios` (servidor.py) (L372)<br>`ManejadorPortal.manejar_get_yo` (servidor.py) (L379) | `cargar_usuarios_compartidos` (servidor.py) (L136) |
+| `host_consulta_local` | `servidor.py:169` | `verificar_servicio_en_linea` (servidor.py) (L178)<br>`ManejadorPortal.reenviar_a_app` (servidor.py) (L292) | — |
+| `verificar_servicio_en_linea` | `servidor.py:176` | `ManejadorPortal.manejar_get_estado` (servidor.py) (L346)<br>`ManejadorPortal.manejar_get_estado` (servidor.py) (L347) | `host_consulta_local` (servidor.py) (L178) |
+| `ManejadorPortal.__init__` | `servidor.py:200` | — | — |
+| `ManejadorPortal.log_message` | `servidor.py:203` | — | — |
+| `ManejadorPortal.enviar_json` | `servidor.py:206` | `ManejadorPortal.do_POST` (servidor.py) (L241)<br>`ManejadorPortal.reenviar_a_app` (servidor.py) (L299)<br>`ManejadorPortal.manejar_get_estado` (servidor.py) (L348)<br>`ManejadorPortal.manejar_get_usuarios` (servidor.py) (L376)<br>`ManejadorPortal.manejar_get_yo` (servidor.py) (L380) | — |
+| `ManejadorPortal.do_GET` | `servidor.py:215` | — | `ManejadorPortal.manejar_get_estado` (servidor.py) (L219)<br>`ManejadorPortal.manejar_get_usuarios` (servidor.py) (L223)<br>`ManejadorPortal.manejar_get_yo` (servidor.py) (L227)<br>`ManejadorPortal.reenviar_a_app` (servidor.py) (L230) |
+| `ManejadorPortal.do_HEAD` | `servidor.py:235` | — | `ManejadorPortal.reenviar_a_app` (servidor.py) (L236) |
+| `ManejadorPortal.do_POST` | `servidor.py:239` | — | `ManejadorPortal.reenviar_a_app` (servidor.py) (L240)<br>`ManejadorPortal.enviar_json` (servidor.py) (L241) |
+| `ManejadorPortal.app_de_ruta` | `servidor.py:245` | `ManejadorPortal.reenviar_a_app` (servidor.py) (L257) | — |
+| `ManejadorPortal.reenviar_a_app` | `servidor.py:252` | `ManejadorPortal.do_GET` (servidor.py) (L230)<br>`ManejadorPortal.do_HEAD` (servidor.py) (L236)<br>`ManejadorPortal.do_POST` (servidor.py) (L240) | `ManejadorPortal.app_de_ruta` (servidor.py) (L257)<br>`host_consulta_local` (servidor.py) (L292)<br>`ManejadorPortal.enviar_json` (servidor.py) (L299) |
+| `ManejadorPortal.manejar_get_estado` | `servidor.py:345` | `ManejadorPortal.do_GET` (servidor.py) (L219)<br>`consultarEstadoServidores` (app.js) (L30) | `verificar_servicio_en_linea` (servidor.py) (L346)<br>`verificar_servicio_en_linea` (servidor.py) (L347)<br>`ManejadorPortal.enviar_json` (servidor.py) (L348) |
+| `ManejadorPortal.manejar_get_usuarios` | `servidor.py:359` | `ManejadorPortal.do_GET` (servidor.py) (L223)<br>`cargarListaUsuarios` (app.js) (L39) | `cargar_usuarios_compartidos` (servidor.py) (L360)<br>`quien_es` (servidor.py) (L372)<br>`ManejadorPortal.enviar_json` (servidor.py) (L376) |
+| `ManejadorPortal.manejar_get_yo` | `servidor.py:378` | `ManejadorPortal.do_GET` (servidor.py) (L227)<br>`cargarUsuarioActivo` (app.js) (L47) | `quien_es` (servidor.py) (L379)<br>`ManejadorPortal.enviar_json` (servidor.py) (L380) |
 

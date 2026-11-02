@@ -148,6 +148,7 @@ def quien_es(peticion, ruta_usuarios=None):
         for u in usuarios:
             if isinstance(u, dict) and str(u.get('correo', '')).strip().lower() == correo_limpio and correo_limpio:
                 return {'id': u['id'], 'nombre': u['nombre'], 'rol': u['rol']}
+        return None  # Access manda: correo no registrado = sin identidad
 
     cookie_raw = headers.get('Cookie', '')
     if cookie_raw:
@@ -366,6 +367,12 @@ class ManejadorPortal(SimpleHTTPRequestHandler):
             for u in usuarios
             if isinstance(u, dict) and u.get('id') and u.get('nombre')
         ]
+        # Con Access la identidad la fija el correo: no se ofrece cambiar de usuario.
+        if self.headers.get('Cf-Access-Authenticated-User-Email'):
+            activo = quien_es(self)
+            lista_publica = [
+                u for u in lista_publica if activo and u['id'] == activo['id']
+            ]
         self.enviar_json(HTTPStatus.OK, lista_publica)
 
     def manejar_get_yo(self):

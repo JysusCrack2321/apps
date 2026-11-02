@@ -1,10 +1,10 @@
 {
   "proyecto": "portal",
-  "generado": "2026-11-02T20:23:48.938Z",
+  "generado": "2026-11-02T20:29:33.457Z",
   "resumen": {
     "totalNodos": 30,
-    "totalAristas": 88,
-    "aristasResueltas": 45,
+    "totalAristas": 89,
+    "aristasResueltas": 46,
     "aristasDudosas": 0,
     "aristasExternas": 43,
     "porcentajeDudosas": "0.0%"
@@ -194,7 +194,7 @@
       "nombre": "host_consulta_local",
       "nombreSimple": "host_consulta_local",
       "archivo": "servidor.py",
-      "linea": 168,
+      "linea": 169,
       "tipo": "funcion",
       "clase": null
     },
@@ -203,7 +203,7 @@
       "nombre": "verificar_servicio_en_linea",
       "nombreSimple": "verificar_servicio_en_linea",
       "archivo": "servidor.py",
-      "linea": 175,
+      "linea": 176,
       "tipo": "funcion",
       "clase": null
     },
@@ -212,7 +212,7 @@
       "nombre": "ManejadorPortal.__init__",
       "nombreSimple": "__init__",
       "archivo": "servidor.py",
-      "linea": 199,
+      "linea": 200,
       "tipo": "metodo",
       "clase": "ManejadorPortal"
     },
@@ -221,7 +221,7 @@
       "nombre": "ManejadorPortal.log_message",
       "nombreSimple": "log_message",
       "archivo": "servidor.py",
-      "linea": 202,
+      "linea": 203,
       "tipo": "metodo",
       "clase": "ManejadorPortal"
     },
@@ -230,7 +230,7 @@
       "nombre": "ManejadorPortal.enviar_json",
       "nombreSimple": "enviar_json",
       "archivo": "servidor.py",
-      "linea": 205,
+      "linea": 206,
       "tipo": "metodo",
       "clase": "ManejadorPortal"
     },
@@ -239,7 +239,7 @@
       "nombre": "ManejadorPortal.do_GET",
       "nombreSimple": "do_GET",
       "archivo": "servidor.py",
-      "linea": 214,
+      "linea": 215,
       "tipo": "metodo",
       "clase": "ManejadorPortal"
     },
@@ -248,7 +248,7 @@
       "nombre": "ManejadorPortal.do_HEAD",
       "nombreSimple": "do_HEAD",
       "archivo": "servidor.py",
-      "linea": 234,
+      "linea": 235,
       "tipo": "metodo",
       "clase": "ManejadorPortal"
     },
@@ -257,7 +257,7 @@
       "nombre": "ManejadorPortal.do_POST",
       "nombreSimple": "do_POST",
       "archivo": "servidor.py",
-      "linea": 238,
+      "linea": 239,
       "tipo": "metodo",
       "clase": "ManejadorPortal"
     },
@@ -266,7 +266,7 @@
       "nombre": "ManejadorPortal.app_de_ruta",
       "nombreSimple": "app_de_ruta",
       "archivo": "servidor.py",
-      "linea": 244,
+      "linea": 245,
       "tipo": "metodo",
       "clase": "ManejadorPortal"
     },
@@ -275,7 +275,7 @@
       "nombre": "ManejadorPortal.reenviar_a_app",
       "nombreSimple": "reenviar_a_app",
       "archivo": "servidor.py",
-      "linea": 251,
+      "linea": 252,
       "tipo": "metodo",
       "clase": "ManejadorPortal"
     },
@@ -284,7 +284,7 @@
       "nombre": "ManejadorPortal.manejar_get_estado",
       "nombreSimple": "manejar_get_estado",
       "archivo": "servidor.py",
-      "linea": 344,
+      "linea": 345,
       "tipo": "metodo",
       "clase": "ManejadorPortal"
     },
@@ -293,7 +293,7 @@
       "nombre": "ManejadorPortal.manejar_get_usuarios",
       "nombreSimple": "manejar_get_usuarios",
       "archivo": "servidor.py",
-      "linea": 358,
+      "linea": 359,
       "tipo": "metodo",
       "clase": "ManejadorPortal"
     },
@@ -302,7 +302,7 @@
       "nombre": "ManejadorPortal.manejar_get_yo",
       "nombreSimple": "manejar_get_yo",
       "archivo": "servidor.py",
-      "linea": 371,
+      "linea": 378,
       "tipo": "metodo",
       "clase": "ManejadorPortal"
     }
@@ -327,84 +327,77 @@
       "origen": "servidor.py:verificar_servicio_en_linea",
       "destino": "servidor.py:host_consulta_local",
       "dudosa": false,
-      "linea": 177
+      "linea": 178
     },
     {
       "tipo": "llama",
       "origen": "servidor.py:ManejadorPortal.do_GET",
       "destino": "servidor.py:ManejadorPortal.manejar_get_estado",
       "dudosa": false,
-      "linea": 218
+      "linea": 219
     },
     {
       "tipo": "llama",
       "origen": "servidor.py:ManejadorPortal.do_GET",
       "destino": "servidor.py:ManejadorPortal.manejar_get_usuarios",
       "dudosa": false,
-      "linea": 222
+      "linea": 223
     },
     {
       "tipo": "llama",
       "origen": "servidor.py:ManejadorPortal.do_GET",
       "destino": "servidor.py:ManejadorPortal.manejar_get_yo",
       "dudosa": false,
-      "linea": 226
+      "linea": 227
     },
     {
       "tipo": "llama",
       "origen": "servidor.py:ManejadorPortal.do_GET",
       "destino": "servidor.py:ManejadorPortal.reenviar_a_app",
       "dudosa": false,
-      "linea": 229
+      "linea": 230
     },
     {
       "tipo": "llama",
       "origen": "servidor.py:ManejadorPortal.do_HEAD",
       "destino": "servidor.py:ManejadorPortal.reenviar_a_app",
       "dudosa": false,
-      "linea": 235
+      "linea": 236
     },
     {
       "tipo": "llama",
       "origen": "servidor.py:ManejadorPortal.do_POST",
       "destino": "servidor.py:ManejadorPortal.reenviar_a_app",
       "dudosa": false,
-      "linea": 239
+      "linea": 240
     },
     {
       "tipo": "llama",
       "origen": "servidor.py:ManejadorPortal.do_POST",
       "destino": "servidor.py:ManejadorPortal.enviar_json",
       "dudosa": false,
-      "linea": 240
+      "linea": 241
     },
     {
       "tipo": "llama",
       "origen": "servidor.py:ManejadorPortal.reenviar_a_app",
       "destino": "servidor.py:ManejadorPortal.app_de_ruta",
       "dudosa": false,
-      "linea": 256
+      "linea": 257
     },
     {
       "tipo": "llama",
       "origen": "servidor.py:ManejadorPortal.reenviar_a_app",
       "destino": "servidor.py:host_consulta_local",
       "dudosa": false,
-      "linea": 291
+      "linea": 292
     },
     {
       "tipo": "llama",
       "origen": "servidor.py:ManejadorPortal.reenviar_a_app",
       "destino": "servidor.py:ManejadorPortal.enviar_json",
       "dudosa": false,
-      "linea": 298
-    },
-    {
-      "tipo": "llama",
-      "origen": "servidor.py:ManejadorPortal.manejar_get_estado",
-      "destino": "servidor.py:verificar_servicio_en_linea",
-      "dudosa": false,
-      "linea": 345
+      "linea": 299
     },
     {
       "tipo": "llama",
@@ -416,37 +409,51 @@
     {
       "tipo": "llama",
       "origen": "servidor.py:ManejadorPortal.manejar_get_estado",
-      "destino": "servidor.py:ManejadorPortal.enviar_json",
+      "destino": "servidor.py:verificar_servicio_en_linea",
       "dudosa": false,
       "linea": 347
+    },
+    {
+      "tipo": "llama",
+      "origen": "servidor.py:ManejadorPortal.manejar_get_estado",
+      "destino": "servidor.py:ManejadorPortal.enviar_json",
+      "dudosa": false,
+      "linea": 348
     },
     {
       "tipo": "llama",
       "origen": "servidor.py:ManejadorPortal.manejar_get_usuarios",
       "destino": "servidor.py:cargar_usuarios_compartidos",
       "dudosa": false,
-      "linea": 359
+      "linea": 360
     },
     {
       "tipo": "llama",
       "origen": "servidor.py:ManejadorPortal.manejar_get_usuarios",
-      "destino": "servidor.py:ManejadorPortal.enviar_json",
-      "dudosa": false,
-      "linea": 369
-    },
-    {
-      "tipo": "llama",
-      "origen": "servidor.py:ManejadorPortal.manejar_get_yo",
       "destino": "servidor.py:quien_es",
       "dudosa": false,
       "linea": 372
     },
     {
       "tipo": "llama",
+      "origen": "servidor.py:ManejadorPortal.manejar_get_usuarios",
+      "destino": "servidor.py:ManejadorPortal.enviar_json",
+      "dudosa": false,
+      "linea": 376
+    },
+    {
+      "tipo": "llama",
+      "origen": "servidor.py:ManejadorPortal.manejar_get_yo",
+      "destino": "servidor.py:quien_es",
+      "dudosa": false,
+      "linea": 379
+    },
+    {
+      "tipo": "llama",
       "origen": "servidor.py:ManejadorPortal.manejar_get_yo",
       "destino": "servidor.py:ManejadorPortal.enviar_json",
       "dudosa": false,
-      "linea": 373
+      "linea": 380
     },
     {
       "tipo": "api",

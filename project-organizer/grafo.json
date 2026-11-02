@@ -1,6 +1,6 @@
 {
   "proyecto": "project-organizer",
-  "generado": "2026-11-02T20:23:48.920Z",
+  "generado": "2026-11-02T20:29:33.437Z",
   "resumen": {
     "totalNodos": 266,
     "totalAristas": 2720,
@@ -1697,7 +1697,7 @@
       "nombre": "listar_archivos_guardados",
       "nombreSimple": "listar_archivos_guardados",
       "archivo": "servidor.py",
-      "linea": 115,
+      "linea": 116,
       "tipo": "funcion",
       "clase": null
     },
@@ -1706,7 +1706,7 @@
       "nombre": "asegurar_archivo_actual",
       "nombreSimple": "asegurar_archivo_actual",
       "archivo": "servidor.py",
-      "linea": 130,
+      "linea": 131,
       "tipo": "funcion",
       "clase": null
     },
@@ -1715,7 +1715,7 @@
       "nombre": "info_archivo",
       "nombreSimple": "info_archivo",
       "archivo": "servidor.py",
-      "linea": 152,
+      "linea": 153,
       "tipo": "funcion",
       "clase": null
     },
@@ -1724,7 +1724,7 @@
       "nombre": "obtener_lista_versiones",
       "nombreSimple": "obtener_lista_versiones",
       "archivo": "servidor.py",
-      "linea": 171,
+      "linea": 172,
       "tipo": "funcion",
       "clase": null
     },
@@ -1733,7 +1733,7 @@
       "nombre": "resolver_archivo_mas_reciente",
       "nombreSimple": "resolver_archivo_mas_reciente",
       "archivo": "servidor.py",
-      "linea": 192,
+      "linea": 193,
       "tipo": "funcion",
       "clase": null
     },
@@ -1742,7 +1742,7 @@
       "nombre": "actualizar_respaldo_si_corresponde",
       "nombreSimple": "actualizar_respaldo_si_corresponde",
       "archivo": "servidor.py",
-      "linea": 197,
+      "linea": 198,
       "tipo": "funcion",
       "clase": null
     },
@@ -1751,7 +1751,7 @@
       "nombre": "guardar_nueva_version",
       "nombreSimple": "guardar_nueva_version",
       "archivo": "servidor.py",
-      "linea": 220,
+      "linea": 221,
       "tipo": "funcion",
       "clase": null
     },
@@ -1760,7 +1760,7 @@
       "nombre": "ManejadorProjectOrganizer.__init__",
       "nombreSimple": "__init__",
       "archivo": "servidor.py",
-      "linea": 251,
+      "linea": 252,
       "tipo": "metodo",
       "clase": "ManejadorProjectOrganizer"
     },
@@ -1769,7 +1769,7 @@
       "nombre": "ManejadorProjectOrganizer.enviar_json",
       "nombreSimple": "enviar_json",
       "archivo": "servidor.py",
-      "linea": 254,
+      "linea": 255,
       "tipo": "metodo",
       "clase": "ManejadorProjectOrganizer"
     },
@@ -1778,7 +1778,7 @@
       "nombre": "ManejadorProjectOrganizer.enviar_archivo_json",
       "nombreSimple": "enviar_archivo_json",
       "archivo": "servidor.py",
-      "linea": 266,
+      "linea": 267,
       "tipo": "metodo",
       "clase": "ManejadorProjectOrganizer"
     },
@@ -1787,7 +1787,7 @@
       "nombre": "ManejadorProjectOrganizer.do_GET",
       "nombreSimple": "do_GET",
       "archivo": "servidor.py",
-      "linea": 279,
+      "linea": 280,
       "tipo": "metodo",
       "clase": "ManejadorProjectOrganizer"
     },
@@ -1796,7 +1796,7 @@
       "nombre": "ManejadorProjectOrganizer.manejar_get_datos",
       "nombreSimple": "manejar_get_datos",
       "archivo": "servidor.py",
-      "linea": 332,
+      "linea": 333,
       "tipo": "metodo",
       "clase": "ManejadorProjectOrganizer"
     },
@@ -1805,7 +1805,7 @@
       "nombre": "ManejadorProjectOrganizer.manejar_get_yo",
       "nombreSimple": "manejar_get_yo",
       "archivo": "servidor.py",
-      "linea": 339,
+      "linea": 340,
       "tipo": "metodo",
       "clase": "ManejadorProjectOrganizer"
     },
@@ -1814,7 +1814,7 @@
       "nombre": "ManejadorProjectOrganizer.manejar_get_usuarios",
       "nombreSimple": "manejar_get_usuarios",
       "archivo": "servidor.py",
-      "linea": 343,
+      "linea": 344,
       "tipo": "metodo",
       "clase": "ManejadorProjectOrganizer"
     },
@@ -1823,7 +1823,7 @@
       "nombre": "ManejadorProjectOrganizer.manejar_eventos_sse",
       "nombreSimple": "manejar_eventos_sse",
       "archivo": "servidor.py",
-      "linea": 347,
+      "linea": 356,
       "tipo": "metodo",
       "clase": "ManejadorProjectOrganizer"
     },
@@ -1832,7 +1832,7 @@
       "nombre": "ManejadorProjectOrganizer.do_POST",
       "nombreSimple": "do_POST",
       "archivo": "servidor.py",
-      "linea": 376,
+      "linea": 385,
       "tipo": "metodo",
       "clase": "ManejadorProjectOrganizer"
     },
@@ -1841,7 +1841,7 @@
       "nombre": "ManejadorProjectOrganizer.manejar_post_guardar",
       "nombreSimple": "manejar_post_guardar",
       "archivo": "servidor.py",
-      "linea": 383,
+      "linea": 392,
       "tipo": "metodo",
       "clase": "ManejadorProjectOrganizer"
     },
@@ -1850,7 +1850,7 @@
       "nombre": "main",
       "nombreSimple": "main",
       "archivo": "servidor.py",
-      "linea": 430,
+      "linea": 439,
       "tipo": "funcion",
       "clase": null
     },
@@ -1859,7 +1859,7 @@
       "nombre": "manejador_senal",
       "nombreSimple": "manejador_senal",
       "archivo": "servidor.py",
-      "linea": 443,
+      "linea": 452,
       "tipo": "funcion",
       "clase": null
     },
@@ -3070,40 +3070,33 @@
       "origen": "servidor.py:asegurar_archivo_actual",
       "destino": "servidor.py:listar_archivos_guardados",
       "dudosa": false,
-      "linea": 136
+      "linea": 137
     },
     {
       "tipo": "llama",
       "origen": "servidor.py:obtener_lista_versiones",
       "destino": "servidor.py:asegurar_archivo_actual",
       "dudosa": false,
-      "linea": 173
+      "linea": 174
     },
     {
       "tipo": "llama",
       "origen": "servidor.py:obtener_lista_versiones",
       "destino": "servidor.py:info_archivo",
       "dudosa": false,
-      "linea": 177
+      "linea": 178
     },
     {
       "tipo": "llama",
       "origen": "servidor.py:obtener_lista_versiones",
       "destino": "servidor.py:info_archivo",
       "dudosa": false,
-      "linea": 180
+      "linea": 181
     },
     {
       "tipo": "llama",
       "origen": "servidor.py:obtener_lista_versiones",
       "destino": "servidor.py:listar_archivos_guardados",
-      "dudosa": false,
-      "linea": 182
-    },
-    {
-      "tipo": "llama",
-      "origen": "servidor.py:obtener_lista_versiones",
-      "destino": "servidor.py:info_archivo",
       "dudosa": false,
       "linea": 183
     },
@@ -3112,294 +3105,301 @@
       "origen": "servidor.py:obtener_lista_versiones",
       "destino": "servidor.py:info_archivo",
       "dudosa": false,
-      "linea": 187
+      "linea": 184
+    },
+    {
+      "tipo": "llama",
+      "origen": "servidor.py:obtener_lista_versiones",
+      "destino": "servidor.py:info_archivo",
+      "dudosa": false,
+      "linea": 188
     },
     {
       "tipo": "llama",
       "origen": "servidor.py:resolver_archivo_mas_reciente",
       "destino": "servidor.py:asegurar_archivo_actual",
       "dudosa": false,
-      "linea": 194
+      "linea": 195
     },
     {
       "tipo": "llama",
       "origen": "servidor.py:guardar_nueva_version",
       "destino": "servidor.py:asegurar_archivo_actual",
       "dudosa": false,
-      "linea": 232
+      "linea": 233
     },
     {
       "tipo": "llama",
       "origen": "servidor.py:guardar_nueva_version",
       "destino": "servidor.py:actualizar_respaldo_si_corresponde",
       "dudosa": false,
-      "linea": 234
+      "linea": 235
     },
     {
       "tipo": "llama",
       "origen": "servidor.py:ManejadorProjectOrganizer.enviar_archivo_json",
       "destino": "servidor.py:obtener_etag",
       "dudosa": false,
-      "linea": 268
+      "linea": 269
     },
     {
       "tipo": "llama",
       "origen": "servidor.py:ManejadorProjectOrganizer.do_GET",
       "destino": "servidor.py:ManejadorProjectOrganizer.manejar_get_yo",
       "dudosa": false,
-      "linea": 283
+      "linea": 284
     },
     {
       "tipo": "llama",
       "origen": "servidor.py:ManejadorProjectOrganizer.do_GET",
       "destino": "servidor.py:ManejadorProjectOrganizer.manejar_get_usuarios",
       "dudosa": false,
-      "linea": 287
+      "linea": 288
     },
     {
       "tipo": "llama",
       "origen": "servidor.py:ManejadorProjectOrganizer.do_GET",
       "destino": "servidor.py:ManejadorProjectOrganizer.manejar_eventos_sse",
       "dudosa": false,
-      "linea": 291
+      "linea": 292
     },
     {
       "tipo": "llama",
       "origen": "servidor.py:ManejadorProjectOrganizer.do_GET",
       "destino": "servidor.py:ManejadorProjectOrganizer.manejar_get_datos",
       "dudosa": false,
-      "linea": 296
+      "linea": 297
     },
     {
       "tipo": "llama",
       "origen": "servidor.py:ManejadorProjectOrganizer.do_GET",
       "destino": "servidor.py:ManejadorProjectOrganizer.enviar_json",
       "dudosa": false,
-      "linea": 301
+      "linea": 302
     },
     {
       "tipo": "llama",
       "origen": "servidor.py:ManejadorProjectOrganizer.do_GET",
       "destino": "servidor.py:obtener_lista_versiones",
       "dudosa": false,
-      "linea": 301
+      "linea": 302
     },
     {
       "tipo": "llama",
       "origen": "servidor.py:ManejadorProjectOrganizer.do_GET",
       "destino": "servidor.py:asegurar_archivo_actual",
       "dudosa": false,
-      "linea": 307
+      "linea": 308
     },
     {
       "tipo": "llama",
       "origen": "servidor.py:ManejadorProjectOrganizer.do_GET",
       "destino": "servidor.py:ManejadorProjectOrganizer.enviar_archivo_json",
       "dudosa": false,
-      "linea": 309
+      "linea": 310
     },
     {
       "tipo": "llama",
       "origen": "servidor.py:ManejadorProjectOrganizer.do_GET",
       "destino": "servidor.py:ManejadorProjectOrganizer.enviar_archivo_json",
       "dudosa": false,
-      "linea": 312
+      "linea": 313
     },
     {
       "tipo": "llama",
       "origen": "servidor.py:ManejadorProjectOrganizer.do_GET",
       "destino": "servidor.py:ManejadorProjectOrganizer.enviar_archivo_json",
       "dudosa": false,
-      "linea": 315
+      "linea": 316
     },
     {
       "tipo": "llama",
       "origen": "servidor.py:ManejadorProjectOrganizer.do_GET",
       "destino": "servidor.py:ManejadorProjectOrganizer.enviar_archivo_json",
       "dudosa": false,
-      "linea": 320
+      "linea": 321
     },
     {
       "tipo": "llama",
       "origen": "servidor.py:ManejadorProjectOrganizer.do_GET",
       "destino": "servidor.py:ManejadorProjectOrganizer.enviar_json",
       "dudosa": false,
-      "linea": 322
+      "linea": 323
     },
     {
       "tipo": "llama",
       "origen": "servidor.py:ManejadorProjectOrganizer.do_GET",
       "destino": "servidor.py:ManejadorProjectOrganizer.enviar_json",
       "dudosa": false,
-      "linea": 327
+      "linea": 328
     },
     {
       "tipo": "llama",
       "origen": "servidor.py:ManejadorProjectOrganizer.manejar_get_datos",
       "destino": "servidor.py:resolver_archivo_mas_reciente",
       "dudosa": false,
-      "linea": 333
+      "linea": 334
     },
     {
       "tipo": "llama",
       "origen": "servidor.py:ManejadorProjectOrganizer.manejar_get_datos",
       "destino": "servidor.py:ManejadorProjectOrganizer.enviar_json",
       "dudosa": false,
-      "linea": 335
+      "linea": 336
     },
     {
       "tipo": "llama",
       "origen": "servidor.py:ManejadorProjectOrganizer.manejar_get_datos",
       "destino": "servidor.py:ManejadorProjectOrganizer.enviar_archivo_json",
       "dudosa": false,
-      "linea": 337
+      "linea": 338
     },
     {
       "tipo": "llama",
       "origen": "servidor.py:ManejadorProjectOrganizer.manejar_get_yo",
       "destino": "servidor.py:quien_es",
       "dudosa": false,
-      "linea": 340
+      "linea": 341
     },
     {
       "tipo": "llama",
       "origen": "servidor.py:ManejadorProjectOrganizer.manejar_get_yo",
       "destino": "servidor.py:ManejadorProjectOrganizer.enviar_json",
       "dudosa": false,
-      "linea": 341
+      "linea": 342
     },
     {
       "tipo": "llama",
       "origen": "servidor.py:ManejadorProjectOrganizer.manejar_get_usuarios",
       "destino": "servidor.py:cargar_usuarios_compartidos",
       "dudosa": false,
-      "linea": 344
+      "linea": 345
     },
     {
       "tipo": "llama",
       "origen": "servidor.py:ManejadorProjectOrganizer.manejar_get_usuarios",
       "destino": "servidor.py:ManejadorProjectOrganizer.enviar_json",
       "dudosa": false,
-      "linea": 345
+      "linea": 354
     },
     {
       "tipo": "llama",
       "origen": "servidor.py:ManejadorProjectOrganizer.manejar_eventos_sse",
       "destino": "servidor.py:asegurar_archivo_actual",
       "dudosa": false,
-      "linea": 349
+      "linea": 358
     },
     {
       "tipo": "llama",
       "origen": "servidor.py:ManejadorProjectOrganizer.manejar_eventos_sse",
       "destino": "servidor.py:obtener_etag",
       "dudosa": false,
-      "linea": 357
+      "linea": 366
     },
     {
       "tipo": "llama",
       "origen": "servidor.py:ManejadorProjectOrganizer.manejar_eventos_sse",
       "destino": "servidor.py:obtener_etag",
       "dudosa": false,
-      "linea": 364
+      "linea": 373
     },
     {
       "tipo": "llama",
       "origen": "servidor.py:ManejadorProjectOrganizer.do_POST",
       "destino": "servidor.py:ManejadorProjectOrganizer.manejar_post_guardar",
       "dudosa": false,
-      "linea": 379
+      "linea": 388
     },
     {
       "tipo": "llama",
       "origen": "servidor.py:ManejadorProjectOrganizer.do_POST",
       "destino": "servidor.py:ManejadorProjectOrganizer.enviar_json",
       "dudosa": false,
-      "linea": 381
+      "linea": 390
     },
     {
       "tipo": "llama",
       "origen": "servidor.py:ManejadorProjectOrganizer.manejar_post_guardar",
       "destino": "servidor.py:asegurar_archivo_actual",
       "dudosa": false,
-      "linea": 384
+      "linea": 393
     },
     {
       "tipo": "llama",
       "origen": "servidor.py:ManejadorProjectOrganizer.manejar_post_guardar",
       "destino": "servidor.py:obtener_etag",
       "dudosa": false,
-      "linea": 385
+      "linea": 394
     },
     {
       "tipo": "llama",
       "origen": "servidor.py:ManejadorProjectOrganizer.manejar_post_guardar",
       "destino": "servidor.py:ManejadorProjectOrganizer.enviar_json",
       "dudosa": false,
-      "linea": 389
+      "linea": 398
     },
     {
       "tipo": "llama",
       "origen": "servidor.py:ManejadorProjectOrganizer.manejar_post_guardar",
       "destino": "servidor.py:ManejadorProjectOrganizer.enviar_json",
       "dudosa": false,
-      "linea": 396
+      "linea": 405
     },
     {
       "tipo": "llama",
       "origen": "servidor.py:ManejadorProjectOrganizer.manejar_post_guardar",
       "destino": "servidor.py:ManejadorProjectOrganizer.enviar_json",
       "dudosa": false,
-      "linea": 412
+      "linea": 421
     },
     {
       "tipo": "llama",
       "origen": "servidor.py:ManejadorProjectOrganizer.manejar_post_guardar",
       "destino": "servidor.py:guardar_nueva_version",
       "dudosa": false,
-      "linea": 417
+      "linea": 426
     },
     {
       "tipo": "llama",
       "origen": "servidor.py:ManejadorProjectOrganizer.manejar_post_guardar",
       "destino": "servidor.py:obtener_etag",
       "dudosa": false,
-      "linea": 418
-    },
-    {
-      "tipo": "llama",
-      "origen": "servidor.py:ManejadorProjectOrganizer.manejar_post_guardar",
-      "destino": "servidor.py:ManejadorProjectOrganizer.enviar_json",
-      "dudosa": false,
-      "linea": 419
-    },
-    {
-      "tipo": "llama",
-      "origen": "servidor.py:ManejadorProjectOrganizer.manejar_post_guardar",
-      "destino": "servidor.py:ManejadorProjectOrganizer.enviar_json",
-      "dudosa": false,
-      "linea": 425
-    },
-    {
-      "tipo": "llama",
-      "origen": "servidor.py:ManejadorProjectOrganizer.manejar_post_guardar",
-      "destino": "servidor.py:ManejadorProjectOrganizer.enviar_json",
-      "dudosa": false,
       "linea": 427
+    },
+    {
+      "tipo": "llama",
+      "origen": "servidor.py:ManejadorProjectOrganizer.manejar_post_guardar",
+      "destino": "servidor.py:ManejadorProjectOrganizer.enviar_json",
+      "dudosa": false,
+      "linea": 428
+    },
+    {
+      "tipo": "llama",
+      "origen": "servidor.py:ManejadorProjectOrganizer.manejar_post_guardar",
+      "destino": "servidor.py:ManejadorProjectOrganizer.enviar_json",
+      "dudosa": false,
+      "linea": 434
+    },
+    {
+      "tipo": "llama",
+      "origen": "servidor.py:ManejadorProjectOrganizer.manejar_post_guardar",
+      "destino": "servidor.py:ManejadorProjectOrganizer.enviar_json",
+      "dudosa": false,
+      "linea": 436
     },
     {
       "tipo": "llama",
       "origen": "servidor.py:main",
       "destino": "servidor.py:configurar_rutas",
       "dudosa": false,
-      "linea": 438
+      "linea": 447
     },
     {
       "tipo": "llama",
       "origen": "servidor.py:main",
       "destino": "servidor.py:asegurar_archivo_actual",
       "dudosa": false,
-      "linea": 441
+      "linea": 450
     },
     {
       "tipo": "externa",

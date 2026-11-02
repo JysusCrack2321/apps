@@ -69,9 +69,10 @@ flowchart LR
   ```
 - Automáticamente, el navegador envía esa misma cookie `usuario=<id>` en todas las peticiones a los puertos `8080`, `8088` y `8090` del mismo host.
 - Cada `servidor.py` implementa la función aislada `quien_es(peticion)` y expone `GET /api/yo`:
-  1. Primero inspecciona el encabezado `Cf-Access-Authenticated-User-Email` (preparado para Cloudflare Access en la Fase D) y busca coincidencia por `correo` en `usuarios.json`.
-  2. Solo si no viene ese encabezado, lee la cookie `usuario` y busca coincidencia por `id` en `usuarios.json`.
-  3. Devuelve `{ "id", "nombre", "rol" }` o `null` si no hay cookie o el usuario no existe.
+  1. Si viene el encabezado `Cf-Access-Authenticated-User-Email` (Cloudflare Access), **es la única fuente válida**: busca coincidencia por `correo` en `usuarios.json` y, si no la hay, devuelve `null`. La cookie se ignora, así nadie puede suplantar a otro escribiendo `usuario=<otro-id>`.
+  2. Solo si **no** viene ese encabezado (uso local, sin túnel) lee la cookie `usuario` y busca coincidencia por `id` en `usuarios.json`.
+  3. Devuelve `{ "id", "nombre", "rol" }` o `null` si no hay identidad válida.
+  4. Detrás de Access, `GET /api/usuarios` no expone la lista completa: el portal y el Itinerario devuelven solo la ficha del usuario activo, y el EDT devuelve id/nombre/rol sin correos. En el Itinerario, un correo autorizado por Access pero ausente de `usuarios.json` recibe `403` en lugar del archivo compartido por defecto.
 - En el EDT (`project-organizer`), además de mostrar el usuario activo en la barra superior, el servidor expone `GET /api/usuarios` para que el selector de responsable (`#po-editor-responsable`) ofrezca los nombres de `usuarios.json` junto con los miembros del equipo del proyecto, manteniendo intacto el esquema de `datos.json` (el responsable sigue guardándose como texto con el nombre).
 - En el Itinerario (`itinerario-app`), la identidad activa determina qué archivo en `itinerario-app/usuarios/<id>.json` se carga y se edita. Para `jesus-aragon` y `jysusman` se entrega el itinerario con las materias y tareas de Jesús Aragón; para los demás usuarios (`paola-bello`, `maria-jose`, `santiago-benavides`, etc.) se crea y entrega un archivo en blanco. Cada guardado (`POST /api/datos`) escribe exclusivamente en el archivo de ese usuario y genera respaldos en `respaldos/datos_<id>_<timestamp>.json`.
 - **Autenticación sin contraseñas locales:** en desarrollo y red local no se exige contraseña; la selección es libre mediante el selector de usuario en la cabecera o el portal. En producción, el acceso se delega al túnel de Cloudflare Access mediante autenticación por correo o Google Workspace (One-Time PIN).
