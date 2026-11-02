@@ -12,9 +12,12 @@ import http.server
 import json
 import os
 from pathlib import Path
+import random
 import shutil
+import string
 import sys
 import tempfile
+import threading
 import urllib.parse
 
 DIRECTORIO_RAIZ = Path(__file__).resolve().parent
@@ -181,6 +184,47 @@ def respaldar_datos(archivo_origen: Path = None):
                 pass
 
 
+# Serializa las escrituras: dos agentes a la vez no pueden pisarse el archivo.
+CANDADO_ESCRITURA = threading.Lock()
+
+ALFABETO_ID = string.ascii_lowercase + string.digits
+
+
+def nuevo_id_tarea() -> str:
+    """Identificador corto y único para una tarea (t-xxxxxx)."""
+    return "t-" + "".join(random.choice(ALFABETO_ID) for _ in range(6))
+
+
+def guardar_datos_atomico(archivo: Path, datos: dict):
+    """Respalda y escribe el JSON de forma atómica (temp + os.replace)."""
+    respaldar_datos(archivo)
+    archivo.parent.mkdir(parents=True, exist_ok=True)
+    with tempfile.NamedTemporaryFile(
+        "w", dir=archivo.parent, delete=False, encoding="utf-8", suffix=".tmp"
+    ) as f_tmp:
+        json.dump(datos, f_tmp, ensure_ascii=False, indent=2)
+        nombre_temporal = f_tmp.name
+    try:
+        os.replace(nombre_temporal, archivo)
+    except Exception:
+        if os.path.exists(nombre_temporal):
+            os.unlink(nombre_temporal)
+        raise
+
+
+def ids_descendientes(tareas: list, id_raiz: str) -> set:
+    """Ids de la tarea y de todas sus descendientes."""
+    objetivos = {id_raiz}
+    cambio = True
+    while cambio:
+        cambio = False
+        for t in tareas:
+            if t.get("padre") in objetivos and t.get("id") not in objetivos:
+                objetivos.add(t.get("id"))
+                cambio = True
+    return objetivos
+
+
 class ManejadorItinerario(http.server.BaseHTTPRequestHandler):
     server_version = "ServidorItinerario/1.0"
 
@@ -217,6 +261,10 @@ class ManejadorItinerario(http.server.BaseHTTPRequestHandler):
 
         if ruta == "/api/eventos":
             self.manejar_eventos_sse()
+            return
+
+        if ruta == "/api/tareas":
+            self.manejar_get_tareas()
             return
 
         # Servir archivos estáticos
@@ -304,7 +352,120 @@ class ManejadorItinerario(http.server.BaseHTTPRequestHandler):
             self.manejar_post_datos()
             return
 
+        if ruta == "/api/tareas":
+            self.manejar_post_tarea()
+            return
+
         self.responder_error(404, "Ruta no encontrada")
+
+    def do_DELETE(self):
+        ruta = urllib.parse.urlparse(self.path).path
+        if ruta.startswith("/api/tareas/"):
+            id_tarea = urllib.parse.unquote(ruta[len("/api/tareas/"):])
+            self.manejar_delete_tarea(id_tarea)
+            return
+        self.responder_error(404, "Ruta no encontrada")
+
+    def manejar_get_tareas(self):
+        """Lista de tareas del usuario activo, con su ETag."""
+        archivo = self.archivo_activo()
+        if archivo is None:
+            return
+        datos = json.loads(archivo.read_text(encoding="utf-8")) if archivo.exists() else {}
+        self.responder_json(
+            200,
+            {"tareas": datos.get("tareas", []), "etag": obtener_etag(archivo)},
+            {"ETag": obtener_etag(archivo)},
+        )
+
+    def manejar_post_tarea(self):
+        """Crea una tarea suelta sin reescribir el documento completo.
+
+        Pensado para agentes: no exige If-Match porque la lectura y la escritura
+        ocurren bajo el mismo candado, así no pisa cambios de otros.
+        """
+        archivo = self.archivo_activo()
+        if archivo is None:
+            return
+        try:
+            largo = int(self.headers.get("Content-Length", 0))
+            cuerpo = json.loads(self.rfile.read(largo).decode("utf-8") or "{}")
+        except Exception as e:
+            self.responder_error(400, f"JSON inválido en el cuerpo: {e}")
+            return
+
+        titulo = (cuerpo.get("titulo") or "").strip()
+        if not titulo:
+            self.responder_error(400, "Falta el campo 'titulo'.")
+            return
+        try:
+            duracion = int(cuerpo.get("duracionMin") or 60)
+        except (TypeError, ValueError):
+            self.responder_error(400, "'duracionMin' debe ser un número.")
+            return
+
+        with CANDADO_ESCRITURA:
+            datos = (
+                json.loads(archivo.read_text(encoding="utf-8"))
+                if archivo.exists()
+                else {"version": 1, "tareas": [], "bloques": [], "fijos": []}
+            )
+            tareas = datos.setdefault("tareas", [])
+            padre = cuerpo.get("padre") or None
+            if padre and not any(t.get("id") == padre for t in tareas):
+                self.responder_error(400, f"El padre '{padre}' no existe.")
+                return
+            tarea = {
+                "id": nuevo_id_tarea(),
+                "titulo": titulo,
+                "materia": cuerpo.get("materia") or None,
+                "padre": padre,
+                "entrega": cuerpo.get("entrega") or None,
+                "duracionMin": duracion,
+                "avance": 0,
+                "estado": "pendiente",
+                "notas": cuerpo.get("notas") or "",
+            }
+            tareas.append(tarea)
+            try:
+                guardar_datos_atomico(archivo, datos)
+            except Exception as e:
+                self.responder_error(500, f"Error al guardar: {e}")
+                return
+
+        etag = obtener_etag(archivo)
+        self.responder_json(201, {"ok": True, "tarea": tarea, "etag": etag}, {"ETag": etag})
+
+    def manejar_delete_tarea(self, id_tarea: str):
+        """Borra una tarea y sus subtareas; los bloques quedan libres."""
+        archivo = self.archivo_activo()
+        if archivo is None:
+            return
+        with CANDADO_ESCRITURA:
+            if not archivo.exists():
+                self.responder_error(404, "No hay datos para este usuario.")
+                return
+            datos = json.loads(archivo.read_text(encoding="utf-8"))
+            tareas = datos.get("tareas", [])
+            if not any(t.get("id") == id_tarea for t in tareas):
+                self.responder_error(404, f"No existe la tarea '{id_tarea}'.")
+                return
+            fuera = ids_descendientes(tareas, id_tarea)
+            datos["tareas"] = [t for t in tareas if t.get("id") not in fuera]
+            for bloque in datos.get("bloques", []):
+                if bloque.get("tarea") in fuera:
+                    bloque["tarea"] = None
+                    bloque["titulo"] = "Bloque libre"
+            try:
+                guardar_datos_atomico(archivo, datos)
+            except Exception as e:
+                self.responder_error(500, f"Error al guardar: {e}")
+                return
+
+        etag = obtener_etag(archivo)
+        self.responder_json(
+            200, {"ok": True, "borradas": len(fuera), "etag": etag}, {"ETag": etag}
+        )
 
     def manejar_post_datos(self):
         archivo_objetivo = self.archivo_activo()

@@ -75,6 +75,32 @@ node --test herramientas/pruebas/grafo.test.mjs
 
 ---
 
+## API para agentes: crear y borrar tareas
+
+Además del documento completo (`GET/POST /api/datos` con `If-Match`), el Itinerario
+expone endpoints por tarea pensados para agentes y scripts:
+
+- `GET /api/tareas` — lista las tareas del usuario activo.
+- `POST /api/tareas` — crea una tarea (`titulo` obligatorio; opcionales `materia`,
+  `entrega`, `duracionMin`, `padre`, `notas`).
+- `DELETE /api/tareas/<id>` — borra la tarea y sus subtareas.
+
+El cliente listo para usar es `herramientas/tareas.py`:
+
+```bash
+# En local (sin túnel), eligiendo usuario por cookie:
+python3 herramientas/tareas.py --cookie jysusman listar
+python3 herramientas/tareas.py --cookie jysusman agregar --titulo "Informe" --duracion 90
+python3 herramientas/tareas.py --cookie jysusman borrar --id t-a1b2c3
+
+# Contra el sitio publicado, con un token de servicio de Cloudflare Access:
+export GIDA_URL=https://web.gida.lat/itinerario
+export CF_ACCESS_CLIENT_ID=... CF_ACCESS_CLIENT_SECRET=...
+python3 herramientas/tareas.py agregar --titulo "Informe" --entrega 2026-11-06T23:59
+```
+
+---
+
 ## Cómo regenerar y verificar el grafo de código
 
 Después de cualquier cambio en `.js` o `servidor.py`, regenera los archivos `grafo.json` y `GRAFO.md` de los tres proyectos:

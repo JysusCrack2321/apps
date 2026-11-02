@@ -151,6 +151,9 @@ Implementado con la biblioteca estándar `http.server.ThreadingHTTPServer`.
   4. Realiza escritura atómica en disco escribiendo en un archivo temporal en la misma carpeta y ejecutando `os.replace`.
   5. Retorna `200 OK` con el nuevo `ETag`.
 - `GET /api/eventos`: Transmisión SSE de eventos `cambio` cuando el `mtime` de `datos.json` se modifica por fuera.
+- `GET /api/tareas`: Lista las tareas del usuario activo (con su `ETag`).
+- `POST /api/tareas`: Crea una tarea sin reescribir el documento completo. Cuerpo: `{ "titulo", "materia"?, "entrega"?, "duracionMin"?, "padre"?, "notas"? }`. Devuelve `201` con la tarea creada. La lectura y la escritura ocurren bajo un candado, así que dos agentes no se pisan aunque no envíen `If-Match`.
+- `DELETE /api/tareas/<id>`: Borra la tarea y sus descendientes; los bloques asociados quedan como `"Bloque libre"`. Devuelve `200` con cuántas borró, o `404` si el `id` no existe.
 
 ---
 
